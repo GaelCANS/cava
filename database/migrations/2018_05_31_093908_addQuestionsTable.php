@@ -18,6 +18,7 @@ class AddQuestionsTable extends Migration
             $table->text('comment');
             $table->boolean('enabled')->default(true);
             $table->string('key');
+            $table->smallInteger('order');
             $table->integer('blueprint_id');
             $table->timestamps();
         });
