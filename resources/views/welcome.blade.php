@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Welcome to CAVA</div>
+                <div class="title">Welcome to CAVA !</div>
             </div>
         </div>
     </body>
