@@ -124,7 +124,7 @@ class SurveyController extends Controller
      *
      * @param Request $request
      * @param $key
-     * @return mixed
+     * @return \Illuminate\Http\Response
      */
     public function answer(Request $request, $key)
     {
@@ -160,12 +160,19 @@ class SurveyController extends Controller
         $next = $next_question != false ?
             route('show-survey-front' , Survey::createKey( array($keys['survey'] , $keys['user'] , $next_question) )) :
             route('results-survey-front' , $keys['survey']);
-        
+                
         return redirect($next);
     }
 
+
+    /**
+     * Front office result interface
+     *
+     * @param $key
+     * @return \Illuminate\Http\Response
+     */
     public function results($key)
     {
-        die('results');
+        return view('questions.results');
     }
 }

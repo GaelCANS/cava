@@ -9,6 +9,8 @@ class Survey extends Model
 {
     use Keyable;
 
+    public $guarded = array('id');
+
     /**
      * CUSTOM
      */
