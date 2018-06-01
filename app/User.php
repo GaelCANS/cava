@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Libraries\Traits\Keyable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Keyable;
     /**
      * The attributes that are mass assignable.
      *

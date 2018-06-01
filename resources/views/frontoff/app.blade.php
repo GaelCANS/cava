@@ -8,10 +8,9 @@
 
     @include('frontoff.header')
 
-            <!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="content body">
-            @include('frontoff.flash')
 
             @yield('content')
         </div>
@@ -21,6 +20,8 @@
 <!-- ./wrapper -->
 
 @include('frontoff.foot')
+
+@include('frontoff.footer')
 
 </body>
 </html>

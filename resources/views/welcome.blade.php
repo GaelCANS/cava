@@ -39,6 +39,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">Welcome to CAVA !</div>
+                {{ uniqid() }}
             </div>
         </div>
     </body>
