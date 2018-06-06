@@ -160,7 +160,7 @@ class SurveyController extends Controller
         $next = $next_question != false ?
             route('show-survey-front' , Survey::createKey( array($keys['survey'] , $keys['user'] , $next_question) )) :
             route('results-survey-front' , $keys['survey']);
-                
+
         return redirect($next);
     }
 
@@ -173,6 +173,7 @@ class SurveyController extends Controller
      */
     public function results($key)
     {
+        // TODO
         return view('questions.results');
     }
 }
