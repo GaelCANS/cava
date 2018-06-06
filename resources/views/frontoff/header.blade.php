@@ -1,7 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gaellevant
- * Date: 31/05/2018
- * Time: 13:57
- */
+<header class="text-center m-4">
+    <h1>LOGO APP</h1>
+</header>
