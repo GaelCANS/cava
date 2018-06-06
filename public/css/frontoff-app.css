@@ -1,13 +1,23 @@
-html,
-body {
-    width: 100%;
+
+html {
     height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    width: 100%;
     background:url(../img/bg.jpg);
     background-size: cover;
     font-family: 'Vibur', cursive;
-
 }
 
+
+a:hover{
+    text-decoration: none;
+}
 .row {
     margin: 0px;
 }
@@ -78,4 +88,295 @@ h3 {
 .nav a:hover {
     text-decoration: none;
 }
+
+
+
+div.ui-slider {
+    height: 50px;
+
+    padding: 0;
+    -ms-touch-action: pan-y pinch-zoom double-tap-zoom;
+    margin-bottom: 35px;
+}
+div.ui-slider:before,
+div.ui-slider:after {
+    content: "";
+    display: table;
+}
+div.ui-slider:after {
+    clear: both;
+}
+input.ui-slider-input {
+    display: none;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 4px;
+    width: 40px;
+    height: 20px;
+    line-height: 20px;
+    border-width: 1px;
+    border-style: solid;
+    outline: 0;
+    text-align: center;
+    vertical-align: text-bottom;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+.ui-slider-input::-webkit-outer-spin-button,
+.ui-slider-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.ui-slider-track {
+    position: relative;
+    overflow: visible;
+    border:none;
+    border-radius: 30px;
+    height: 50px;
+    background-color: #e4e4e4;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-bottom: 35px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    outline: none;
+    padding: 0;
+    width: 100%;
+
+}
+
+
+
+
+
+
+.ui-slider-track.ui-mini {
+    height: 12px;
+    top: 8px;
+}
+.ui-slider-track .ui-slider-bg {
+    height: 100%;
+}
+/* High level of specificity to override button margins in grids */
+.ui-slider-track .ui-btn.ui-slider-handle {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    width: 28px;
+    height: 28px;
+    margin: -15px 0 0 -15px;
+    outline: 0;
+    padding: 0;
+}
+.ui-slider-track.ui-mini .ui-slider-handle {
+    height: 14px;
+    width: 14px;
+    margin: -8px 0 0 -8px;
+}
+select.ui-slider-switch {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+}
+div.ui-slider-switch {
+    display: inline-block;
+    height: 32px;
+    width: 5.8em;
+    top: 0;
+}
+/* reset the clearfix */
+div.ui-slider-switch:before,
+div.ui-slider-switch:after {
+    display: none;
+    clear: none;
+}
+div.ui-slider-switch.ui-mini {
+    height: 29px;
+    top: 0;
+}
+.ui-slider-inneroffset {
+    margin: 0 16px;
+    position: relative;
+    z-index: 1;
+}
+.ui-slider-switch.ui-mini .ui-slider-inneroffset {
+    margin: 0 15px 0 14px;
+}
+.ui-slider-switch .ui-btn.ui-slider-handle {
+    margin: 1px 0 0 -15px;
+}
+.ui-slider-switch.ui-mini .ui-slider-handle {
+    width: 25px;
+    height: 25px;
+    margin: 1px 0 0 -13px;
+    padding: 0;
+}
+.ui-slider-handle-snapping {
+    -webkit-transition: left 70ms linear;
+    -moz-transition: left 70ms linear;
+    transition: left 70ms linear;
+}
+.ui-slider-switch .ui-slider-label {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    font-size: 16px;
+    top: 0;
+    line-height: 2;
+    min-height: 100%;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.ui-slider-switch.ui-mini .ui-slider-label {
+    font-size: 14px;
+}
+.ui-slider-switch .ui-slider-label-a {
+    z-index: 1;
+    left: 0;
+    text-indent: -1.5em;
+}
+.ui-slider-switch .ui-slider-label-b {
+    z-index: 0;
+    right: 0;
+    text-indent: 1.5em;
+}
+/* The corner radii for ui-slider-switch/track can be specified in theme CSS. The bg and handle inherits. */
+.ui-slider-track .ui-slider-bg,
+.ui-slider-switch .ui-slider-label,
+.ui-slider-switch .ui-slider-inneroffset,
+.ui-slider-handle {
+    -webkit-border-radius: inherit;
+    border-radius: inherit;
+}
+.ui-field-contain div.ui-slider-switch {
+    margin: 0;
+}
+/* ui-hide-label deprecated in 1.4. TODO: Remove in 1.5 */
+.ui-field-contain div.ui-slider-switch,
+.ui-field-contain.ui-hide-label div.ui-slider-switch,
+html .ui-popup .ui-field-contain div.ui-slider-switch {
+    display: inline-block;
+    width: 5.8em;
+}
+/* slider tooltip
+-----------------------------------------------------------------------------------------------------------*/
+
+.ui-slider-track .ui-btn.ui-slider-handle {
+    font-size: 1.3em;
+    line-height: 40px;
+    font-weight: bold;
+    color: #1cb3b8;
+    width: 50px;
+    top:85px;
+    vertical-align: middle;
+    height: 50px;
+    border: 8px solid #1CB3B8;
+    background: white;
+    cursor: ew-resize;
+    margin-left: -25px;
+}
+
+
+.ui-slider-track .ui-btn.ui-slider-handle:before {
+    content:"\A";
+    border-style: solid;
+    border-width: 0 16px 17px 16px;
+    border-color: transparent transparent #1cb3b8 transparent;
+    position: absolute;
+    top: -19px;
+    left: 1px;
+
+
+}
+
+
+.ui-rangeslider {
+    margin: .5em 0;
+}
+.ui-rangeslider:before,
+.ui-rangeslider:after {
+    content: "";
+    display: table;
+}
+.ui-rangeslider:after {
+    clear: both;
+}
+.ui-rangeslider .ui-slider-input.ui-rangeslider-last {
+    float: right;
+}
+.ui-rangeslider .ui-rangeslider-sliders {
+    position: relative;
+    overflow: visible;
+    height: 30px;
+    margin: 0 68px;
+}
+.ui-rangeslider .ui-rangeslider-sliders .ui-slider-track {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    left: 0;
+    margin: 0;
+}
+.ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track {
+    top: 8px;
+}
+.ui-rangeslider .ui-slider-track:first-child .ui-slider-bg {
+    display: none;
+}
+.ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
+    background-color: transparent;
+    background: none;
+    border-width: 0;
+    height: 0;
+}
+/* this makes ie6 and ie7 set height to 0 to fix z-index problem */
+html >/**/body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
+    height: 15px;
+    border-width: 1px;
+}
+html >/**/body .ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track:first-child {
+    height: 12px;
+}
+/* Hide the second label (the first is moved outside the div) */
+div.ui-rangeslider label {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+}
+.ui-field-contain .ui-rangeslider input.ui-slider-input,
+.ui-field-contain .ui-rangeslider.ui-mini input.ui-slider-input,
+.ui-field-contain .ui-rangeslider .ui-rangeslider-sliders,
+.ui-field-contain .ui-rangeslider.ui-mini .ui-rangeslider-sliders {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ui-loader {
+    display: none;
+}
+
+
+
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+
 

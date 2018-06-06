@@ -18,7 +18,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-5 text-center mx-auto">
 
             {!! Form::model(
                 null,
@@ -28,15 +28,22 @@
                     'method'    => 'Post'
                 )
             ) !!}
+            <div class="row justify-content-between">
+                <p class="col-3 range-text p-0 text-left text-muted">Pas du tout</p>
+                <p class="col-3 p-0 text-right text-muted">Totalement</p>
+            </div> <!-- slide bar -->
+            <input type="range" min="0" max="5" step="1" value="3"  data-show-value="true">
 
-            @if ($question->type == 'close')
-                <input type="text" name="result" value="{{ rand(0,5) }}" >
+
+        @if ($question->type == 'close')
+                <input type="text" name="result" value="{{ rand(0,5) }}" style="display:none;" >
                 @else
                 <textarea name="result" id="" cols="30" rows="10"></textarea>
             @endif
 
 
-            <input type="range" min="0" max="5" 100step="1" value="3">
+
+
 
         </div>
     </div>
