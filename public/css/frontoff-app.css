@@ -30,6 +30,11 @@ a:hover{
     margin-bottom: 80px;
 }
 
+h1 {
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
 h2 {
     margin: 40px 0px;
 }
@@ -89,7 +94,7 @@ h3 {
     text-decoration: none;
 }
 
-
+/*
 
 div.ui-slider {
     height: 50px;
@@ -163,7 +168,7 @@ input.ui-slider-input {
 .ui-slider-track .ui-slider-bg {
     height: 100%;
 }
-/* High level of specificity to override button margins in grids */
+
 .ui-slider-track .ui-btn.ui-slider-handle {
     position: absolute;
     z-index: 1;
@@ -192,7 +197,6 @@ div.ui-slider-switch {
     width: 5.8em;
     top: 0;
 }
-/* reset the clearfix */
 div.ui-slider-switch:before,
 div.ui-slider-switch:after {
     display: none;
@@ -249,7 +253,6 @@ div.ui-slider-switch.ui-mini {
     right: 0;
     text-indent: 1.5em;
 }
-/* The corner radii for ui-slider-switch/track can be specified in theme CSS. The bg and handle inherits. */
 .ui-slider-track .ui-slider-bg,
 .ui-slider-switch .ui-slider-label,
 .ui-slider-switch .ui-slider-inneroffset,
@@ -260,15 +263,12 @@ div.ui-slider-switch.ui-mini {
 .ui-field-contain div.ui-slider-switch {
     margin: 0;
 }
-/* ui-hide-label deprecated in 1.4. TODO: Remove in 1.5 */
 .ui-field-contain div.ui-slider-switch,
 .ui-field-contain.ui-hide-label div.ui-slider-switch,
 html .ui-popup .ui-field-contain div.ui-slider-switch {
     display: inline-block;
     width: 5.8em;
 }
-/* slider tooltip
------------------------------------------------------------------------------------------------------------*/
 
 .ui-slider-track .ui-btn.ui-slider-handle {
     font-size: 1.3em;
@@ -338,15 +338,13 @@ html .ui-popup .ui-field-contain div.ui-slider-switch {
     border-width: 0;
     height: 0;
 }
-/* this makes ie6 and ie7 set height to 0 to fix z-index problem */
-html >/**/body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
+html >body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
     height: 15px;
     border-width: 1px;
 }
-html >/**/body .ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track:first-child {
+html >body .ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track:first-child {
     height: 12px;
 }
-/* Hide the second label (the first is moved outside the div) */
 div.ui-rangeslider label {
     position: absolute !important;
     height: 1px;
@@ -364,9 +362,90 @@ div.ui-rangeslider label {
 
 .ui-loader {
     display: none;
+} */
+
+
+
+
+
+input[type=range] {
+    margin: auto;
+    outline: none;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #e4e4e4;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1cb3b8), color-stop(100%, #1cb3b8));
+    background-image: -webkit-linear-gradient(#f7f7f7);
+    background-image: -moz-linear-gradient(#f7f7f7);
+    background-image: -o-linear-gradient(#f7f7f7);
+    background-image: linear-gradient(#f7f7f7);
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 25px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-bottom: 25px;
+    margin-top: 0px;
+
+    /* track */
+    /* thumb */ }
+input[type=range]::-webkit-slider-runnable-track {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    -webkit-appearance: none; }
+input[type=range]::-moz-range-track {
+    box-shadow: none;
+    border: none;
+    background: transparent; }
+input[type=range]::-moz-focus-outer {
+    border: 0; }
+input[type=range]::-webkit-slider-thumb {
+    width: 60px;
+    height: 60px;
+    border: 0;
+    background: #00999e;
+    border-radius: 100%;
+    margin-top:130px;
+    -webkit-appearance: none; }
+
+input[type=range]::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background: white;
+    border-radius: 100%;
+    box-shadow: 0 1px 2px 0px #000; }
+
+.dot-progress {
+    margin-top: 60px;
+    margin-bottom: 20px;
 }
 
+.dot-progress a .fa {
+    color: #e3e3e3;
+    padding: 4px;
+}
 
+.dot-progress a .check {
+    color: #b3dcdd;
+}
+
+.dot-progress a .active {
+    color: #00999e;
+}
+
+textarea {
+    border: 3px solid #00999e;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+    width: 90%;
+}
 
 
 .footer {
@@ -379,4 +458,55 @@ div.ui-rangeslider label {
 }
 
 
+@media (max-width: 768px) {
+    .nav {
+        height: 110px;
+        width: 70px;
+        font-size: 4rem;
+    }
 
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+
+output {
+    position: absolute;
+    background-image: linear-gradient(top, #444444, #999999);
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10px;
+    display: inline-block;
+    left: 0;
+    top: 90px;
+    padding-top: 30px;
+
+
+}
+output:before {
+    content:"\A";
+    border-style: solid;
+    border-width: 0 16px 17px 16px;
+    border-color: transparent transparent #1cb3b8 transparent;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+}
+
+datalist {
+    display: contents;
+}
+
+datalist option {
+    margin-top: -75px;
+    height: 50px;
+    width: 3px;
+    background: white;
+    border:none;
+}
