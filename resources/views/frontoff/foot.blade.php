@@ -59,3 +59,15 @@
                 .trigger('change');
     });
 </script>
+<script>
+    // Produces width of .barChart
+    $(document).ready(function() {
+        $('.graph-bar').each(function() {
+            var dataWidth = $(this).data('value');
+            var dataWidthTotal = dataWidth*20;
+            $(this).css("width", dataWidthTotal + "%");
+        });
+    });
+
+
+</script>
