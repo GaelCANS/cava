@@ -109,13 +109,26 @@ class SurveyController extends Controller
         // Get Question
         $question = Question::where('key' , $keys['question'])->first();
 
+        // Get Answer if already answered
+        $survey_id      = Survey::getId($keys['survey']);
+        $user_id        = User::getId($keys['user']);
+        $answer         = Answer::where('user_id' , $user_id)
+                            ->where('survey_id',$survey_id)
+                            ->where('question_id',Question::getId($keys['question']))
+                            ->first();
+        $result = !is_null($answer) ? $answer->result : 0;
+
         // Previous button link
         $previous_question = Question::previous($question);
         $previous = $previous_question != false ?
             Survey::createKey( array($keys['survey'] , $keys['user'] , $previous_question) ) :
             false;
 
-        return view('questions.show' , compact('survey' , 'question' , 'previous' , 'key'));
+        // Navigation links
+        $navigations = Question::navigation($survey_id, $user_id);
+        $questionKey = $keys['question'];
+
+        return view('questions.show' , compact('survey' , 'question' , 'previous' , 'key' , 'result' , 'navigations' , 'questionKey'));
     }
 
 
@@ -143,17 +156,21 @@ class SurveyController extends Controller
                             ->where('question_id',$question_id)
                             ->first();
         if (!is_null($answer)) {
-            $answer->delete();
+            // Update answser in database
+            $answer->update( array('result' => $request->input('result')) );
+        }
+        else {
+            // Add answer in database
+            $answer = Answer::create(array(
+                'user_id'       => $user_id,
+                'survey_id'     => $survey_id,
+                'question_id'   => $question_id,
+                'result'        => $request->input('result')
+            ));
         }
 
 
-        // Add answer in database
-        $answer = Answer::create(array(
-            'user_id'       => $user_id,
-            'survey_id'     => $survey_id,
-            'question_id'   => $question_id,
-            'result'        => $request->input('result')
-        ));
+
 
         // Next button link
         $next_question = Question::next($question);
