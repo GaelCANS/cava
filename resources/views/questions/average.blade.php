@@ -28,7 +28,13 @@
                 <span class="barGraph-check ml80"></span>
             </div>
             @if(trim($average['comment']) != '')
-                <span class="text-muted">Voir les commentaires du gestionnaire</span>
+                <a class="text-muted" data-toggle="collapse" href="#comments-{{$average['order']}}" aria-expanded="false" aria-controls="comments-{{$average['order']}}">Voir les commentaires du gestionnaire</a>
+
+                <div class="collapse" id="comments-{{$average['order']}}">
+                    <div class="card card-body">
+                        {{$average['comment']}}
+                    </div>
+                </div>
             @endif
         </div>
     </div>
