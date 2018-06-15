@@ -20,4 +20,30 @@ class Answer extends Model
     {
         return self::where('survey_id' , $survey_id)->where('user_id',$user_id)->where('question_id',$question_id)->count();
     }
+
+
+    /**
+     * Returns the average on a question since the beginning of the survey
+     *
+     * @param $survey_id
+     * @param $question_id
+     * @return float
+     */
+    public static function averageQuestionSurvey($survey_id, $question_id)
+    {
+        return round(self::where('survey_id' , $survey_id)->where('question_id',$question_id)->avg('result'),1);
+    }
+
+
+    /**
+     * Returns the average on a question
+     *
+     * @param $question_id
+     * @return float
+     */
+    public static function averageQuestion($question_id)
+    {
+        return round(self::where('question_id',$question_id)->avg('result'),1);
+    }
+
 }

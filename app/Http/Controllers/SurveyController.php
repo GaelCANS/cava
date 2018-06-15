@@ -190,7 +190,9 @@ class SurveyController extends Controller
      */
     public function results($key)
     {
-        // TODO
-        return view('questions.results');
+        $survey = Survey::findOrFail(Survey::getId($key));
+        $survey->load('Blueprint');
+        $averages = Survey::results($survey);
+        return view('questions.results' , compact('averages' , 'survey'));
     }
 }
