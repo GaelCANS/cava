@@ -35,7 +35,7 @@
                 <div class="row justify-content-between col-md-8 mx-auto">
                     <p class="col-3 range-text p-0 text-left text-muted">Pas du tout</p>
                     <p class="col-3 p-0 text-right text-muted">Totalement</p>
-                    <input type="range" min="0" max="5" step="1" name="result" value="{{ rand(0,5) }}"  >
+                    <input type="range" min="0" max="5" step="1" name="result" value="{{ $result }}"  >
                     <datalist>
                         <option value="0" style="background: transparent;">
                         <option value="1">
@@ -52,14 +52,20 @@
 
 
             <div class="dot-progress">
-                <a href="#"><i class="fa fa-circle check"></i></a>
-                <a href="#"><i class="fa fa-circle check"></i></a>
-                <a href="#"><i class="fa fa-circle check"></i></a>
-                <a href="#"><i class="fa fa-circle active"></i></a>
-                <a href="#"><i class="fa fa-circle"></i></a>
-                <a href="#"><i class="fa fa-circle"></i></a>
-                <a href="#"><i class="fa fa-circle"></i></a>
-                <a href="#"><i class="fa fa-circle"></i></a>
+                @forelse($navigations as $navigation)
+                    <a @if($navigation['answered'] == 1) href="{{$navigation['link']}}"@endif title="Question {{$navigation['order']}}">
+                        <i class="fa fa-circle
+                            @if($questionKey != $navigation['key'])
+                                @if($navigation['answered'] == 1)
+                                    check
+                                @endif
+                            @else
+                                active
+                            @endif
+                        "></i>
+                    </a>
+                    @empty
+                @endforelse
             </div>
             <div class="order text-muted">- {{$question->order}}/{{count($survey->Blueprint->Questions)}} -</div>
 
@@ -68,7 +74,7 @@
         </div>
     </div>
 
-    <button class="nav previous @if($previous != false) enabled @else disabled @endif">
+    <button type="button" class="nav previous @if($previous != false) enabled @else disabled @endif">
         <a href="@if($previous != false) {{ route('show-survey-front' , $previous) }} @else # @endif">
             <i class="fa fa-angle-left"></i>
         </a>

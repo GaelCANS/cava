@@ -38,12 +38,31 @@ class Survey extends Model
     {
         return implode('-',$keys);
     }
-    
-    
-    
-    public static function countQuestion()
+
+
+    /**
+     * Return an array with averages for each questions
+     *
+     * @param $survey
+     * @return array
+     */
+    public static function results($survey)
     {
-        
+        $surveyQuestions = Question::questions($survey->blueprint_id);
+        $questions = array();
+        foreach ($surveyQuestions as $surveyQuestion) {
+            if ($surveyQuestion->type == "close") {
+                $questions[] = array(
+                    'survey_avg' => Answer::averageQuestionSurvey($survey->id,$surveyQuestion->id),
+                    'avg'        => Answer::averageQuestion($surveyQuestion->id),
+                    'comment'    => $surveyQuestion->comment,
+                    'wording'    => $surveyQuestion->wording,
+                    'order'      => $surveyQuestion->order
+                );
+            }
+        }
+
+        return $questions;
     }
 
 

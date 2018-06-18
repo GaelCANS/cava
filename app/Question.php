@@ -49,4 +49,40 @@ class Question extends Model
     }
 
 
+    /**
+     * Return question sort by asc, and if question is answered
+     *
+     * @param $survey_id
+     * @param $user_id
+     * @return array
+     */
+    public static function navigation($survey_id, $user_id)
+    {
+        $survey          = Survey::findOrFail($survey_id);
+        $user            = User::findOrFail($user_id);
+        $surveyQuestions = self::questions($survey->blueprint_id);
+        $questions       = array();
+        foreach ($surveyQuestions as $surveyQuestion) {
+            $questions[] = array(
+                'order'     => $surveyQuestion->order,
+                'key'       => $surveyQuestion->key,
+                'answered'  => Answer::isAnswered($survey_id, $user_id, $surveyQuestion->id),
+                'link'      => Survey::createKey(array( $survey->key , $user->key , $surveyQuestion->key ))
+            );
+        }
+        return $questions;
+    }
+
+    /**
+     * Return all questions from a blueprint
+     *
+     * @param $blueprint_id
+     * @return mixed
+     */
+    public static function questions($blueprint_id)
+    {
+        return self::where('blueprint_id' , $blueprint_id)->orderBy('order' , 'asc')->get();
+    }
+
+
 }
