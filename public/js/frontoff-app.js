@@ -2,7 +2,7 @@ $(function() {
 
     init();
 
-    $('#result-range').on('change' , function(){
+    $('#result-range').on('input' , function(){
         displayEmote();
     });
     
