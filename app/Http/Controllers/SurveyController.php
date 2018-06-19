@@ -169,14 +169,11 @@ class SurveyController extends Controller
             ));
         }
 
-
-
-
         // Next button link
         $next_question = Question::next($question);
         $next = $next_question != false ?
             route('show-survey-front' , Survey::createKey( array($keys['survey'] , $keys['user'] , $next_question) )) :
-            route('results-survey-front' , $keys['survey']);
+            route('results-survey-front' , array($keys['survey'] , $keys['user']));
 
         return redirect($next);
     }
