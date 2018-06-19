@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\URL;
 
 class SurveyController extends Controller
 {
+
+    /**
+     * SurveyController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('AllowOnlyAjaxRequests' , array( 'only' => 'evolution' ));
+        $this->middleware('SurveyIsOpen' , array( 'only' => 'question' ));
+        $this->middleware('SurveyIsAlreadyAnswered' , array( 'only' => 'question' ));
+
+        // TODO middleware check if user in on survey
+        // TODO middleware check key on result page
+    }
+
     /**
      * Display a listing of the resource.
      *

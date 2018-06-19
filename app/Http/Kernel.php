@@ -49,5 +49,10 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        /** SPE  **/
+        'AllowOnlyAjaxRequests' => \App\Http\Middleware\AllowOnlyAjaxRequests::class,
+        'SurveyIsOpen' => \App\Http\Middleware\SurveyIsOpen::class,
+        'SurveyIsAlreadyAnswered' => \App\Http\Middleware\SurveyIsAlreadyAnswered::class,
     ];
 }

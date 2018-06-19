@@ -6,9 +6,9 @@
 
         <div class="col-md-12 text-center">
 
-            Vous ne pouvez plus répondre à ce formulaire.
+            Vous ne pouvez pas répondre à ce formulaire
             <br>
-            <a href="">Voir les résultats</a>
+            <a href="{{ route('results-survey-front' , array($survey_key, $user_key)) }}">Voir les résultats</a>
 
         </div>
 

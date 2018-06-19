@@ -8,7 +8,7 @@
 
             Vous avez déjà répondu à ce formulaire.
             <br>
-            <a href="">Voir les résultats</a>
+            <a href="{{ route('results-survey-front' , array($survey_key, $user_key)) }}">Voir les résultats</a>
 
         </div>
 
