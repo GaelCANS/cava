@@ -46,4 +46,18 @@ class Answer extends Model
         return round(self::where('question_id',$question_id)->avg('result'),1);
     }
 
+
+    /**
+     * Return Answer question for an user and a survey
+     *
+     * @param $survey_id
+     * @param $user_id
+     * @param $question_id
+     */
+    public static function answerUser($survey_id, $user_id, $question_id)
+    {
+        $answer = self::where('survey_id' , $survey_id)->where('user_id',$user_id)->where('question_id',$question_id)->first();
+        return self::isAnswered($survey_id, $user_id, $question_id) > 0 ? (float)$answer->result : '';
+    }
+
 }

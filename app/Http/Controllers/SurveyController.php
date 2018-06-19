@@ -185,14 +185,37 @@ class SurveyController extends Controller
     /**
      * Front office result interface
      *
-     * @param $key
+     * @param $survey_key
+     * @param $user_key
      * @return \Illuminate\Http\Response
      */
-    public function results($key)
+    public function results($survey_key, $user_key)
     {
-        $survey = Survey::findOrFail(Survey::getId($key));
+        $survey = Survey::findOrFail(Survey::getId($survey_key));
         $survey->load('Blueprint');
         $averages = Survey::results($survey);
-        return view('questions.results' , compact('averages' , 'survey'));
+        return view('questions.results' , compact('averages' , 'survey' , 'user_key'));
+    }
+
+
+    /**
+     * Ajax method who returns average et user's note for a question
+     *
+     * @param $blueprint_id
+     * @param $user_key
+     * @param $question_key
+     * @return mixed
+     */
+    public function evolution($blueprint_id, $user_key, $question_key)
+    {
+        $evolutions = Survey::evolutionQuestion($blueprint_id, User::getId($user_key), Question::getId($question_key));
+
+        return response()->json(
+            array(
+                'average'   => $evolutions['average'],
+                'user'      => $evolutions['user'],
+                'key'       => $question_key
+            )
+        );
     }
 }
