@@ -22,9 +22,8 @@ class SurveyController extends Controller
         $this->middleware('AllowOnlyAjaxRequests' , array( 'only' => 'evolution' ));
         $this->middleware('SurveyIsOpen' , array( 'only' => 'question' ));
         $this->middleware('SurveyIsAlreadyAnswered' , array( 'only' => 'question' ));
-
-        // TODO middleware check if user in on survey
-        // TODO middleware check key on result page
+        $this->middleware('AllowUser' , array( 'only' => 'question' ));
+        $this->middleware('AllowResultPage' , array( 'only' => 'results' ));
     }
 
     /**

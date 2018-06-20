@@ -21,7 +21,7 @@ class SurveyIsAlreadyAnswered
     {
         $keys = Survey::explodeKeys($request->route('key'));
         $survey = Survey::findOrFail(Survey::getId($keys['survey']));
-
+        
         if (Question::where('blueprint_id' , $survey->blueprint_id)->count() > Answer::where('survey_id' , $survey->id)->where('user_id',User::getId($keys['user']))->count())
             return $next($request);
         else

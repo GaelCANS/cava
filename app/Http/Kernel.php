@@ -54,5 +54,7 @@ class Kernel extends HttpKernel
         'AllowOnlyAjaxRequests' => \App\Http\Middleware\AllowOnlyAjaxRequests::class,
         'SurveyIsOpen' => \App\Http\Middleware\SurveyIsOpen::class,
         'SurveyIsAlreadyAnswered' => \App\Http\Middleware\SurveyIsAlreadyAnswered::class,
+        'AllowUser' => \App\Http\Middleware\AllowUser::class,
+        'AllowResultPage' => \App\Http\Middleware\AllowResultPage::class,
     ];
 }
