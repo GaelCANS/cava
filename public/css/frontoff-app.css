@@ -11,7 +11,7 @@ body {
     width: 100%;
     background:url(../img/bg.jpg);
     background-size: cover;
-    font-family: 'Vibur', cursive;
+    font-family: 'Dosis', sans-serif;
 
 }
 
@@ -48,18 +48,19 @@ a:hover{
      border-radius:30px;
      display: inline-block;
      font-size:25px;
-     padding-top: 9px;
+    font-weight: 700;
+    padding-top: 6px;
  }
 
 .head-result-box .graph {
     color: white;
-    background-color:#e2e2e2;
+    background-color:#4d4d4d;
     width:50px;
     height:50px;
     border-radius:30px;
     display: inline-block;
     font-size:25px;
-    padding-top: 9px;
+    padding-top: 7px;
 }
 
 .head-result-box .emote {
@@ -79,14 +80,25 @@ h1 {
 }
 
 h2 {
-    margin: 40px 0px;
+    margin: 30px 0px 40px 0px;
 }
 
 h3 {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    margin: 10px 0px;
+    margin: 20px 0px 0px;
+    font-weight: 700;
+    background: #00999e;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5Px;
+    display: inline-block;
 }
+
+.h4, h4 {
+    font-size: 1.3rem;
+}
+
 
 .emote {
     margin-bottom: -55px;
@@ -123,21 +135,22 @@ h3 {
     padding-left: 30px;
 }
 
+
+
 .nav .fa {
     vertical-align: middle;
     line-height: 0;
     display: block;
 }
 
+
 .nav a {
     color: white;
 }
 
-.nav a:hover {
-    text-decoration: none;
+.nav.active {
+    background:#009597;
 }
-
-
 
 
 
@@ -250,6 +263,11 @@ textarea {
     h2 {
         font-size: 1.75rem;
     }
+
+    .head-result-box {
+        margin-left:0px;
+        margin-right:0px;
+    }
 }
 
 output {
@@ -342,9 +360,10 @@ datalist option {
     display: block;
     font-size: 14px;
     color: #fff;
-    line-height: 28px;
+    line-height: 25px;
     height: 25px;
-    right: 5px;
+    right: 12px;
+    font-weight: 700;
     text-align: right;
     top: 0;
 }
@@ -379,3 +398,7 @@ datalist option {
     margin-left: 80%;
 }
 
+.highcharts-container, .highcharts-root  {
+    font-family: 'Dosis', sans-serif!important;
+
+}
