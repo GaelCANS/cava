@@ -3,7 +3,21 @@ $(function() {
     init();
 
     $('#result-range').on('input' , function(){
+        $('#result-range').attr('data-first' , 0);
         displayEmote();
+        $('.next').addClass('active');
+    });
+
+    $('#result-range[data-first="1"]').on('click', function () {
+        $('#result-range').attr("value",'0').attr('data-first' , 0);
+        $('#result-range').trigger('input');
+    });
+
+    $('#survey-form').on('submit', function () {
+        if ($('#result-range').attr('data-first') == '1') {
+            alert('Merci de sélectionner une note pour valider cette question.');
+            return false;
+        }
     });
 
     $('.open-graph').on('click', function () {
@@ -91,7 +105,7 @@ $(function() {
 
 function displayEmote() 
 {
-    var result = $('#result-range').val();
+    var result = $('#result-range').attr('data-first') == '0' ? $('#result-range').val() : -1;
     $('.emote').addClass('d-none');
     $('.emote[data-smile="'+result+'"]').removeClass('d-none');
 }

@@ -129,7 +129,7 @@ class SurveyController extends Controller
                             ->where('survey_id',$survey_id)
                             ->where('question_id',Question::getId($keys['question']))
                             ->first();
-        $result = !is_null($answer) ? $answer->result : 0;
+        $result = !is_null($answer) ? $answer->result : -1;
 
         // Previous button link
         $previous_question = Question::previous($question);

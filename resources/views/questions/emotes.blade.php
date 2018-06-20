@@ -1,4 +1,9 @@
 
+<div class="emote d-none" data-smile="-1">
+    <img src="{{ asset('/img/smiley/null.png') }}"/>
+</div>
+
+
 <div class="emote d-none" data-smile="0">
     <img src="{{ asset('/img/smiley/0.png') }}"/>
 </div>

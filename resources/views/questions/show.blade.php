@@ -23,7 +23,8 @@
                 array(
                     'class'     => 'form-horizontal',
                     'url'       => route('answer-survey-front', $key),
-                    'method'    => 'Post'
+                    'method'    => 'Post',
+                    'id'        => 'survey-form'
                 )
             ) !!}
 
@@ -34,7 +35,7 @@
                 <div class="row justify-content-between col-md-8 mx-auto">
                     <p class="col-3 range-text p-0 text-left text-muted">Pas du tout</p>
                     <p class="col-3 p-0 text-right text-muted">Totalement</p>
-                    <input type="range" min="0" max="5" step="1" name="result" id="result-range" value="{{ $result }}"  >
+                    <input type="range" min="0" max="5" step="1" name="result" data-first="@if ($result == -1){{1}}@else{{0}}@endif" id="result-range" value="{{ $result }}"  >
                     <datalist>
                         <option value="0" style="background: transparent;">
                         <option value="1">
@@ -79,7 +80,7 @@
         </a>
     </button>
 
-    <button type="submit" class="nav next"><i class="fa fa-angle-right"></i></button>
+    <button type="submit" class="nav next @if ($question->order == count($survey->Blueprint->Questions)) active @endif"><i class="fa fa-angle-right"></i></button>
 
     {!! Form::close() !!}
 
