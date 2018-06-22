@@ -11,13 +11,12 @@
             <h4 class="mt-3 mb-4" id="wording-{{$average['key']}}">{{$average['wording']}}</h4>
             <div class="barGraph">
                 <ul class="graph">
-                      <span class="graph-barBack">
-                        <li class="graph-bar" data-value="{{$average['survey_avg']}}"></li>
-                      </span>
-
-                      <span class="graph-barBack">
-                        <li class="graph-bar total" data-value="{{$average['avg']}}"></li>
-                      </span>
+                  <span class="graph-barBack">
+                    <li class="graph-bar" data-value="{{$average['survey_avg']}}"></li>
+                  </span>
+                  <span class="graph-barBack">
+                    <li class="graph-bar total" data-value="{{$average['avg']}}"></li>
+                  </span>
                 </ul>
                 <span class="barGraph-check"></span>
                 <span class="barGraph-check ml40"></span>

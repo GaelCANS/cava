@@ -15,9 +15,13 @@ body {
 
 }
 
+* {
+    outline: 0;
+}
 
-a:hover{
+a, a:hover, button, button:focus {
     text-decoration: none;
+    outline: 0;
 }
 .row {
     margin: 0px;
@@ -27,7 +31,7 @@ a:hover{
     background: rgba(255,255,255,0.95);
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0px 0px 20px 6px #f2f2f2;
+    box-shadow: 0px 0px 15px 2px #ececec;
     margin-bottom: 80px;
 }
 
@@ -84,10 +88,10 @@ h2 {
 }
 
 h3 {
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-transform: uppercase;
     margin: 20px 0px 0px;
-    font-weight: 700;
+    font-weight: 500;
     background: #00999e;
     color: white;
     padding: 5px 10px;
@@ -152,7 +156,16 @@ h3 {
     background:#009597;
 }
 
+.head-range {
+    width: 100%;
+    display: block;
+}
 
+.head-range span {
+    margin-left: -20px;
+    margin-right: -20px;
+    font-weight: 700;
+}
 
 input[type=range] {
     margin: auto;
@@ -348,7 +361,7 @@ datalist option {
 }
 
 .total {
-    background-color: #428D92;
+    background-color: #5e5e5e;
 }
 
 .graph-bar:last-child {
@@ -401,4 +414,31 @@ datalist option {
 .highcharts-container, .highcharts-root  {
     font-family: 'Dosis', sans-serif!important;
 
+}
+
+.highcharts-title {
+    font-size: 14px!important;
+    text-transform: uppercase!important;
+
+    margin-bottom: 10px!important;
+}
+
+.highcharts-subtitle {
+    font-size: 20px!important;
+    font-weight: 700!important;
+}
+
+.highcharts-axis-title {
+    font-size: 16px!important;
+    font-weight: 700!important;
+
+}
+
+.highcharts-xaxis-labels {
+    font-size: 13px!important;
+}
+
+.modal-footer {
+    margin: 0 auto;
+    border:none;
 }

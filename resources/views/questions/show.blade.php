@@ -33,8 +33,10 @@
 
         @if ($question->type == 'close')
                 <div class="row justify-content-between col-md-8 mx-auto">
-                    <p class="col-3 range-text p-0 text-left text-muted">Pas du tout</p>
-                    <p class="col-3 p-0 text-right text-muted">Totalement</p>
+                    <div class="head-range">
+                        <span class="float-left mb-3 d-inline-block">Pas du tout</span>
+                        <span class="float-right mb-3  d-inline-block">Totalement</span>
+                    </div>
                     <input type="range" min="0" max="5" step="1" name="result" data-first="@if ($result == -1){{1}}@else{{0}}@endif" id="result-range" value="{{ $result }}"  >
                     <datalist>
                         <option value="0" style="background: transparent;">
@@ -46,8 +48,9 @@
                     </datalist>
                 </div>
 
+
                 @else
-                <textarea name="result" id="result-text" placeholder="Écrivez ici votre commentaire"></textarea>
+                <textarea name="result" id="result-text" placeholder="Écrivez ici votre commentaire (facultatif)"></textarea>
             @endif
 
 
@@ -67,7 +70,7 @@
                     @empty
                 @endforelse
             </div>
-            <div class="order text-muted">- {{$question->order}}/{{count($survey->Blueprint->Questions)}} -</div>
+            <!--<div class="order text-muted">- {{$question->order}}/{{count($survey->Blueprint->Questions)}} -</div>-->
 
 
 
