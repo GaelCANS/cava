@@ -8,6 +8,16 @@ class Answer extends Model
 {
     public $guarded = array('id');
 
+
+    /**
+     * SCOPES
+     */
+    public function scopePositive($query)
+    {
+        return $query->where('result' , '>=' , 0);
+    }
+    
+
     /**
      * Return if a question has been answered
      *
@@ -31,7 +41,7 @@ class Answer extends Model
      */
     public static function averageQuestionSurvey($survey_id, $question_id)
     {
-        return round(self::where('survey_id' , $survey_id)->where('question_id',$question_id)->avg('result'),1);
+        return round(self::where('survey_id' , $survey_id)->where('question_id',$question_id)->positive()->avg('result'),1);
     }
 
 
@@ -43,7 +53,7 @@ class Answer extends Model
      */
     public static function averageQuestion($question_id)
     {
-        return round(self::where('question_id',$question_id)->avg('result'),1);
+        return round(self::where('question_id',$question_id)->positive()->avg('result'),1);
     }
 
 
@@ -57,7 +67,7 @@ class Answer extends Model
     public static function answerUser($survey_id, $user_id, $question_id)
     {
         $answer = self::where('survey_id' , $survey_id)->where('user_id',$user_id)->where('question_id',$question_id)->first();
-        return self::isAnswered($survey_id, $user_id, $question_id) > 0 ? (float)$answer->result : '';
+        return self::isAnswered($survey_id, $user_id, $question_id) > 0 && $answer->result >= 0 ? (float)$answer->result : '';
     }
 
 }
