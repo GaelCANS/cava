@@ -13,6 +13,11 @@ $(function() {
         $('#result-range').trigger('input');
     });
 
+    $('#nsp').click(function(){
+        $('input[name="result"]').attr('data-first','0').attr('min','-1').val(-1);
+        $('#survey-form').submit();
+    });
+
     $('#survey-form').on('submit', function () {
         if ($('#result-range').attr('data-first') == '1') {
             alert('Merci de sélectionner une note pour valider cette question.');

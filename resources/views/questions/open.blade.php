@@ -1,0 +1,1 @@
+<textarea name="result" id="result-text" placeholder="Écrivez ici votre commentaire (facultatif)"></textarea>
