@@ -21,6 +21,8 @@ Route::get('/survey/{key}','SurveyController@question')->name('show-survey-front
 Route::post('/survey/{key}','SurveyController@answer')->name('answer-survey-front');
 Route::get('/results/{survey_key}/{user_key?}','SurveyController@results')->name('results-survey-front');
 Route::get('/graph/{blueprint}/{user_key}/{question_key}','SurveyController@evolution')->name('evolution');
+Route::get('/comments/{survey_key}','SurveyController@comments')->name('comments');
+Route::post('/comments/{survey_key}','SurveyController@newComments')->name('add-comments');
 
 
 // Page

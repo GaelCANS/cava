@@ -23,7 +23,7 @@ class SurveyController extends Controller
         $this->middleware('SurveyIsOpen' , array( 'only' => 'question' ));
         $this->middleware('SurveyIsAlreadyAnswered' , array( 'only' => 'question' ));
         $this->middleware('AllowUser' , array( 'only' => 'question' ));
-        $this->middleware('AllowResultPage' , array( 'only' => 'results' ));
+        $this->middleware('AllowResultPage' , array( 'only' => array('results' , 'comments') ));
     }
 
     /**
@@ -227,5 +227,40 @@ class SurveyController extends Controller
                 'key'       => $question_key
             )
         );
+    }
+
+
+    /**
+     * Interface to add comments on questions
+     *
+     * @param $survey_key
+     * @return \Illuminate\Http\Response
+     */
+    public function comments($survey_key)
+    {
+        $survey = Survey::findOrFail( Survey::getId($survey_key) );
+        $surveyQuestions = Question::questions($survey->blueprint_id);
+
+        return view('questions.comments', compact('surveyQuestions' , 'survey_key'));
+
+    }
+
+    /**
+     * Add Or Update comments on questions
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function newComments(Request $request)
+    {
+        $comments = $request->input('comment');
+        foreach ($comments as $question_key => $comment) {
+            $question = Question::findOrFail(Question::getId($question_key));
+            if ($comment != $question->comment) {
+                $question->update(array('comment' => $comment));
+            }
+        }
+
+        return redirect()->back();
     }
 }

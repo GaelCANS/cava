@@ -9,6 +9,8 @@ class Question extends Model
 {
     use Keyable;
 
+    protected $guarded = array('id');
+
     /**
      * CUSTOM
      */
