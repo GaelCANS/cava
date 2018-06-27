@@ -199,7 +199,7 @@ class SurveyController extends Controller
      * @param $user_key
      * @return \Illuminate\Http\Response
      */
-    public function results($survey_key, $user_key)
+    public function results($survey_key, $user_key='admin')
     {
         $survey = Survey::findOrFail(Survey::getId($survey_key));
         $survey->load('Blueprint');
@@ -218,7 +218,7 @@ class SurveyController extends Controller
      */
     public function evolution($blueprint_id, $user_key, $question_key)
     {
-        $evolutions = Survey::evolutionQuestion($blueprint_id, User::getId($user_key), Question::getId($question_key));
+        $evolutions = Survey::evolutionQuestion($blueprint_id, ($user_key != 'admin' ? User::getId($user_key) : $user_key), Question::getId($question_key));
 
         return response()->json(
             array(
