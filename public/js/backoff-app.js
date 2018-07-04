@@ -7,4 +7,19 @@ $(function() {
     });
 
 
+    $('.contributors').click(function() {
+
+        var key = $(this).data('key');
+        var href = $(this).data('href');
+
+        $.ajax({
+                method: "GET",
+                url: href,
+                data: {key : key}
+            })
+            .done(function( data ) {
+                $('#users .modal-body').html(data.html);
+            });
+        });
+
 });

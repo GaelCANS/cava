@@ -36,3 +36,4 @@ Route::get('/404','PagesController@pageSurveyAnswered')->name('page-answered');
 // Admin
 Route::get('/admin/prepare/{blueprint_id}','SurveyAdminController@prepare')->name('email-prepare');
 Route::get('/admin/send/{survey_key}','SurveyAdminController@send')->name('email-send');
+Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributors')->name('contributors');

@@ -55,4 +55,26 @@ class SurveyAdminController extends Controller
         return redirect()->back()->with('success' , "Les emails ont été envoyés");
 
     }
+
+    /**
+     * List of contributors with unique link
+     *
+     * @param $survey_key
+     */
+    public function contributors($survey_key)
+    {
+        $survey = Survey::where('key', $survey_key)->first();
+        $blueprint = Blueprint::findOrFail($survey->blueprint_id);
+        $blueprint->load('Users');
+        $question = Question::where('blueprint_id' , $survey->blueprint_id)->orderBy('order','ASC')->first();
+
+        $html = view('surveys.contributors', compact('blueprint' , 'survey' , 'question'))->render();
+
+        return response()->json(
+            array(
+                'html'      => $html
+            )
+        );
+
+    }
 }
