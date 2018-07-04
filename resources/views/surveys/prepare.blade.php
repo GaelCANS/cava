@@ -7,7 +7,6 @@
         <h2>{{$blueprint->intro}}</h2>
         Période : {{$blueprint->begin}} / {{$blueprint->end}}<br>
         Gestionnaires : {{$blueprint->emails}}<br>
-        <a href="{{route('comments',$first_survey->key)}}" target="_blank">Commentaires</a>
     </div>
 
 
@@ -29,8 +28,9 @@
                 <td>{{$survey->sended}}</td>
                 <td>{{count($users)}}</td>
                 <td>
-                    <a href="{{route('results-survey-front' , array($survey->key))}}" target="_blank">voir les résultats</a>
-                    <a href="{{route('email-send', array($survey->key))}}">envoyer les invitations</a>
+                    <!--<a href="{{route('results-survey-front' , array($survey->key))}}" target="_blank">voir les résultats</a>-->
+                    <a href="{{route('comments' , array($survey->key))}}" target="_blank">voir les résultats</a>
+                    <a class="invitation" href="{{route('email-send', array($survey->key))}}">envoyer les invitations</a>
                 </td>
             </tr>
             @empty

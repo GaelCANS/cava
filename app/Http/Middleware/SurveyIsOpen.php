@@ -26,7 +26,9 @@ class SurveyIsOpen
 
         if ($survey > 0)
             return $next($request);
-        else
-            return view('pages.finish' , array('survey_key' => $keys['survey'] , 'user_key' => $keys['user']) );
+        else {
+            $survey = Survey::where('key' , $keys['survey'])->first();
+            return view('pages.finish', array('survey_key' => $keys['survey'], 'user_key' => $keys['user'] , 'survey' => $survey));
+        }
     }
 }

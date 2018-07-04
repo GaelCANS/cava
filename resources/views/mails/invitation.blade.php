@@ -13,9 +13,9 @@
                         <br>
                         Texte introductif : {{$blueprint->intro}}
                         <br>
-                        Date de début de réponse au questionnaire : {{$survey->begin}}
+                        Date de début de réponse au questionnaire : {{$survey->beginshort}}
                         <br>
-                        Date de fin de réponse au questionnaire : {{$survey->end}}
+                        Date de fin de réponse au questionnaire : {{$survey->beginshort}}
                         <br>
                         Nom du contact : {{$user->firstname}}
                         {{$user->lastname}}
