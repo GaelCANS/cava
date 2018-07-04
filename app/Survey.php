@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Libraries\Traits\Keyable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Survey extends Model
@@ -10,6 +11,25 @@ class Survey extends Model
     use Keyable;
 
     public $guarded = array('id');
+
+
+    /**
+     * MUTATORS & ACCESSORS
+     */
+    public function getBeginshortAttribute() {
+        if (empty($this->begin)) return '';
+        return $this->begin != '0000-00-00' ?
+            Carbon::createFromFormat('Y-m-d', $this->begin)->format('d/m/y') :
+            '';
+    }
+
+    public function getEndshortAttribute() {
+        if (empty($this->end)) return '';
+        return $this->end != '0000-00-00' ?
+            Carbon::createFromFormat('Y-m-d', $this->end)->format('d/m/y') :
+            '';
+    }
+
 
     /**
      * CUSTOM
