@@ -201,10 +201,11 @@ class SurveyController extends Controller
      */
     public function results($survey_key, $user_key='admin')
     {
+        $type = 'show';
         $survey = Survey::findOrFail(Survey::getId($survey_key));
         $survey->load('Blueprint');
         $averages = Survey::results($survey);
-        return view('questions.results' , compact('averages' , 'survey' , 'user_key'));
+        return view('questions.results' , compact('averages' , 'survey' , 'user_key' , 'type'));
     }
 
 
@@ -238,11 +239,13 @@ class SurveyController extends Controller
      */
     public function comments($survey_key)
     {
+        $user_key = 'admin';
+        $type = 'edit';
         $survey = Survey::findOrFail( Survey::getId($survey_key) );
-        $surveyQuestions = Question::questions($survey->blueprint_id);
+        $survey->load('Blueprint');
+        $averages = Survey::results($survey);
 
-        return view('questions.comments', compact('surveyQuestions' , 'survey_key'));
-
+        return view('questions.results' , compact('averages' , 'survey' , 'user_key' , 'type' , 'survey_key'));
     }
 
     /**

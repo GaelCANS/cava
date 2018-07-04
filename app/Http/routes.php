@@ -29,3 +29,10 @@ Route::post('/comments/{survey_key}','SurveyController@newComments')->name('add-
 Route::get('/404','PagesController@page404')->name('page-404');
 Route::get('/finish/{key}','PagesController@pageSurveyFinish')->name('page-finish');
 Route::get('/404','PagesController@pageSurveyAnswered')->name('page-answered');
+
+
+
+
+// Admin
+Route::get('/admin/prepare/{blueprint_id}','SurveyAdminController@prepare')->name('email-prepare');
+Route::get('/admin/send/{survey_key}','SurveyAdminController@send')->name('email-send');

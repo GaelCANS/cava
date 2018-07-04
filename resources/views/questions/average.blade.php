@@ -1,7 +1,7 @@
 <div class="row">
     <div id="question-box" class="col-md-6 text-center mx-auto">
         <div class="head-result-box">
-            <span class="number float-left">1</span>
+            <span class="number float-left">{{$inc+1}}</span>
             <span class="graph float-right open-graph" style="cursor: pointer;" title="Voir l'évolution des résultats pour cette question" data-link="{{ route('evolution' , array('1' , $user_key , $average['key'] )) }}">
                 <i class="fa phpdebugbar-fa-area-chart"></i>
             </span>
@@ -23,13 +23,19 @@
                 <span class="barGraph-check ml60"></span>
                 <span class="barGraph-check ml80"></span>
             </div>
-            @if(trim($average['comment']) != '')
-                <a class="text-muted" data-toggle="collapse" href="#comments-{{$average['order']}}" aria-expanded="false" aria-controls="comments-{{$average['order']}}">Voir les commentaires du gestionnaire</a>
+            @if ($type == 'show')
+                @if(trim($average['comment']) != '')
+                    <a class="text-muted" data-toggle="collapse" href="#comments-{{$average['order']}}" aria-expanded="false" aria-controls="comments-{{$average['order']}}">Voir les commentaires du gestionnaire</a>
 
-                <div class="collapse" id="comments-{{$average['order']}}">
-                    <div class="card card-body">
-                        {{$average['comment']}}
+                    <div class="collapse" id="comments-{{$average['order']}}">
+                        <div class="card card-body">
+                            {{$average['comment']}}
+                        </div>
                     </div>
+                @endif
+            @else
+                <div class="form-group">
+                    <textarea name="comment[{{$average['key']}}]" placeholder="Écrivez ici votre commentaire (facultatif)">{{$average['comment']}}</textarea>
                 </div>
             @endif
         </div>

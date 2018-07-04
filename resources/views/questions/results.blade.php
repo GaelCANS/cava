@@ -9,11 +9,30 @@
         </div>
     </div>
 
-    @foreach($averages as $average)
+    @if ($type == 'edit')
+        {!! Form::model(
+            null,
+            array(
+                'class'     => 'form-horizontal',
+                'url'       => route('add-comments' , $survey_key),
+                'method'    => 'Post',
+                'id'        => 'comment-form'
+            )
+        ) !!}
+    @endif
+
+    @foreach($averages as $inc => $average)
         @include('questions.average')
     @endforeach
 
     @include('questions.modal')
+
+    @if ($type == 'edit')
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" value="Envoyer" name="Envoyer">Envoyer</button>
+        </div>
+        {!! Form::close() !!}
+    @endif
 
 
 @endsection

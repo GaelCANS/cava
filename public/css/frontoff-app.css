@@ -284,7 +284,7 @@ textarea {
 }
 
 output {
-    position: absolute;
+    position: absolute; 
     background-image: linear-gradient(top, #444444, #999999);
     width: 40px;
     height: 30px;
