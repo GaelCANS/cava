@@ -36,8 +36,6 @@ a, a:hover, button, button:focus {
 }
 
 
-
-
 .head-result-box {
     margin-top: -40px;
     margin-left: -45px;
@@ -58,7 +56,7 @@ a, a:hover, button, button:focus {
 
 .head-result-box .graph {
     color: white;
-    background-color:#4d4d4d;
+    background-color:#5e5e5e;
     width:50px;
     height:50px;
     border-radius:30px;
@@ -241,6 +239,17 @@ input[type=range]::-moz-range-thumb {
     color: #00999e;
 }
 
+
+#nsp {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #999999;
+    font-style: italic;
+    text-decoration: underline;
+    margin-top: 20px;
+    cursor: pointer;
+}
 textarea {
     border: 3px solid #00999e;
     border-radius: 8px;

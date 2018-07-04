@@ -37,6 +37,9 @@
                 @include('questions.disabled')
             @endif
 
+            @if ($question->type == 'close' && $question->enabled)
+                <button type="button" id="nsp">Ne me prononce pas</button>
+            @endif
 
             @include('questions.navigation')
 
@@ -45,15 +48,14 @@
         </div>
     </div>
 
+
     <button type="button" class="nav previous @if($previous != false) enabled @else disabled @endif">
         <a href="@if($previous != false) {{ route('show-survey-front' , $previous) }} @else # @endif">
             <i class="fa fa-angle-left"></i>
         </a>
     </button>
 
-    @if ($question->type == 'close' && $question->enabled)
-        <button type="button" id="nsp">Ne me prononce pas</button>
-    @endif
+
 
     <button type="submit" class="nav next @if ($question->order == count($survey->Blueprint->Questions)) active @endif"><i class="fa fa-angle-right"></i></button>
 
