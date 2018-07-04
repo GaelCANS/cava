@@ -9,6 +9,12 @@
 
             <h2>{{$question->wording}}</h2>
 
+            @if ($question->enabled)
+            <div class="comment">
+                {!! nl2br($question->comment) !!}
+            </div>
+            @endif
+
             @if ($question->type == 'close')
                 @include('questions.emotes')
             @endif
@@ -57,7 +63,7 @@
 
 
 
-    <button type="submit" class="nav next @if ($question->order == count($survey->Blueprint->Questions)) active @endif"><i class="fa fa-angle-right"></i></button>
+    <button type="submit" class="nav next @if ($question->order == count($survey->Blueprint->Questions) || !$question->enabled) active @endif"><i class="fa fa-angle-right"></i></button>
 
     {!! Form::close() !!}
 
