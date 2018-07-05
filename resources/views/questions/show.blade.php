@@ -5,13 +5,13 @@
     <div class="row">
         <div id="question-box" class="col-md-8 text-center mx-auto">
 
-            <h3>{{$survey->Blueprint->  name}}</h3>
+            <h3>{{utf8_decode($survey->Blueprint->  name)}}</h3>
 
-            <h2>{{$question->wording}}</h2>
+            <h2>{{utf8_decode($question->wording)}}</h2>
 
             @if ($question->enabled)
             <div class="comment">
-                {!! nl2br($question->comment) !!}
+                {!! nl2br(utf8_decode($question->comment)) !!}
             </div>
             @endif
 

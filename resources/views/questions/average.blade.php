@@ -8,7 +8,7 @@
         </div>
         <div style="clear:both;"></div>
         <div class="col-md-12">
-            <h4 class="mt-3 mb-4" id="wording-{{$average['key']}}">{{$average['wording']}}</h4>
+            <h4 class="mt-3 mb-4" id="wording-{{$average['key']}}">{{utf8_decode($average['wording'])}}</h4>
             <div class="barGraph">
                 <ul class="graph">
                   <span class="graph-barBack">
@@ -29,7 +29,7 @@
 
                     <div class="collapse" id="comments-{{$average['order']}}">
                         <div class="card card-body">
-                            {{$average['comment']}}
+                            {{utf8_decode($average['comment'])}}
                         </div>
                     </div>
                 @endif
