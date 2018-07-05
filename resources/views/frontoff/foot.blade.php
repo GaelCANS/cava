@@ -14,7 +14,7 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 <!-- Chargement des JS -->
-<script src="{{ url('/js/frontoff-app.js?v='.time() ) }}"></script>
+<script src="{{ url('/public/js/frontoff-app.js?v='.time() ) }}"></script>
 
 
 
