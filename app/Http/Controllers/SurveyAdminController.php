@@ -46,8 +46,8 @@ class SurveyAdminController extends Controller
 
             $link = route('show-survey-front' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
             Mail::send('mails.invitation', compact('survey', 'blueprint' , 'link' , 'user'), function ($m) use ($survey, $blueprint, $user) {
-                $m->from('nepasrepondre@cava.com', 'Ca va ?');
-                $m->to($user->email)->subject("Vous êtes invité à donner votre avis.");
+                $m->from('nepasrepondre@cava.com', 'Crédit Agricole Normandie-Seine');
+                $m->to($user->email)->subject($user->lastname.", donnez-nous votre avis ;)");
             });
         }
 
