@@ -193,7 +193,7 @@
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td valign="bottom" style="border-collapse: collapse; padding: 20px 16px 12px;">
                         <div style="text-align: center;">
                             <a href="#" style="color: #439fe0; font-weight: bold; text-decoration: none; word-break: break-word;">
-                                <img src="{{ asset('/img/logo-cava.png') }}" style="-ms-interpolation-mode: bicubic; outline: none; text-decoration: none; border: none; width: 160px;  margin-left: -1.5rem;"></a>
+                                <img src="{{ asset('/public/img/logo-cava.png') }}" style="-ms-interpolation-mode: bicubic; outline: none; text-decoration: none; border: none; width: 160px;  margin-left: -1.5rem;"></a>
                         </div>
                     </td>
                 </tr></table></td>
