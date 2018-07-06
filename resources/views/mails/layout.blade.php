@@ -13,10 +13,12 @@
             background: #F9F9F9;
         }
         h1, h2, h3, h4 {
-            color: #01a3a6;
+            color: ##00999e;
             margin-bottom: 12px;
             line-height: 26px;
         }
+
+
         p, ul, ul li {
             font-size: 17px;
             margin: 0 0 16px;
@@ -191,7 +193,7 @@
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td valign="bottom" style="border-collapse: collapse; padding: 20px 16px 12px;">
                         <div style="text-align: center;">
                             <a href="#" style="color: #439fe0; font-weight: bold; text-decoration: none; word-break: break-word;">
-                                <img src="{{ asset('/images/logo-camp.png') }}" style="-ms-interpolation-mode: bicubic; outline: none; text-decoration: none; border: none; width: 160px;  margin-left: -1.5rem;"></a>
+                                <img src="{{ asset('/public/img/logo-cava.png') }}" width="160" style="-ms-interpolation-mode: bicubic; outline: none; text-decoration: none; border: none; width: 160px;  margin-left: -1.5rem;"></a>
                         </div>
                     </td>
                 </tr></table></td>
@@ -202,11 +204,13 @@
             <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #F9F9F9; color: #989EA6;">
                 <tr><td valign="top" align="center" style="border-collapse: collapse; padding: 16px 8px 24px;">
                         <div style="max-width: 600px; margin: 0 auto;">
-                            <p style="font-size: 12px; line-height: 20px; margin: 0 0 16px; margin-top: 16px;">
-                                Made with <3 by Canaux Digitaux
-                                <br><a href="#" style="color: #989EA6; font-weight: normal; text-decoration: none; word-break: break-word; pointer-events: none;">Crédit Agricole Normandie-Seine</a>
+                            <p style="font-size: 12px; line-height: 20px; margin: 0 0 16px; margin-top: 12px;">
+                                Made with :) by Canaux Digitaux
+                                <br><a href="https://www.ca-normandie-seine.fr" style="color: #989EA6; font-weight: normal; text-decoration: none; word-break: break-word; pointer-events: none;">Crédit Agricole Normandie-Seine</a>
                             </p>
                         </div>
                     </td>
                 </tr></table></td>
     </tr></table></body></html>
+
+
