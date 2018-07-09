@@ -398,7 +398,7 @@ datalist option {
 }
 
 .barGraph-check {
-    width: 3px;
+    width: 4px;
     background: white;
     border: none;
     height: 50px;
@@ -407,6 +407,10 @@ datalist option {
     position: absolute;
     margin-left: 20%;
     top: 0;
+}
+
+.top40 {
+    top: 40px;
 }
 
 .ml40 {
