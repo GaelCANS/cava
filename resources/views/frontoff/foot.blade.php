@@ -14,8 +14,11 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 <!-- Chargement des JS -->
-<script src="{{ url('/public/js/frontoff-app.js?v='.time() ) }}"></script>
-
+@if (env('APP_ENV') == 'prod')
+    <script src="{{ secure_asset( '/public/js/frontoff-app.js?v='.time() ) }}"></script>
+@else
+    <script src="{{ asset( '/js/frontoff-app.js?v='.time() ) }}"></script>
+@endif
 
 
 <script>
