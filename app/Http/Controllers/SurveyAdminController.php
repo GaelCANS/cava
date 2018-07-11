@@ -45,9 +45,10 @@ class SurveyAdminController extends Controller
         foreach ($blueprint->Users as $user) {
 
             $link = route('show-survey-front' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
-            Mail::send('mails.invitation', compact('survey', 'blueprint' , 'link' , 'user'), function ($m) use ($survey, $blueprint, $user) {
+            $result = route('results-survey-front' , array($survey->key, $user->key));
+            Mail::send('mails.invitation', compact('survey', 'blueprint' , 'link' , 'user' , 'result'), function ($m) use ($survey, $blueprint, $user) {
                 $m->from('nepasrepondre@cava.com', 'Crédit Agricole Normandie-Seine');
-                $m->to($user->email)->subject($user->lastname.", donnez-nous votre avis ;)");
+                $m->to($user->email)->subject( utf8_decode($user->lastname).", donnez-nous votre avis ;)");
             });
         }
 

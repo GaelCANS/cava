@@ -4,7 +4,7 @@
 
     <div id="intro">
         <h1>{{$blueprint->name}}</h1>
-        <h2>{{$blueprint->intro}}</h2>
+        <small>{!! $blueprint->intro !!}</small>
         Période : {{$blueprint->begin}} / {{$blueprint->end}}<br>
         Gestionnaires : {{$blueprint->emails}}<br>
     </div>

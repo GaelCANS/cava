@@ -8,7 +8,7 @@
 
                     <div style="background: white;text-align: center; border-radius: 0.5rem; margin-bottom: 1rem;">
                         <h3 style="color: #00999e;font-size:12.5px; text-transform: uppercase; line-height: 30px; margin-bottom: 12px; margin: 0 0 12px;">{{$blueprint->name}}</h3>
-                        <p style="font-size: 17px; line-height: 24px;text-align: center; margin: 0 0 16px;">{{$user->lastname}}, {{$blueprint->intro}}</p>
+                        <p style="font-size: 17px; line-height: 24px;text-align: center; margin: 0 0 16px;">{{utf8_decode($user->lastname)}}, {!! str_replace( array('%%--link_survey--%%' , '%%--days--%%' , '%%--link_results--%%') , array($link , '14' , $result) , $blueprint->intro) !!}</p>
 
 
                         <div style="text-align: center; margin: 2rem 0 1rem;">
