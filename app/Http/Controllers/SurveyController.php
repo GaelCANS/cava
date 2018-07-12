@@ -205,7 +205,8 @@ class SurveyController extends Controller
         $survey = Survey::findOrFail(Survey::getId($survey_key));
         $survey->load('Blueprint');
         $averages = Survey::results($survey);
-        return view('questions.results' , compact('averages' , 'survey' , 'user_key' , 'type'));
+        $blueprint_id = $survey->blueprint_id;
+        return view('questions.results' , compact('averages' , 'survey' , 'user_key' , 'type' , 'blueprint_id'));   
     }
 
 

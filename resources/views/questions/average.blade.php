@@ -2,7 +2,7 @@
     <div id="question-box" class="col-md-6 text-center mx-auto">
         <div class="head-result-box">
             <span class="number float-left">{{$inc+1}}</span>
-            <span class="graph float-right open-graph" style="cursor: pointer;" title="Voir l'évolution des résultats pour cette question" data-link="{{ route('evolution' , array('1' , $user_key , $average['key'] )) }}">
+            <span class="graph float-right open-graph" style="cursor: pointer;" title="Voir l'évolution des résultats pour cette question" data-link="{{ route('evolution' , array($blueprint_id     , $user_key , $average['key'] )) }}">
                 <i class="fa phpdebugbar-fa-area-chart"></i>
             </span>
         </div>
