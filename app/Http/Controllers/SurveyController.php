@@ -22,7 +22,7 @@ class SurveyController extends Controller
         $this->middleware('AllowOnlyAjaxRequests' , array( 'only' => 'evolution' ));
         $this->middleware('SurveyIsOpen' , array( 'only' => 'question' ));
         $this->middleware('SurveyIsAlreadyAnswered' , array( 'only' => 'question' ));
-        $this->middleware('AllowUser' , array( 'only' => 'question' ));
+        //$this->middleware('AllowUser' , array( 'only' => 'question' ));
         $this->middleware('AllowResultPage' , array( 'only' => array('results' , 'comments') ));
     }
 
