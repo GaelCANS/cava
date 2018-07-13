@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mot de passe oublié !</title><style type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Satisfaction Collaborateur</title><style type="text/css">
 
 
         /* Template styling */
@@ -13,7 +13,7 @@
             background: #F9F9F9;
         }
         h1, h2, h3, h4 {
-            color: ##00999e;
+            color: #00999e;
             margin-bottom: 12px;
             line-height: 26px;
         }

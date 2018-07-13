@@ -1,4 +1,4 @@
-<header class="p-4 text-center">
+<header class="text-center">
     <h1>
         @if (env('APP_ENV') == 'prod')
             <img src="{{ secure_asset('/public/img/logo-cava.png') }}" width="130"/>

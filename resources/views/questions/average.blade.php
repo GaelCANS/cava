@@ -3,7 +3,9 @@
         <div class="head-result-box">
             <span class="number float-left">{{$inc+1}}</span>
             <span class="graph float-right open-graph" style="cursor: pointer;" title="Voir l'évolution des résultats pour cette question" data-link="{{ route('evolution' , array($blueprint_id     , $user_key , $average['key'] )) }}">
-                <i class="fa phpdebugbar-fa-area-chart"></i>
+                <i class="fas fa-chart-area"></i>
+
+
             </span>
         </div>
         <div style="clear:both;"></div>
