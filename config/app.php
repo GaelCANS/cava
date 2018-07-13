@@ -80,6 +80,8 @@ return [
 
     'fallback_locale' => 'en',
 
+    'name' => 'Satisfaction collaborateur',
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
