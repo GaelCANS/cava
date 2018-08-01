@@ -10,7 +10,7 @@
             font-size: 17px;
             line-height: 24px;
             color: #373737;
-            background: #F9F9F9;
+            background: #eaeaea;
         }
         h1, h2, h3, h4 {
             color: #00999e;
@@ -189,7 +189,7 @@
 
 
     </style></head><body style="background: #F9F9F9; color: #373737; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-height: 24px; max-width: 100%; width: 100% !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; margin: 0 auto; padding: 0;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; line-height: 24px; margin: 0; padding: 0; width: 100%; font-size: 17px; color: #373737; background: #F9F9F9;"><tr><td valign="top" style="border-collapse: collapse;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; line-height: 24px; margin: 0; padding: 0; width: 100%; font-size: 17px; color: #373737; background: #eaeaea;"><tr><td valign="top" style="border-collapse: collapse;">
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td valign="bottom" style="border-collapse: collapse; padding: 20px 16px 12px;">
                         <div style="text-align: center;">
                             <a href="#" style="color: #439fe0; font-weight: bold; text-decoration: none; word-break: break-word;">
@@ -201,7 +201,7 @@
             @yield('content')
         </td>
     </tr><tr><td style="border-collapse: collapse;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #F9F9F9; color: #989EA6;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #eaeaea; color: #989EA6;">
                 <tr><td valign="top" align="center" style="border-collapse: collapse; padding: 16px 8px 24px;">
                         <div style="max-width: 600px; margin: 0 auto;">
                             <p style="font-size: 12px; line-height: 20px; margin: 0 0 16px; margin-top: 12px;">

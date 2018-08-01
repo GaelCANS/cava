@@ -37,7 +37,7 @@
                 @endif
             @else
                 <div class="form-group">
-                    <textarea name="comment[{{$average['key']}}]" placeholder="Écrivez ici votre commentaire (facultatif)">{{$average['comment']}}</textarea>
+                    <textarea name="comment[{{$average['key']}}]" placeholder="Écrivez ici votre commentaire (facultatif)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Écrivez ici votre commentaire (facultatif)'">{{$average['comment']}}</textarea>
                 </div>
             @endif
         </div>

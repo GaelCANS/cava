@@ -3,15 +3,17 @@
 
 @include('backoff.head')
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<body>
+<div class="row">
 
-    @include('backoff.header')
+    <div class="side col-md-1">
+        @include('backoff.header')
 
-    @include('backoff.side')
+        @include('backoff.side')
+    </div>
 
             <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="col-md-11 content-wrapper">
         <div class="content body">
             @include('flash.flash')
 

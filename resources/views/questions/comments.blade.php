@@ -15,7 +15,7 @@
     @forelse($surveyQuestions as $surveyQuestion)
         <div class="form-group">
             <label for="exampleInputEmail1">{{$surveyQuestion->wording}}</label>
-            <textarea name="comment[{{$surveyQuestion->key}}]" placeholder="Écrivez ici votre commentaire (facultatif)">{{$surveyQuestion->comment}}</textarea>
+            <textarea name="comment[{{$surveyQuestion->key}}]" placeholder="Écrivez ici votre commentaire (facultatif)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Écrivez ici votre commentaire (facultatif)'">{{$surveyQuestion->comment}}</textarea>
         </div>
         @empty
     @endforelse
