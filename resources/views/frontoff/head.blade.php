@@ -19,7 +19,6 @@
     @endif
     <link href="https://fonts.googleapis.com/css?family=Dosis:500,700,800" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/public/img/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/public/img/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/public/img/apple-icon-72x72.png') }}">
@@ -33,9 +32,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/public/img/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/public/img/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/public/img/favicon-16x16.png') }}">
-
     <link rel="icon" href="{{ asset('/public/img/favicon.ico') }}">
-
     <link rel="manifest" href="{{ asset('/img/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('/public/img/ms-icon-144x144.png') }}">

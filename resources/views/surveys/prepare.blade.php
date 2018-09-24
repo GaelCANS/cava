@@ -2,11 +2,20 @@
 
 @section('content')
 
-    <div id="intro">
-        <h1>{{$blueprint->name}}</h1>
-        <small>{!! $blueprint->intro !!}</small>
-        Période : {{$blueprint->begin}} / {{$blueprint->end}}<br>
-        Gestionnaires : {{$blueprint->emails}}<br>
+    <div id="intro" class="row text-center">
+        <div class="col-md-4">
+            <div class="box title-survey">{{$blueprint->name}}</div>
+        </div>
+        <div class="col-md-2">
+            <div class="box "><small>Période :</small><br> {{$blueprint->begin}} / {{$blueprint->end}}</div>
+        </div>
+        <div class="col-md-3">
+            <div class="box "><small>Gestionnaires :</small><br> {{$blueprint->emails}}</div>
+        </div>
+        <div class="col-md-3">
+            <div class="box "><small>{!! $blueprint->intro !!}</small></div>
+        </div>
+
     </div>
 
 
@@ -15,8 +24,9 @@
         <tr>
             <th scope="col">Début</th>
             <th scope="col">Fin</th>
-            <th scope="col">Envoyé</th>
-            <th scope="col">Nb répondants</th>
+            <th scope="col">Questionnaire envoyé</th>
+            <th scope="col">Participants</th>
+            <th scope="col">Répondants</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -27,10 +37,12 @@
                 <td>{{$survey->end}}</td>
                 <td>{{$survey->sended}}</td>
                 <td>{{count($users)}}</td>
+                <td>{{count($users)}}</td>
                 <td>
-                    <a href="{{route('comments' , array($survey->key))}}" target="_blank">voir les résultats</a>
-                    <a class="invitation" href="{{route('email-send', array($survey->key))}}">envoyer les invitations</a>
-                    <a class="contributors" style="cursor: pointer" data-toggle="modal" data-target="#users" data-key="{{$survey->key}}" data-href="{{route('contributors', array($survey->key))}}">liste des participants</a>
+                    <a href="{{route('comments' , array($survey->key))}}" target="_blank"><i class="fas fa-chart-bar"></i></a>
+                    <a class="contributors" style="cursor: pointer" data-toggle="modal" data-target="#users" data-key="{{$survey->key}}" data-href="{{route('contributors', array($survey->key))}}"><i class="fas fa-users"></i></a>
+                    <a class="invitation" href="{{route('email-send', array($survey->key))}}"><i class="fas fa-envelope"></i></a>
+
                 </td>
             </tr>
             @empty

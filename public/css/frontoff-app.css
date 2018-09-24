@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding-bottom: 6rem;
     width: 100%;
-    background:url("/public/img/bg.jpg");
+    background:url("../img/bg.jpg");
     background-size: cover;
     font-family: 'Dosis', sans-serif;
 
@@ -535,4 +535,16 @@ datalist option {
 .modal-footer {
     margin: 0 auto;
     border:none;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #58bac0;
+    border-color: #58bac0;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #00999e;
+    border-color: #00999e;
 }

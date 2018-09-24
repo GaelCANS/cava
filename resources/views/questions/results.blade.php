@@ -28,8 +28,8 @@
     @include('questions.modal')
 
     @if ($type == 'edit')
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary" value="Envoyer" name="Envoyer">Envoyer</button>
+        <div class="text-center mb-5">
+            <button type="submit" class="btn btn-success btn-lg" value="Envoyer" name="Envoyer">Mettre à jour</button>
         </div>
         {!! Form::close() !!}
     @endif
