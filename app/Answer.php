@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Answer extends Model
 {
@@ -53,7 +54,16 @@ class Answer extends Model
      */
     public static function averageQuestion($question_id)
     {
-        return round(self::where('question_id',$question_id)->positive()->avg('result'),1);
+        //return round(self::where('question_id',$question_id)->positive()->avg('result'),1);
+        $number_average = 0;
+        $averages = DB::select("SELECT AVG(`result`) AS average FROM answers WHERE question_id = :question_id AND result >= 0 GROUP BY survey_id" , array('question_id' => $question_id) );
+        if (count($averages) > 0 ) {
+            foreach ($averages as $average) {
+                $number_average += $average->average;
+            }
+            $number_average = round($number_average/count($averages),1);
+        }
+        return $number_average;
     }
 
 
