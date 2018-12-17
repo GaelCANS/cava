@@ -3,26 +3,27 @@
 
 @include('backoff.head')
 
-<body>
-<div class="row">
+<body class="">
+<div class="container-scroller">
 
-    <div class="side col-md-1">
-        @include('backoff.header')
+    @include('backoff.header')
 
-        @include('backoff.side')
-    </div>
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            @include('backoff.side')
 
-            <!-- Content Wrapper. Contains page content -->
-    <div class="col-md-11 content-wrapper">
-        <div class="content body">
-            @include('flash.flash')
+            <div class="content-wrapper">
+                @include('flash.flash')
 
-            @yield('content')
+                @yield('content')
+            </div>
         </div>
-    </div>
 
+    </div>
+    @include('backoff.footer')
 </div>
-<!-- ./wrapper -->
+
+
 
 @include('backoff.foot')
 

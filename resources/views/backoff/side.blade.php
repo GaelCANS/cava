@@ -1,7 +1,18 @@
-
-
-<nav class="p-2 mt-1">
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+        <li class="nav-item nav-profile">
+            <div class="nav-link">
+                <div class="profile-name">
+                    <p class="name">
+                        @if (auth()->user())
+                            {{ auth()->user()->fullname }}
+                        @endif
+                    </p>
+                </div>
+            </div>
+        </li>
+
+
         <li class="nav-item active">
             <a class="nav-link" href="http://localhost:8888/camp/public/dashboard">
                 <i class="fas fa-list-alt"></i><br>Enquêtes
@@ -19,3 +30,4 @@
         </li>
     </ul>
 </nav>
+

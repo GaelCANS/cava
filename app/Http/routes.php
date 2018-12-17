@@ -37,3 +37,23 @@ Route::get('/404','PagesController@pageSurveyAnswered')->name('page-answered');
 Route::get('/admin/prepare/{blueprint_id}','SurveyAdminController@prepare')->name('email-prepare');
 Route::get('/admin/send/{survey_key}','SurveyAdminController@send')->name('email-send');
 Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributors')->name('contributors');
+
+
+//Route::group(['middleware' => 'auth'], function () {
+
+    Route::group(['prefix' => 'admin'], function() {
+
+        // Blueprints
+        Route::resource(
+            'blueprints',
+            'BlueprintController' ,
+            array(
+                'names' => array(
+                    'index' => 'blueprint-index'
+                )
+            )
+        );
+
+    });
+
+//});

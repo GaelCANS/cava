@@ -30,4 +30,10 @@ class User extends Authenticatable
     /**
      * RELATIONSHIPS
      */
+
+
+    public function getFullnameAttribute()
+    {
+        return $this->lastname.' '.$this->firstname;
+    }
 }
