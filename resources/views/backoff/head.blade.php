@@ -14,8 +14,10 @@
 
 
     @if (env('APP_ENV') == 'prod')
+        <link href="{{ secure_asset( '/public/css/datepicker.css' , Request::secure()) }}" rel="stylesheet">
         <link href="{{ secure_asset( '/public/css/backoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
     @else
+        <link href="{{ asset( 'css/datepicker.css' , Request::secure()) }}" rel="stylesheet">
         <link href="{{ asset( 'css/backoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
     @endif
 

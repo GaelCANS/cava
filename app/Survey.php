@@ -23,10 +23,24 @@ class Survey extends Model
             '';
     }
 
+    public function getBeginlongAttribute() {
+        if (empty($this->begin)) return '';
+        return $this->begin != '0000-00-00' ?
+            Carbon::createFromFormat('Y-m-d', $this->begin)->format('d/m/Y') :
+            '';
+    }
+
     public function getEndshortAttribute() {
         if (empty($this->end)) return '';
         return $this->end != '0000-00-00' ?
             Carbon::createFromFormat('Y-m-d', $this->end)->format('d/m/y') :
+            '';
+    }
+
+    public function getEndlongAttribute() {
+        if (empty($this->end)) return '';
+        return $this->end != '0000-00-00' ?
+            Carbon::createFromFormat('Y-m-d', $this->end)->format('d/m/Y') :
             '';
     }
 

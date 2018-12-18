@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Blueprint extends Model
 {
 
+    protected $guarded = array('id');
+
 
     /**
      * RELATIONSHIPS

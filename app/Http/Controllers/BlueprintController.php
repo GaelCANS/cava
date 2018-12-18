@@ -28,7 +28,9 @@ class BlueprintController extends Controller
      */
     public function create()
     {
-        //
+        $blueprint =  null;
+        $tab = "blueprint";
+        return view('blueprints.show' , compact('blueprint','tab'));
     }
 
     /**
@@ -37,9 +39,10 @@ class BlueprintController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\BlueprintRequest $request)
     {
-        //
+        $blueprint = Blueprint::create( array_merge($request->all() , array('note_min' => 0, 'note_max' => 5, 'user_id' => 1) ) );
+        return redirect(action('BlueprintController@show' , $blueprint))->with('success' , "Le sondage a bien été crée.");
     }
 
     /**
@@ -50,7 +53,9 @@ class BlueprintController extends Controller
      */
     public function show($id)
     {
-        //
+        $blueprint = Blueprint::findOrFail($id);
+        $tab = "blueprint";
+        return view('blueprints.show' , compact('blueprint','tab'));
     }
 
     /**
@@ -86,4 +91,5 @@ class BlueprintController extends Controller
     {
         //
     }
+    
 }

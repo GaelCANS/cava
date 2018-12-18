@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Blueprint;
 use App\Survey;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,9 +32,12 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($blueprint_id)
     {
-        //
+        $blueprint = Blueprint::findOrFail($blueprint_id);
+        $surveys = Survey::whereBlueprintId($blueprint_id)->orderBy('begin')->get();
+        $tab = "surveys";
+        return view('blueprints.show' , compact( 'blueprint' , 'surveys' , 'tab'));
     }
 
     /**
