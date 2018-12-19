@@ -8,3 +8,6 @@
 
 - blueprintrequest
     > request pour checker les emails avec séparateur
+
+- surveycontroller
+    > destroy : vérifier si possibilité de supprimer un survey (si réponses déjà existantes alors non)

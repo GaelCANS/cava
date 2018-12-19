@@ -58,7 +58,14 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $survey = Survey::create( array('blueprint_id' => $request->id , 'key' => uniqid()) );
+        $html = view('blueprints.surveys-tr' , compact('survey' ))->render();
+
+        return response()->json(
+            array(
+                'html'=> $html,
+            )
+        );
     }
 
     /**
@@ -90,9 +97,13 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $survey = Survey::findOrFail($request->get('id'));
+        $datas = array();
+        $datas[$request->get('name')] = Survey::setDate($request->get('value'));
+
+        $survey->update($datas);
     }
 
     /**
@@ -103,7 +114,15 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $survey = Survey::findOrFail($id);
+        $survey->delete();
+        return redirect()->back()->with('success' , "L'itération vient d'être mise à jour");
+    }
+
+
+    public function save(Request $request)
+    {
+        dd($request->all());
     }
 
 

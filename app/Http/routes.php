@@ -57,7 +57,8 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
         // Surveys
         Route::get('surveys/{blueprint_id}','SurveyController@index')->name('list-survey');
         Route::get('surveys/destroy/{survey_id}','SurveyController@destroy')->name('destroy-survey');
-        Route::post('surveys/{survey_id}','SurveyController@save')->name('save-survey');
+        Route::post('surveys/update','SurveyController@update')->name('update-survey');
+        Route::post('surveys/add','SurveyController@store')->name('add-survey');
 
     });
 

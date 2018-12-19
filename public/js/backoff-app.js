@@ -3,8 +3,22 @@ $(function() {
     // Alert on invitation button
     $('.invitation').click(function() {
         if (!confirm('Voulez-vous envoyer les invitations par email ?'))
-            return false;
+            return false
     });
+
+    /**
+     * Common
+     */
+    $('.add-btn').on('click' , function () {
+        window[_.camelCase('add '+$(this).data('type'))]($(this).data('link'),$(this).data('id'))
+    })
+
+    /**
+     * Survey
+     */
+    $('.table').on('change','.ajax-date',function () {
+        updateSurvey($(this))
+    })
 
 
     /**
@@ -16,8 +30,8 @@ $(function() {
 
     $('.contributors').click(function() {
 
-        var key = $(this).data('key');
-        var href = $(this).data('href');
+        var key = $(this).data('key')
+        var href = $(this).data('href')
 
         $.ajax({
                 method: "GET",
@@ -25,11 +39,18 @@ $(function() {
                 data: {key : key}
             })
             .done(function( data ) {
-                $('#users .modal-body').html(data.html);
-            });
-        });
+                $('#users .modal-body').html(data.html)
+            })
+        })
 
-});
+    $('.table').on('click','.del-btn',function () {
+        event.preventDefault()
+        if(confirm($(this).data('confirm'))) {
+            window.location.href = $(this).attr('href')
+        }
+    })
+
+})
 
 
 /**
@@ -43,7 +64,7 @@ function initDatepicker()
         daysMin: ["Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa"],
         months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
         monthsShort: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aoû", "Sep", "Oct", "Nov","Déc"],
-    };
+    }
 
     $('.datepicker').datepicker({
         language: 'fr',
@@ -51,13 +72,57 @@ function initDatepicker()
         autoclose: true,
         weekStart:1,
         daysOfWeekHighlighted: '0,6'
-    });
+    })
 
     // Auto open begin datepicker & on select date begin auto open end datepicker and set the min day selectable
     $('[data-name="begin"]').on('changeDate', function(e) {
-        var end = $(this).closest('tr').find('[data-name="end"]');
-        end.datepicker('setStartView' , $(this).val());
-        end.datepicker('setStartDate' , $(this).val());
-        end.datepicker('show');
+        var end = $(this).closest('tr').find('[data-name="end"]')
+        end.datepicker('setStartView' , $(this).val())
+        end.datepicker('setStartDate' , $(this).val())
+        end.datepicker('show')
+    })
+}
+
+
+/**
+ * Surveys
+ */
+function addIteration(link,id)
+{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
+
+    $.ajax({
+        method: "POST",
+        url: link,
+        data: {id:id}
+    })
+    .done(function( data ) {
+        $( ".table tbody" ).append( data.html )
+        initDatepicker()
+        $('.table tbody tr:last-child input[data-name="begin"]').datepicker('show')
+    })
+}
+
+/**
+ * Surveys
+ */
+function updateSurvey(obj) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        method: "POST",
+        url: $('#survey-form').attr('action'),
+        data: {id:obj.data('id'),name:obj.data('period'),value:obj.val()}
+    })
+    .done(function( data ) {
+        
+    })
 }

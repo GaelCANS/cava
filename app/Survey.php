@@ -44,6 +44,11 @@ class Survey extends Model
             '';
     }
 
+    public static function setDate($date)
+    {
+        return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+    }
+
 
     /**
      * CUSTOM
