@@ -13,7 +13,7 @@ class Blueprint extends Model
 
     public function getGuestsAttribute()
     {
-        return count(explode(';',$this->emails));
+        return User::whereBlueprintId($this->id)->count();
     }
 
 
