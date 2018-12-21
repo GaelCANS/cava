@@ -5,6 +5,7 @@ namespace App;
 use App\Libraries\Traits\Keyable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Survey extends Model
 {
@@ -42,6 +43,11 @@ class Survey extends Model
         return $this->end != '0000-00-00' ?
             Carbon::createFromFormat('Y-m-d', $this->end)->format('d/m/Y') :
             '';
+    }
+
+    public function getGuestsAttribute()
+    {
+        return Answer::participants($this->id);
     }
 
     public static function setDate($date)

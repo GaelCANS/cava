@@ -17,6 +17,13 @@ class Answer extends Model
     {
         return $query->where('result' , '>=' , 0);
     }
+
+
+    public static function participants($survey_id)
+    {
+        $participants = DB::table('answers')->select(DB::raw('COUNT(DISTINCT(user_id)) as user_count'))->whereSurveyId($survey_id)->first();
+        return $participants->user_count;
+    }
     
 
     /**

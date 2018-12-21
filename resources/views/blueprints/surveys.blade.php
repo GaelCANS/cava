@@ -12,9 +12,10 @@
     <table class="table table-hover ajax-action">
         <thead>
         <tr>
-            <th>Nom</th>
-            <th>Période</th>
-            <th>Responsable</th>
+            <th>Début</th>
+            <th>Fin</th>
+            <th>Participation</th>
+            <th>Envoyé</th>
             <th>Actions</th>
         </tr>
         </thead>

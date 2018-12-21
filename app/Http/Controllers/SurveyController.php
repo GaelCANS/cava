@@ -59,7 +59,8 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         $survey = Survey::create( array('blueprint_id' => $request->id , 'key' => uniqid()) );
-        $html = view('blueprints.surveys-tr' , compact('survey' ))->render();
+        $blueprint = Blueprint::findOrFail($request->id);
+        $html = view('blueprints.surveys-tr' , compact('survey' , 'blueprint' ))->render();
 
         return response()->json(
             array(
@@ -115,14 +116,16 @@ class SurveyController extends Controller
     public function destroy($id)
     {
         $survey = Survey::findOrFail($id);
-        $survey->delete();
-        return redirect()->back()->with('success' , "L'itération vient d'être supprimée");
+        if ($survey->guests == 0) {
+            $survey->delete();
+            return redirect()->back()->with('success', "L'itération vient d'être supprimée");
+        }
+        return redirect()->back()->with('error', "Impossible de supprimer cette itération.");
     }
 
 
     public function save(Request $request)
     {
-        dd($request->all());
     }
 
 

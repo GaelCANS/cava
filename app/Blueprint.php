@@ -11,6 +11,12 @@ class Blueprint extends Model
     protected $guarded = array('id');
 
 
+    public function getGuestsAttribute()
+    {
+        return count(explode(';',$this->emails));
+    }
+
+
     /**
      * RELATIONSHIPS
      */
