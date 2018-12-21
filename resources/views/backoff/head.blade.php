@@ -16,9 +16,11 @@
     @if (env('APP_ENV') == 'prod')
         <link href="{{ secure_asset( '/public/css/datepicker.css' , Request::secure()) }}" rel="stylesheet">
         <link href="{{ secure_asset( '/public/css/backoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
+        <link href="{{ secure_asset('/public/css/jquery.ui.min.css' , Request::secure()) }}" rel="stylesheet">
     @else
         <link href="{{ asset( 'css/datepicker.css' , Request::secure()) }}" rel="stylesheet">
-        <link href="{{ asset( 'css/backoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
+        <link href="{{ asset( 'css/backoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet"><!-- Sortable -->
+        <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
     @endif
 
     <link href="https://fonts.googleapis.com/css?family=Dosis:500,700,800" rel="stylesheet">

@@ -86,5 +86,18 @@ class Question extends Model
         return self::where('blueprint_id' , $blueprint_id)->orderBy('order' , 'asc')->get();
     }
 
+    
+    public static function reOrder($blueprint_id)
+    {
+        $i = 1;
+        $questions = Question::whereBlueprintId($blueprint_id)->orderBy('order')->get();
+        if ($questions) {
+            foreach ($questions as $question) {
+                $question->order = $i;
+                $i++;
+                $question->save();
+            }
+        }
+    }
 
 }

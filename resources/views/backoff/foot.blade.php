@@ -7,8 +7,10 @@
 <!-- Chargement des JS -->
 @if (env('APP_ENV') == 'prod')
     <script src="{{ secure_asset('/public/js/datepicker.js' ) }}"></script>
+    <script src="{{ secure_asset('/public/js/jquery.ui.min.js' ) }}"></script>
     <script src="{{ secure_asset('/public/js/backoff-app.js?v='.time() ) }}"></script>
 @else
     <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('js/jquery.ui.min.js' ) }}"></script>
     <script src="{{ asset('js/backoff-app.js?v='.time() ) }}"></script>
 @endif

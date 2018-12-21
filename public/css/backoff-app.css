@@ -15617,9 +15617,6 @@ pre {
     background: #fff;
     transition: all 0.2s ease;
 }
-input[type=radio] {
-    display: none;
-}
 .switch label {
     cursor: pointer;
     color: rgba(0,0,0,0.2);

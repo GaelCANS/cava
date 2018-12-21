@@ -20,6 +20,28 @@ $(function() {
         updateSurvey($(this))
     })
 
+    /**
+     * Question
+     */
+    $('.table').on('change','.ajax-radio',function () {
+        updateQuestion($(this))
+    })
+
+    /**
+     * Question
+     */
+    $('.table').on('change','.ajax-text',function () {
+        updateQuestion($(this))
+    })
+
+    /**
+     * Question
+     */
+    $(".sortable").sortable({
+        placeholder: "ui-state-highlight",
+        stop: refreshQuestionOrder,
+    })
+
 
     /**
      * Commun
@@ -107,6 +129,32 @@ function addIteration(link,id)
     })
 }
 
+
+/**
+ * Questions
+ */
+function addQuestion(link,id)
+{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        method: "POST",
+        url: link,
+        data: {id:id}
+    })
+    .done(function( data ) {
+        $( "#container-questions" ).append( data.html )
+        $('#container-questions').sortable({
+            placeholder: "ui-state-highlight",
+            stop: refreshQuestionOrder,
+        })
+    })
+}
+
 /**
  * Surveys
  */
@@ -122,7 +170,52 @@ function updateSurvey(obj) {
         url: $('#survey-form').attr('action'),
         data: {id:obj.data('id'),name:obj.data('period'),value:obj.val()}
     })
+        .done(function( data ) {
+
+        })
+}
+
+/**
+ * Questions
+ */
+function updateQuestion(obj) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        method: "POST",
+        url: $('#question-form').attr('action'),
+        data: {id:obj.parents('li').data('id'),name:obj.data('name'),value:obj.val()}
+    })
     .done(function( data ) {
-        
+
+    })
+}
+
+/**
+ * Questions
+ */
+function refreshQuestionOrder() {
+    var ids = [];
+    $('#container-questions li').each(function(){
+        ids.push($(this).data('id'))
+    })
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        method: "POST",
+        url: $('#question-form').attr('refresh'),
+        data: {ids:ids}
+    })
+    .done(function( data ) {
+
     })
 }

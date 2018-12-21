@@ -60,6 +60,13 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
         Route::post('surveys/update','SurveyController@update')->name('update-survey');
         Route::post('surveys/add','SurveyController@store')->name('add-survey');
 
+        // Questions
+        Route::get('questions/{blueprint_id}','QuestionController@index')->name('list-question');
+        Route::get('questions/destroy/{question_id}','QuestionController@destroy')->name('destroy-question');
+        Route::post('questions/update','QuestionController@update')->name('update-question');
+        Route::post('questions/add','QuestionController@store')->name('add-question');
+        Route::post('questions/refresh','QuestionController@refresh')->name('refresh-question');
+
     });
 
 //});

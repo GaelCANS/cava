@@ -116,7 +116,7 @@ class SurveyController extends Controller
     {
         $survey = Survey::findOrFail($id);
         $survey->delete();
-        return redirect()->back()->with('success' , "L'itération vient d'être mise à jour");
+        return redirect()->back()->with('success' , "L'itération vient d'être supprimée");
     }
 
 
