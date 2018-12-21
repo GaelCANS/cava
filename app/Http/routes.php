@@ -68,6 +68,12 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
         Route::post('questions/add','QuestionController@store')->name('add-question');
         Route::post('questions/refresh','QuestionController@refresh')->name('refresh-question');
 
+        // Users
+        Route::get('users/{blueprint_id}','UserController@index')->name('list-users');
+        Route::get('users/destroy/{user_id}','UserController@destroy')->name('destroy-user');
+        Route::post('users/update','UserController@update')->name('update-user');
+        Route::post('users/add','UserController@store')->name('add-user');
+
     });
 
 //});

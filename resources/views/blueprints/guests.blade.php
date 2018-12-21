@@ -1,0 +1,41 @@
+{!! Form::model(
+        null,
+        array(
+            'class'     => 'form-horizontal',
+            'url'       => action('UserController@update' , null),
+            'method'    => 'Post',
+            'id'        => 'user-form'
+        )
+    ) !!}
+
+<div class="table-responsive list-table">
+    <table class="table table-hover ajax-action">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @forelse($users as $user)
+            @include('blueprints.guests-tr')
+        @empty
+        @endforelse
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">
+                <button type="button" class="btn btn-primary add-btn" data-type="user" data-link="{{route('add-user')}}" data-id="{{$blueprint->id}}">
+                    <i class="fa fa-fw fa-plus"></i>Ajouter un utilisateur
+                </button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+@include('blueprints.modal')
+
+{!! Form::close() !!}
