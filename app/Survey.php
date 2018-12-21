@@ -45,6 +45,11 @@ class Survey extends Model
             '';
     }
 
+    public function getPeriodAttribute()
+    {
+        return $this->beginshort.' - '.$this->endshort;
+    }
+
     public function getGuestsAttribute()
     {
         return Answer::participants($this->id);

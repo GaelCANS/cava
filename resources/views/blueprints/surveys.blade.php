@@ -37,4 +37,6 @@
     </table>
 </div>
 
+@include('blueprints.modal')
+
 {!! Form::close() !!}

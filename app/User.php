@@ -36,4 +36,10 @@ class User extends Authenticatable
     {
         return $this->lastname.' '.$this->firstname;
     }
+
+    public function participate($survey_id)
+    {
+        return Answer::whereUserId($this->id)->whereSurveyId($survey_id)->count() > 0 ? 1 : 0;
+    }
+
 }

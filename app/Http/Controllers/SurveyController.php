@@ -129,6 +129,22 @@ class SurveyController extends Controller
     }
 
 
+    public function participants($survey_id)
+    {
+        $survey = Survey::findOrFail($survey_id);
+        $users = User::whereBlueprintId($survey->blueprint_id)->orderBy('firstname')->get();
+
+        $html = view('blueprints.users' , compact('users' , 'survey' ))->render();
+
+        return response()->json(
+            array(
+                'html'=> $html,
+                'date'=> $survey->period
+            )
+        );
+    }
+
+
     /**
      * Front office show question
      *

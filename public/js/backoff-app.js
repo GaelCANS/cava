@@ -42,6 +42,13 @@ $(function() {
         stop: refreshQuestionOrder,
     })
 
+    /**
+     * Survey
+     */
+    $('.table').on('click','.show-users',function () {
+        showUsers($(this))
+    })
+
 
     /**
      * Commun
@@ -217,5 +224,27 @@ function refreshQuestionOrder() {
     })
     .done(function( data ) {
 
+    })
+}
+
+/**
+ * Surveys
+ */
+function showUsers(obj) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        method: "GET",
+        url: obj.parent('tr').data('link'),
+        data: {}
+    })
+    .done(function( data ) {
+        $('#users-modal .modal-body').html(data.html)
+        $('#users-modal .data-survey').html(data.date)
+        $('#users-modal').modal('show')
     })
 }
