@@ -15,6 +15,7 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
+            <th>Ajouté le</th>
             <th>Actions</th>
         </tr>
         </thead>

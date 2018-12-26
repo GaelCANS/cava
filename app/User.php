@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Libraries\Traits\Keyable;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -27,14 +28,13 @@ class User extends Authenticatable
     ];
 
 
-    /**
-     * RELATIONSHIPS
-     */
-
-
     public function getFullnameAttribute()
     {
         return $this->lastname.' '.$this->firstname;
+    }
+    public function getCreatedAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y');
     }
 
     public function participate($survey_id)
