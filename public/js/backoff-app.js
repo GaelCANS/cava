@@ -45,7 +45,7 @@ $(function() {
      * User
      */
     $('.table').on('keyup','.error',function () {
-        removeUserError($(this))
+        removeError($(this))
     })
 
     /**
@@ -221,9 +221,12 @@ function updateSurvey(obj) {
         url: $('#survey-form').attr('action'),
         data: {id:obj.data('id'),name:obj.data('period'),value:obj.val()}
     })
-        .done(function( data ) {
+    .done(function( data ) {
 
-        })
+    })
+    .fail(function (data) {
+        obj.addClass('error')
+    })
 }
 
 /**
@@ -243,6 +246,9 @@ function updateQuestion(obj) {
     })
     .done(function( data ) {
 
+    })
+    .fail(function (data) {
+        obj.addClass('error')
     })
 }
 
@@ -268,6 +274,9 @@ function updateUser(obj) {
     })
     .done(function( data ) {
 
+    })
+    .fail(function (data) {
+        obj.addClass('error')
     })
 }
 
@@ -298,7 +307,7 @@ function userError(obj)
  * @param obj
  * @returns {boolean}
  */
-function removeUserError(obj)
+function removeError(obj)
 {
     // Si le champs saisit n'est pas vide
     if (_.trim(obj.val()) != '') {

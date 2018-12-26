@@ -80,7 +80,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Requests\CommonRequest $request)
     {
         $user = User::findOrFail($request->get('id'));
         $datas = array();
