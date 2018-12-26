@@ -1,4 +1,4 @@
-<tr data-id="{{$user->id}}">
+<tr data-id="{{$user->id}}" data-link="{{route('update-user' , $user->id)}}">
     <td>
         {!! Form::text( 'firstname['.$user->id.']' , $user->firstname , array( 'class' => 'form-control ajax-user' , 'data-id' => $user->id , 'data-name' => 'firstname') ) !!}
     </td>

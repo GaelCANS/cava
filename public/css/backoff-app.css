@@ -22316,3 +22316,7 @@ div.tagsinput span.tag a {
     font-size: 10.5px;
     display: block;
 }
+
+.error {
+    border: 1px solid red;
+}

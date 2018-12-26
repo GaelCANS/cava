@@ -35,6 +35,20 @@ $(function() {
     })
 
     /**
+     * User
+     */
+    $('.table').on('keyup','.ajax-user',function () {
+        updateUser($(this))
+    })
+
+    /**
+     * User
+     */
+    $('.table').on('keyup','.error',function () {
+        removeUserError($(this))
+    })
+
+    /**
      * Question
      */
     $(".sortable").sortable({
@@ -233,6 +247,72 @@ function updateQuestion(obj) {
 }
 
 /**
+ * User
+ */
+function updateUser(obj) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    // Gestion des errors
+    if ( !userError(obj) ) {
+        return false;
+    }
+
+    $.ajax({
+        method: "POST",
+        url: obj.parents('tr').data('link'),
+        data: {id:obj.parents('tr').data('id'),name:obj.data('name'),value:obj.val()}
+    })
+    .done(function( data ) {
+
+    })
+}
+
+/**
+ * User
+ * @param obj
+ * @returns {boolean}
+ */
+function userError(obj)
+{
+    // Si le champs saisit est vide
+    if (_.trim(obj.val()) == '') {
+        obj.addClass('error');
+        return false;
+    }
+
+    // Si le champs est un email mais que le format n'est pas bon
+    if (obj.data('name') == 'email' && !validateEmail(obj.val())) {
+        obj.addClass('error');
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * User
+ * @param obj
+ * @returns {boolean}
+ */
+function removeUserError(obj)
+{
+    // Si le champs saisit n'est pas vide
+    if (_.trim(obj.val()) != '') {
+        obj.removeClass('error');
+    }
+
+    // Si le champs est un email mais que le format n'est pas bon
+    if (obj.data('name') == 'email' && validateEmail(obj.val())) {
+        obj.removeClass('error');
+    }
+
+}
+
+/**
  * Questions
  */
 function refreshQuestionOrder() {
@@ -277,4 +357,14 @@ function showUsers(obj) {
         $('#users-modal .data-survey').html(data.date)
         $('#users-modal').modal('show')
     })
+}
+
+/**
+ * Common
+ * @param email
+ * @returns {boolean}
+ */
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
