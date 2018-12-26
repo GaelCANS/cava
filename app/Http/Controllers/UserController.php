@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index($blueprint_id)
     {
         $blueprint = Blueprint::findOrFail($blueprint_id);
-        $users = User::whereBlueprintId($blueprint_id)->orderBy('firstname')->get();
+        $users = User::whereBlueprintId($blueprint_id)->orderBy('id')->get();
         $tab = "guests";
         return view('blueprints.show' , compact( 'blueprint' , 'users' , 'tab'));
     }
@@ -41,7 +41,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+        $html = view('blueprints.guests-tr' , compact('user' ))->render();
+
+        return response()->json(
+            array(
+                'html'=> $html,
+            )
+        );
     }
 
     /**
@@ -86,6 +93,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back()->with('success', "L'utilisateur vient d'être supprimé");
     }
 }

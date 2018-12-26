@@ -163,6 +163,36 @@ function addQuestion(link,id)
 }
 
 /**
+ * Users
+ */
+function addUserModal() {
+    $('#add-user-modal').modal('show')
+}
+
+/**
+ * Users
+ */
+function addUser(link,id)
+{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        method: "POST",
+        url: link,
+        data: {email:$('#input-email').val(),lastname:$('#input-lastname').val(),firstname:$('#input-firstname').val(),blueprint_id:id}
+    })
+    .done(function( data ) {
+        $( ".table tbody" ).append( data.html )
+        $('#add-user-modal').modal('hide')
+        $('#add-user-modal .form-control').val('')
+    })
+}
+
+/**
  * Surveys
  */
 function updateSurvey(obj) {

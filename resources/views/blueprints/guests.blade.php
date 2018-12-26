@@ -27,7 +27,7 @@
         <tfoot>
         <tr>
             <td colspan="4">
-                <button type="button" class="btn btn-primary add-btn" data-type="user" data-link="{{route('add-user')}}" data-id="{{$blueprint->id}}">
+                <button type="button" class="btn btn-primary add-btn" data-type="user-modal">
                     <i class="fa fa-fw fa-plus"></i>Ajouter un utilisateur
                 </button>
             </td>
@@ -36,6 +36,6 @@
     </table>
 </div>
 
-@include('blueprints.modal')
+@include('blueprints.modal-user')
 
 {!! Form::close() !!}

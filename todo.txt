@@ -11,3 +11,7 @@
 
 - surveycontroller
     > destroy : vérifier si possibilité de supprimer un survey (si réponses déjà existantes alors non)
+
+-usercontroller
+    > store : faire un validation rules qui check si l'email n'existe pas déjà pour le blueprint cible
+    > destroy : vérifier si on peut delete l'utilisateur (déjà répondu ou pas)
