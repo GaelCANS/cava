@@ -47,6 +47,9 @@ $(function() {
     $('.table').on('keyup','.error',function () {
         removeError($(this))
     })
+    $('.modal').on('keyup','.error',function () {
+        removeError($(this))
+    })
 
     /**
      * Question
@@ -193,6 +196,14 @@ function addUser(link,id)
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    // Check on field on create user
+    var next = true
+    $('#add-user-modal .form-control').each(function () {
+        next = userError($(this)) == false ? false : next
+    })
+    if (next == false) return false;
+    return ;
 
     $.ajax({
         method: "POST",

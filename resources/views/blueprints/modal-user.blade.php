@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            {!! Form::email( 'email' , null , array( 'class' => 'form-control' , 'id' => 'input-email' , 'placeholder' => 'Email du participant') ) !!}
+                            {!! Form::email( 'email' , null , array( 'class' => 'form-control' , 'id' => 'input-email' , 'placeholder' => 'Email du participant' , 'data-name' => 'email') ) !!}
                         </div>
                     </div>
                 </div>
