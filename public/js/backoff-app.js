@@ -14,6 +14,16 @@ $(function() {
     })
 
     /**
+     * Common
+     */
+    $('html').on('click','a.confirm',function () {
+        event.preventDefault()
+        if(confirm($(this).data('confirm'))) {
+            window.location.href = $(this).attr('href')
+        }
+    })
+
+    /**
      * Blueprint
      */
     $('.ajax-survey').on('change',function () {

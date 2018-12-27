@@ -56,7 +56,6 @@ class SurveyAdminController extends Controller
 
         $survey->update(array('sended' => 1));
         return redirect()->back()->with('success' , "Les emails ont été envoyés");
-
     }
 
     /**

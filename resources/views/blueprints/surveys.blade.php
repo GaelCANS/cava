@@ -15,7 +15,7 @@
             <th>Début</th>
             <th>Fin</th>
             <th>Participation</th>
-            <th>Envoyé</th>
+            <th>Envoyé le</th>
             <th>Actions</th>
         </tr>
         </thead>

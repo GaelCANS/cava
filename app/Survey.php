@@ -45,6 +45,13 @@ class Survey extends Model
             '';
     }
 
+    public function getSendedAtAttribute($value) {
+        if (empty($value)) return ' - ';
+        return $value != '0000-00-00 00:00:00' ?
+            Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y') :
+            ' - ';
+    }
+
     public function getPeriodAttribute()
     {
         return $this->beginshort.' - '.$this->endshort;

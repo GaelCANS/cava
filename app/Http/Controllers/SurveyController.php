@@ -6,10 +6,12 @@ use App\Answer;
 use App\Blueprint;
 use App\Survey;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Question;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
 class SurveyController extends Controller
@@ -310,5 +312,32 @@ class SurveyController extends Controller
         }
 
         return redirect()->back();
+    }
+
+
+    /**
+     * Send mail
+     *
+     * @param $survey_key
+     */
+    public function send($id)
+    {
+        $survey = Survey::findOrFail($id);
+        $blueprint = Blueprint::findOrFail($survey->blueprint_id);
+        $blueprint->load('Users');
+        $question = Question::where('blueprint_id' , $survey->blueprint_id)->orderBy('order','ASC')->first();
+
+        foreach ($blueprint->Users as $user) {
+
+            $link = route('show-survey-front' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
+            $result = route('results-survey-front' , array($survey->key, $user->key));
+            Mail::send('mails.invitation', compact('survey', 'blueprint' , 'link' , 'user' , 'result'), function ($m) use ($survey, $blueprint, $user) {
+                $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
+                $m->to($user->email)->subject("[Satisfaction collaborateur] ". utf8_decode($user->lastname).", donnez-nous votre avis ;)");
+            });
+        }
+
+        $survey->update(array('sended' => 1 , 'sended_at' => Carbon::now()));
+        return redirect()->back()->with('success' , "Les emails ont été envoyés");
     }
 }
