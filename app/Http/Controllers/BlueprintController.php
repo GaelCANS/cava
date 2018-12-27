@@ -76,9 +76,13 @@ class BlueprintController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CommonRequest $request, $id)
     {
-        //
+        $blueprint = Blueprint::findOrFail($id);
+        $datas = array();
+        $datas[$request->get('name')] = $request->get('value');
+
+        $blueprint->update($datas);
     }
 
     /**

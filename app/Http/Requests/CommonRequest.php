@@ -28,6 +28,8 @@ class CommonRequest extends Request
             case 'wording':
             case 'firstname':
             case 'lastname':
+            case 'name':
+            case 'intro':
                 $data = array('value' => 'required|string');
                 break;
             case 'comment':

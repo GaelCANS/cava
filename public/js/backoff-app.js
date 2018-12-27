@@ -14,6 +14,13 @@ $(function() {
     })
 
     /**
+     * Blueprint
+     */
+    $('.ajax-survey').on('change',function () {
+        updateBlueprint($(this))
+    })
+
+    /**
      * Survey
      */
     $('.table').on('change','.ajax-date',function () {
@@ -231,6 +238,29 @@ function updateSurvey(obj) {
         method: "POST",
         url: $('#survey-form').attr('action'),
         data: {id:obj.data('id'),name:obj.data('period'),value:obj.val()}
+    })
+    .done(function( data ) {
+
+    })
+    .fail(function (data) {
+        obj.addClass('error')
+    })
+}
+
+/**
+ * Surveys
+ */
+function updateBlueprint(obj) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        method: "PUT",
+        url: $('#blueprint-form').attr('action'),
+        data: {id:obj.data('id'),name:obj.data('name'),value:obj.val()}
     })
     .done(function( data ) {
 
