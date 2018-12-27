@@ -16,6 +16,16 @@ class Blueprint extends Model
         return User::whereBlueprintId($this->id)->count();
     }
 
+    public static function setBeginEnd($id)
+    {
+        $begin  = Survey::where('blueprint_id',$id)->min('begin');
+        $end    = Survey::where('blueprint_id',$id)->max('end');
+        $blueprint = Blueprint::findOrFail($id);
+        $blueprint->begin = $begin;
+        $blueprint->end = $end;
+        $blueprint->save();
+    }
+
 
     /**
      * RELATIONSHIPS

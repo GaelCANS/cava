@@ -44,6 +44,8 @@ class CommonRequest extends Request
                 $data = array('value' => 'required|date_format:d/m/Y');
                 break;
             case 'type':
+                $data = array('value' => 'required|in:open,close');
+                break;
             case 'enabled':
                 $data = array('value' => 'required|boolean');
                 break;

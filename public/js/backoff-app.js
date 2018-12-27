@@ -211,7 +211,6 @@ function addUser(link,id)
         next = userError($(this)) == false ? false : next
     })
     if (next == false) return false;
-    return ;
 
     $.ajax({
         method: "POST",

@@ -103,8 +103,9 @@ class SurveyController extends Controller
         $survey = Survey::findOrFail($request->get('id'));
         $datas = array();
         $datas[$request->get('name')] = Survey::setDate($request->get('value'));
-
         $survey->update($datas);
+
+        Blueprint::setBeginEnd($survey->blueprint_id);
     }
 
     /**
