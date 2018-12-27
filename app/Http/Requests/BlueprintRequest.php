@@ -24,9 +24,9 @@ class BlueprintRequest extends Request
     public function rules()
     {
         return array(
-            'name' => 'required|string',
+            /*'name' => 'required|string',
             'intro' => 'required|string',
-            'emails' => 'required|string'
+            'emails' => 'required|string'*/
         );
     }
 }

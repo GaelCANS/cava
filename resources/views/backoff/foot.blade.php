@@ -12,5 +12,6 @@
 @else
     <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('js/jquery.ui.min.js' ) }}"></script>
+    <script src="{{ asset('js/laravel.js?') }}"></script>
     <script src="{{ asset('js/backoff-app.js?v='.time() ) }}"></script>
 @endif

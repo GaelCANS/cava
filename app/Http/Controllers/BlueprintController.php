@@ -16,7 +16,7 @@ class BlueprintController extends Controller
      */
     public function index()
     {
-        $blueprints = Blueprint::all();
+        $blueprints = Blueprint::whereDeleted('0')->get();
         $blueprints->load('User');
         return view('blueprints.index' , compact('blueprints'));
     }
@@ -42,6 +42,13 @@ class BlueprintController extends Controller
     public function store(Requests\BlueprintRequest $request)
     {
         $blueprint = Blueprint::create( array_merge($request->all() , array('note_min' => 0, 'note_max' => 5, 'user_id' => 1) ) );
+        return redirect(action('BlueprintController@show' , $blueprint))->with('success' , "Le sondage a bien été crée.");
+    }
+    
+    
+    public function newBlueprint()
+    {
+        $blueprint = Blueprint::create( array('note_min' => 0, 'note_max' => 5, 'user_id' => 1) );
         return redirect(action('BlueprintController@show' , $blueprint))->with('success' , "Le sondage a bien été crée.");
     }
 
@@ -93,7 +100,10 @@ class BlueprintController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $blueprint = Blueprint::findOrFail($id);
+        $blueprint->deleted = true;
+        $blueprint->save();
+        return redirect(action('BlueprintController@index'))->with('success' , "Le questionnaure a bien été supprimé.");
     }
     
 }

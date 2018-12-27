@@ -33,6 +33,7 @@ class CommonRequest extends Request
                 $data = array('value' => 'required|string');
                 break;
             case 'comment':
+            case 'emails':
                 $data = array('value' => 'string');
                 break;
             case 'email':

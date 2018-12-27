@@ -5,7 +5,6 @@
     > note_max en dur
     > user_id en dur
     > begin & end autogéré par le biais des itérations
-
 - blueprintrequest
     > request pour checker les emails avec séparateur
 

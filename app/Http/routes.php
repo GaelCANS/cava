@@ -53,6 +53,7 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
                 )
             )
         );
+        Route::get('blueprint/new-blueprint','BlueprintController@newBlueprint')->name('new-blueprint');
 
         // Surveys
         Route::get('surveys/{blueprint_id}','SurveyController@index')->name('list-survey');

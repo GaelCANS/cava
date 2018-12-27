@@ -3,7 +3,7 @@
 @section('content')
 
     <h4 class="page-title d-none">Questionnaires</h4>
-    <a href="{{action('BlueprintController@create')}}"><button type="button" class="btn btn-secondary btn-xs mb-2" title="Ajouter">+ Ajouter un questionnaire</button></a>
+    <a href="{{route('new-blueprint')}}"><button type="button" class="btn btn-secondary btn-xs mb-2" title="Ajouter">+ Ajouter un questionnaire</button></a>
 
     <div class="row">
         <div class="col-12 grid-margin">
