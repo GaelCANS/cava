@@ -62,6 +62,15 @@ class Survey extends Model
         return Answer::participants($this->id);
     }
 
+    public function getCurrentAttribute()
+    {
+        if ($this->begin == "0000-00-00" || $this->end == '0000-00-00') return false;
+        $begin = Carbon::createFromFormat('Y-m-d', $this->begin);
+        $end = Carbon::createFromFormat('Y-m-d', $this->end);
+
+        return $begin->isPast() && $end->isFuture();
+    }
+
     public static function setDate($date)
     {
         return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');

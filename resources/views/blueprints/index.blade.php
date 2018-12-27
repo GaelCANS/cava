@@ -15,7 +15,7 @@
                                 <table class="table table-hover ajax-action">
                                     <thead>
                                     <tr>
-                                        <th>Nom</th>
+                                        <th width="55%">Nom</th>
                                         <th>Période</th>
                                         <th>Responsable</th>
                                         <th>Actions</th>
@@ -24,7 +24,7 @@
                                     <tbody>
                                     @forelse($blueprints as $blueprint)
                                         <tr>
-                                            <th>{{$blueprint->name}}</th>
+                                            <th class="text-left">{{$blueprint->name}}</th>
                                             <th>{{$blueprint->period}}</th>
                                             <th>{{$blueprint->user->fullname}}</th>
                                             <th>
