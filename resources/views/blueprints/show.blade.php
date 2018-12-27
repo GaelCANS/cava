@@ -5,7 +5,7 @@
 
 
     <h4 class="page-title d-inline-block mr-2">
-        @if( $blueprint == null ) Création  @else Edition @endif d'un sondage
+        &nbsp;
     </h4>
 
 

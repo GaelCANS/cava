@@ -34,7 +34,7 @@ class CommonRequest extends Request
                 break;
             case 'comment':
             case 'emails':
-                $data = array('value' => 'string');
+                $data = array('value' => 'string|emails');
                 break;
             case 'email':
                 $data = array('value' => 'required|email');

@@ -57,6 +57,9 @@ $(function() {
     $('.modal').on('keyup','.error',function () {
         removeError($(this))
     })
+    $('#blueprint-form').on('keyup','.error',function () {
+        removeError($(this))
+    })
 
     /**
      * Question
@@ -359,6 +362,11 @@ function removeError(obj)
     if (obj.data('name') == 'email' && validateEmail(obj.val())) {
         obj.removeClass('error');
     }
+
+    // Si le champs est un emails mais que les emails n'ont pas format correct
+    /*if (obj.data('name') == 'emails') {
+        console.log('coucou')
+    }*/
 
 }
 
