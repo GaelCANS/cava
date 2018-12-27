@@ -1,5 +1,7 @@
 @TODO
 
+gérer les clés
+
 - blueprintcontroller
     > note_min en dur
     > note_max en dur

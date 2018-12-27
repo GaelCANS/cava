@@ -18,7 +18,6 @@
         <li class="@if( $blueprint == null ) disabled @endif @if($tab == 'questions') active @endif"><a href="@if( $blueprint == null ){{'#'}}@else{{route('list-question',$blueprint)}}@endif">Questions</a></li>
         <li class="@if( $blueprint == null ) disabled @endif @if($tab == 'guests') active @endif"><a href="@if( $blueprint == null ){{'#'}}@else{{route('list-users' , $blueprint)}}@endif">Utilisateurs</a></li>
         <li class="@if( $blueprint == null ) disabled @endif @if($tab == 'surveys') active @endif"><a href="@if( $blueprint == null ){{'#'}}@else{{route('list-survey' , $blueprint)}}@endif">Itération</a></li>
-        <li class="@if( $blueprint == null ) disabled @endif @if($tab == 'dashboard') active @endif"><a href="@if( $blueprint == null ){{'#'}}@else{{'#'}}@endif">Pilotage</a></li>
     </ul>
 
     @include('blueprints.'.$tab)
