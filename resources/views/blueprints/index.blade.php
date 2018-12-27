@@ -12,7 +12,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table table-hover ajax-action">
+                                <input class="form-control" id="myInput" type="text" placeholder="Filtre de recherche..">
+                                <table class="table table-hover ajax-action" id="blueprints">
                                     <thead>
                                     <tr>
                                         <th width="55%">Nom</th>

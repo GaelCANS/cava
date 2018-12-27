@@ -1,5 +1,7 @@
 $(function() {
 
+    indexFilter()
+
     // Alert on invitation button
     $('.invitation').click(function() {
         if (!confirm('Voulez-vous envoyer les invitations par email ?'))
@@ -435,4 +437,16 @@ function showUsers(obj) {
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+}
+
+/**
+ * Index
+ */
+function indexFilter() {
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase()
+        $("#blueprints tbody tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        })
+    })
 }
