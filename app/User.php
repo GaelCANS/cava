@@ -42,4 +42,8 @@ class User extends Authenticatable
         return Answer::whereUserId($this->id)->whereSurveyId($survey_id)->count() > 0 ? 1 : 0;
     }
 
+    public function getAnswersAttribute() {
+        return Answer::whereUserId($this->id)->count();
+    }
+
 }

@@ -22,7 +22,18 @@
     <div class="col-md-12">
         <div class="form-group">
             <h6>Introduction</h6>
-            {!! Form::textarea( 'intro' , null , array( 'class' => 'form-control summernote ajax-survey' , 'placeholder' => "Rédigez le texte introductif de votre sondage", 'rows' => '20', 'data-name' => 'intro' ) ) !!}
+            {!! Form::textarea( 'intro' , null , array( 'class' => 'form-control summernote ajax-survey' , 'placeholder' => "Rédigez le texte introductif de votre sondage", 'rows' => '20', 'data-name' => 'intro' , 'id' => 'intro' ) ) !!}
+            <div class="dynamics-data">
+                <span class="label label-default cartouche" data-name="survey">
+                    Lien vers l'enquête
+                </span>
+                <span class="label label-default cartouche" data-name="results">
+                    Lien vers les résultats
+                </span>
+                <span class="label label-default cartouche" data-name="duree">
+                    Durée de l'enquête
+                </span>
+            </div>
         </div>
     </div>
 </div>

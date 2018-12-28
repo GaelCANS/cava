@@ -52,6 +52,14 @@ class Survey extends Model
             ' - ';
     }
 
+    public function getDureeAttribute()
+    {
+        if ($this->begin == "0000-00-00" || $this->end == '0000-00-00' || $this->begin == '' || $this->end == '') return false;
+        $begin = Carbon::createFromFormat('Y-m-d', $this->begin);
+        $end = Carbon::createFromFormat('Y-m-d', $this->end);
+        return $begin->diffInDays($end);
+    }
+
     public function getPeriodAttribute()
     {
         return $this->beginshort.' - '.$this->endshort;
@@ -64,7 +72,7 @@ class Survey extends Model
 
     public function getCurrentAttribute()
     {
-        if ($this->begin == "0000-00-00" || $this->end == '0000-00-00') return false;
+        if ($this->begin == "0000-00-00" || $this->end == '0000-00-00' || $this->begin == '' || $this->end == '') return false;
         $begin = Carbon::createFromFormat('Y-m-d', $this->begin);
         $end = Carbon::createFromFormat('Y-m-d', $this->end);
 

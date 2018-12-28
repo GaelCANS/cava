@@ -88,6 +88,12 @@ $(function() {
         showUsers($(this))
     })
 
+    /**
+     * Blueprint
+     */
+    $('.cartouche').on('click',function () {
+        addField($(this).data('name'))
+    })
 
 
     /**
@@ -449,4 +455,70 @@ function indexFilter() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         })
     })
+}
+
+
+/**
+ * Blueprint
+ */
+function addField(value) {
+
+    switch (value) {
+        case 'survey':
+            var html = '%%--link_survey--%%'
+            break
+        case 'results':
+            var html = '%%--link_results--%%'
+            break
+        case 'duree':
+            var html = '%%--days--%%'
+            break
+    }
+
+    insertAtCaret('intro',html)
+    updateBlueprint($('#intro'))
+}
+
+/**
+ * Common
+ * @param areaId
+ * @param text
+ */
+function insertAtCaret(areaId, text) {
+    var txtarea = document.getElementById(areaId);
+    if (!txtarea) {
+        return;
+    }
+
+    var scrollPos = txtarea.scrollTop;
+    var strPos = 0;
+    var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ?
+        "ff" : (document.selection ? "ie" : false));
+    if (br == "ie") {
+        txtarea.focus();
+        var range = document.selection.createRange();
+        range.moveStart('character', -txtarea.value.length);
+        strPos = range.text.length;
+    } else if (br == "ff") {
+        strPos = txtarea.selectionStart;
+    }
+
+    var front = (txtarea.value).substring(0, strPos);
+    var back = (txtarea.value).substring(strPos, txtarea.value.length);
+    txtarea.value = front + text + back;
+    strPos = strPos + text.length;
+    if (br == "ie") {
+        txtarea.focus();
+        var ieRange = document.selection.createRange();
+        ieRange.moveStart('character', -txtarea.value.length);
+        ieRange.moveStart('character', strPos);
+        ieRange.moveEnd('character', 0);
+        ieRange.select();
+    } else if (br == "ff") {
+        txtarea.selectionStart = strPos;
+        txtarea.selectionEnd = strPos;
+        txtarea.focus();
+    }
+
+    txtarea.scrollTop = scrollPos;
 }
