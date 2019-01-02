@@ -5,10 +5,18 @@
         @endif
     </td>
     <td>
+        @if (!$blueprint->SpeLN)
         {!! Form::text( 'begin['.$survey->id.']' , $survey->beginlong , array( 'class' => 'form-control datepicker ajax-date' , 'data-id' => $survey->id , 'data-period' => 'begin' , 'data-name' => 'begin') ) !!}
+            @else
+            {{$survey->beginlong}}
+        @endif
     </td>
     <td>
+        @if (!$blueprint->SpeLN)
         {!! Form::text( 'end['.$survey->id.']' , $survey->endlong , array( 'class' => 'form-control datepicker ajax-date' , 'data-id' => $survey->id , 'data-period' => 'end' , 'data-name' => 'end') ) !!}
+            @else
+            {{$survey->endlong}}
+        @endif
     </td>
     <td class="show-users">{{$survey->guests}}/{{$blueprint->guests}}</td>
     <td>{{$survey->sended_at}}</td>
