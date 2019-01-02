@@ -26,6 +26,11 @@ class Blueprint extends Model
         $blueprint->save();
     }
 
+    public function getSpeLNAttribute()
+    {
+        return $this->id == env('SPE_LN');
+    }
+
 
     /**
      * RELATIONSHIPS

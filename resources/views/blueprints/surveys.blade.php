@@ -29,9 +29,11 @@
         <tfoot>
         <tr>
             <td colspan="4">
+                @if (!$blueprint->SpeLN)
                 <button type="button" class="btn btn-primary add-btn" data-type="iteration" data-link="{{route('add-survey')}}" data-id="{{$blueprint->id}}">
                     <i class="fa fa-fw fa-plus"></i>Ajouter une itération
                 </button>
+                @endif
             </td>
         </tr>
         </tfoot>

@@ -24,6 +24,9 @@ Route::get('/graph/{blueprint}/{user_key}/{question_key}','SurveyController@evol
 Route::get('/comments/{survey_key}','SurveyController@comments')->name('comments');
 Route::post('/comments/{survey_key}','SurveyController@newComments')->name('add-comments');
 
+// SPE : LN FEATURE
+Route::get('/register/{survey_key}','SurveyController@register')->name('SPE-LN-register');
+
 
 // Page
 Route::get('/404','PagesController@page404')->name('page-404');
