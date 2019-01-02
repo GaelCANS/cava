@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Blueprint;
+use App\Question;
+use App\Survey;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -103,5 +105,29 @@ class UserController extends Controller
             return redirect()->back()->with('success', "L'utilisateur vient d'être supprimé");
         }
         return redirect()->back()->with('error', "Impossible de supprimer cet utilisateur.");
+    }
+
+    public function test($survey_key)
+    {
+        return redirect()->route('SPE-LN-register',$survey_key)->with('success-fade','Vos réponses ont bien été enregistrées. Merci de votre participation.');
+    }
+
+    public function SPEregister($survey_key)
+    {
+        $survey = Survey::findOrFail( Survey::getId($survey_key) );
+        $blueprint = Blueprint::findOrFail($survey->blueprint_id);
+
+        return view('users.register', compact('survey' , 'blueprint'));
+    }
+
+    public function SPEstore(Request $request, $survey_key)
+    {
+        $survey = Survey::findOrFail( Survey::getId($survey_key) );
+        $question = Question::where('blueprint_id' , $survey->blueprint_id)->orderBy('order','ASC')->first();
+
+        $user = User::create(array_merge($request->all() , array('blueprint_id' => $survey->blueprint_id, 'key' => uniqid())));
+
+
+        return redirect()->route('show-survey-front' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
     }
 }

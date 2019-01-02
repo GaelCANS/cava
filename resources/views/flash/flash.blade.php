@@ -16,6 +16,12 @@
     </div>
 @endif
 
+@if( session()->has('success-fade') )
+    <div class="alert alert-success" id="success-alert">
+        {!! session('success-fade') !!}
+    </div>
+@endif
+
 
 @if( session()->has('error') )
     <div class="alert alert-danger">

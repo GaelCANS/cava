@@ -2,6 +2,26 @@ $(function() {
 
     init();
 
+    // SPE LN
+    $('#SPE-user-form').on('submit',function () {
+        if (validateEmail($('#SPE-email').val())) {
+            var name = $('#SPE-email').val().split('@');
+            var splitName = name[0].split('.');
+            $('#SPE-firstname').val(splitName[0]);
+            $('#SPE-lastname').val(splitName[1]);
+            return true;
+        }
+        else{
+            alert('Vous devez saisir une adresse email valide');
+            return false;
+        }
+    });
+
+    // SPE LN
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#success-alert").slideUp(500);
+    });
+
     $('#result-range').on('input' , function(){
         $('#result-range').attr('data-first' , 0);
         displayEmote();
@@ -120,4 +140,14 @@ function init()
     if ($('#result-range').length > 0) {
         displayEmote();
     }
+}
+
+/**
+ * Common
+ * @param email
+ * @returns {boolean}
+ */
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }

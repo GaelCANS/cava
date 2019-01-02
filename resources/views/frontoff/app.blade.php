@@ -11,6 +11,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="content body">
+            @include('flash.flash')
 
             @yield('content')
         </div>

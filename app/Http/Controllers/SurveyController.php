@@ -233,6 +233,14 @@ class SurveyController extends Controller
             route('show-survey-front' , Survey::createKey( array($keys['survey'] , $keys['user'] , $next_question) )) :
             route('results-survey-front' , array($keys['survey'] , $keys['user']));
 
+        // SPE LN
+        $survey = Survey::findOrFail($survey_id);
+        $blueprint = Blueprint::findOrFail($survey->blueprint_id);
+        if ($next_question == false && $blueprint->SpeLN) {
+            $next = route('SPE-LN-register' , $keys['survey']);
+            return redirect($next)->with('success-fade','Vos réponses ont bien été enregistrées. Merci de votre participation.');
+        }
+
         return redirect($next);
     }
 

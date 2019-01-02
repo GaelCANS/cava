@@ -25,7 +25,9 @@ Route::get('/comments/{survey_key}','SurveyController@comments')->name('comments
 Route::post('/comments/{survey_key}','SurveyController@newComments')->name('add-comments');
 
 // SPE : LN FEATURE
-Route::get('/register/{survey_key}','SurveyController@register')->name('SPE-LN-register');
+Route::get('/test/{survey_key}','UserController@test')->name('test');
+Route::get('/register/{survey_key}','UserController@SPEregister')->name('SPE-LN-register');
+Route::post('/register/{survey_key}','UserController@SPEstore')->name('SPE-LN-store');
 
 
 // Page
