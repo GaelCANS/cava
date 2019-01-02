@@ -87,4 +87,11 @@ class Answer extends Model
         return self::isAnswered($survey_id, $user_id, $question_id) > 0 && $answer->result >= 0 ? (float)$answer->result : '';
     }
 
+    /**
+     * RELATIONSHIPS
+     */
+    public function question() {
+        return $this->belongsTo('App\Question');
+    }
+
 }

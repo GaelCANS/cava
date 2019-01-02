@@ -340,4 +340,20 @@ class SurveyController extends Controller
         $survey->update(array('sended' => 1 , 'sended_at' => Carbon::now()));
         return redirect()->back()->with('success' , "Les emails ont été envoyés");
     }
+
+    
+    public function viewComments($survey_id)
+    {
+        $survey = Survey::findOrFail($survey_id);
+        $openQuestions = Question::whereBlueprintId($survey->blueprint_id)->whereType('open')->lists('id')->toArray();
+        $comments = Answer::whereSurveyId($survey_id)->whereQuestionId($openQuestions)->where('result','!=','')->with('question')->get();
+
+        $html = view('blueprints.comments' , compact('comments' ))->render();
+
+        return response()->json(
+            array(
+                'html'=> $html,
+            )
+        );
+    }
 }

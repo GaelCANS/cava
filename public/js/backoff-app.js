@@ -26,6 +26,14 @@ $(function() {
     })
 
     /**
+     * Survey
+     */
+    $('.table').on('click','.open-comments',function () {
+        event.preventDefault()
+        displayComments($(this))
+    })
+
+    /**
      * Blueprint
      */
     $('.ajax-survey').on('change',function () {
@@ -455,6 +463,28 @@ function indexFilter() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         })
     })
+}
+
+/**
+ * Survey
+ */
+function displayComments(obj)
+{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+            method: "GET",
+            url: obj.attr('href'),
+            data: {}
+        })
+        .done(function( data ) {
+            $('#comments-modal .modal-body').html(data.html)
+            $('#comments-modal').modal('show')
+        })
 }
 
 

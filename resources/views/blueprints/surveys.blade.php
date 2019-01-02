@@ -39,5 +39,6 @@
 </div>
 
 @include('blueprints.modal')
+@include('blueprints.modal-comments')
 
 {!! Form::close() !!}

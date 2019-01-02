@@ -62,6 +62,7 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
         Route::post('surveys/update','SurveyController@update')->name('update-survey');
         Route::post('surveys/add','SurveyController@store')->name('add-survey');
         Route::get('surveys/send/{survey_id}','SurveyController@send')->name('send-survey');
+        Route::get('surveys/comments/{survey_id}','SurveyController@viewComments')->name('comments-survey');
 
         // Questions
         Route::get('questions/{blueprint_id}','QuestionController@index')->name('list-question');
