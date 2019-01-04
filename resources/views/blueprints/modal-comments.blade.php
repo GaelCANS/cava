@@ -1,5 +1,5 @@
 <div  class="modal fade" id="comments-modal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -8,7 +8,11 @@
                 <h4 class="modal-title">Commentaires de l'itération <span class="data-survey"></span></h4>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <div style="overflow: scroll; height: 300px;" class="comments-content">
+                    <ul>
+
+                    </ul>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

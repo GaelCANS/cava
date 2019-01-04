@@ -82,6 +82,9 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
         Route::post('users/update','UserController@update')->name('update-user');
         Route::post('users/add','UserController@store')->name('add-user');
 
+        // SPe : LN FEATURE
+        Route::get('users/pilotage/{blueprint_id}','BlueprintController@pilotage')->name('pilotage');
+
     });
 
 //});

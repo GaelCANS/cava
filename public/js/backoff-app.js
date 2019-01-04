@@ -9,6 +9,28 @@ $(function() {
     });
 
     /**
+     * Survey
+     */
+    $('.comments-content').scroll(function () {
+        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            var obj = $('.opened-comment')
+            loadComments(obj)
+            obj.data('from',obj.data('from')+obj.data('range'))
+        }
+    })
+
+    /**
+     * Survey
+     */
+    $('.table').on('click','.open-comments',function () {
+        event.preventDefault()
+        $('.opened-comment').removeClass('opened-comment')
+        displayComments($(this))
+        $(this).data('from',$(this).data('from')+$(this).data('range'))
+        $(this).addClass("opened-comment")
+    })
+
+    /**
      * Common
      */
     $('.add-btn').on('click' , function () {
@@ -23,14 +45,6 @@ $(function() {
         if(confirm($(this).data('confirm'))) {
             window.location.href = $(this).attr('href')
         }
-    })
-
-    /**
-     * Survey
-     */
-    $('.table').on('click','.open-comments',function () {
-        event.preventDefault()
-        displayComments($(this))
     })
 
     /**
@@ -465,6 +479,15 @@ function indexFilter() {
     })
 }
 
+
+/**
+ * Survey
+ */
+function loadComments(obj)
+{
+    displayComments(obj)
+}
+
 /**
  * Survey
  */
@@ -479,10 +502,15 @@ function displayComments(obj)
     $.ajax({
             method: "GET",
             url: obj.attr('href'),
-            data: {}
+            data: {from: obj.data('from'), range: obj.data('range')}
         })
         .done(function( data ) {
-            $('#comments-modal .modal-body').html(data.html)
+            if (data.from == 0) {
+                $('#comments-modal .modal-body .comments-content ul').html(data.html)
+            }
+            else {
+                $('#comments-modal .modal-body .comments-content ul').append(data.html)
+            }
             $('#comments-modal').modal('show')
         })
 }

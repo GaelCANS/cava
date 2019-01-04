@@ -105,5 +105,14 @@ class BlueprintController extends Controller
         $blueprint->save();
         return redirect(action('BlueprintController@index'))->with('success' , "Le questionnaure a bien été supprimé.");
     }
+
+
+    public function pilotage($id)
+    {
+        $blueprint =  Blueprint::findOrFail($id);
+        $tab = "pilotage";
+        return view('blueprints.show' , compact('blueprint','tab'));
+    }
+
     
 }

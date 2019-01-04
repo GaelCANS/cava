@@ -350,17 +350,22 @@ class SurveyController extends Controller
     }
 
     
-    public function viewComments($survey_id)
+    public function viewComments($survey_id, Request $request)
     {
         $survey = Survey::findOrFail($survey_id);
         $openQuestions = Question::whereBlueprintId($survey->blueprint_id)->whereType('open')->lists('id')->toArray();
-        $comments = Answer::whereSurveyId($survey_id)->whereQuestionId($openQuestions)->where('result','!=','')->with('question')->get();
+        $comments = Answer::whereSurveyId($survey_id)->whereQuestionId($openQuestions)->where('result','!=','')->skip($request->get('from'))->take($request->get('range'))->with('question')->get();
 
         $html = view('blueprints.comments' , compact('comments' ))->render();
+
+        if (count($comments) == 0 && $request->get('from') > 0) {
+            $html = '';
+        }
 
         return response()->json(
             array(
                 'html'=> $html,
+                'from' => $request->get('from')
             )
         );
     }

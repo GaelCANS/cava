@@ -100,7 +100,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        if ($user->answer == 0) {
+        if ($user->answers == 0) {
             $user->delete();
             return redirect()->back()->with('success', "L'utilisateur vient d'être supprimé");
         }
