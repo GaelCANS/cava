@@ -31,6 +31,21 @@ class Blueprint extends Model
         return $this->id == env('SPE_LN');
     }
 
+    public function getSendedSurveyAttribute()
+    {
+        return Survey::whereBlueprintId($this->id)->whereSended('1')->count();
+    }
+
+    public function getCountSurveyAttribute()
+    {
+        return Survey::whereBlueprintId($this->id)->count();
+    }
+
+    public function getCountQuestionAttribute()
+    {
+        return Question::whereBlueprintId($this->id)->count();
+    }
+
 
     /**
      * RELATIONSHIPS

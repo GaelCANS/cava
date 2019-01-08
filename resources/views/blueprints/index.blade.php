@@ -16,7 +16,9 @@
                                 <table class="table table-hover ajax-action" id="blueprints">
                                     <thead>
                                     <tr>
-                                        <th width="55%">Nom</th>
+                                        <th width="45%">Nom</th>
+                                        <th>Questions</th>
+                                        <th>Itérations</th>
                                         <th>Période</th>
                                         <th>Responsable</th>
                                         <th>Actions</th>
@@ -26,12 +28,24 @@
                                     @forelse($blueprints as $blueprint)
                                         <tr>
                                             <th class="text-left">{{$blueprint->name}}</th>
+                                            <th>
+                                                <a href="{{route('list-question' , $blueprint)}}">
+                                                    {{$blueprint->countQuestion}}
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="{{route('list-survey' , $blueprint)}}">
+                                                    {{$blueprint->sendedSurvey}}/{{$blueprint->countSurvey}}
+                                                </a>
+                                            </th>
                                             <th>{{$blueprint->period}}</th>
                                             <th>{{$blueprint->user->fullname}}</th>
                                             <th>
                                                 <a href="{{action("BlueprintController@show" , $blueprint)}}" title="Modifier"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-border-color"></i></button></a>
                                                 @if (!$blueprint->SpeLN)
-                                                <a href="{{action("BlueprintController@destroy" , $blueprint)}}"  title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
+                                                    <a href="{{action("BlueprintController@destroy" , $blueprint)}}"  title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
+                                                @else
+                                                    <button type="button" class="btn btn-outline-secondary icon-btn disabled" style="cursor: not-allowed"><i class="mdi mdi-delete"></i></button>
                                                 @endif
                                             </th>
                                         </tr>
