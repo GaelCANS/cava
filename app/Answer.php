@@ -19,9 +19,22 @@ class Answer extends Model
     }
 
 
-    public static function participants($survey_id)
+    public static function participants($survey_id, $period = array())
     {
-        $participants = DB::table('answers')->select(DB::raw('COUNT(DISTINCT(user_id)) as user_count'))->whereSurveyId($survey_id)->first();
+        if (count($period) == 0) {
+            $participants = DB::table('answers')
+                            ->select(DB::raw('COUNT(DISTINCT(user_id)) as user_count'))
+                            ->whereSurveyId($survey_id)
+                            ->first();
+        }
+        else {
+            $participants = DB::table('answers')
+                ->select(DB::raw('COUNT(DISTINCT(user_id)) as user_count'))
+                ->whereSurveyId($survey_id)
+                ->where('created_at', '>=' , $period['begin'])
+                ->where('created_at', '<=' , $period['end'])
+                ->first();
+        }
         return $participants->user_count;
     }
     
@@ -47,9 +60,12 @@ class Answer extends Model
      * @param $question_id
      * @return float
      */
-    public static function averageQuestionSurvey($survey_id, $question_id)
+    public static function averageQuestionSurvey($survey_id, $question_id , $period = array())
     {
-        return round(self::where('survey_id' , $survey_id)->where('question_id',$question_id)->positive()->avg('result'),1);
+        if (count($period) == 0)
+            return round(self::where('survey_id' , $survey_id)->where('question_id',$question_id)->positive()->avg('result'),1);
+        else
+            return round(self::where('survey_id' , $survey_id)->where('created_at', '>=', $period['begin'])->where('created_at', '<=', $period['end'])->where('question_id',$question_id)->positive()->avg('result'),1);
     }
 
 

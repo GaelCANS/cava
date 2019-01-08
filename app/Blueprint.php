@@ -44,6 +44,11 @@ class Blueprint extends Model
         return $this->hasMany('App\User');
     }
 
+
+    public function surveys() {
+        return $this->hasMany('App\Survey');
+    }
+
     public function user() {
         return $this->belongsTo('App\User');
     }

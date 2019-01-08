@@ -271,9 +271,9 @@ class SurveyController extends Controller
      * @param $question_key
      * @return mixed
      */
-    public function evolution($blueprint_id, $user_key, $question_key)
+    public function evolution($blueprint_id, $user_key, $question_key, $period = array())
     {
-        $evolutions = Survey::evolutionQuestion($blueprint_id, ($user_key != 'admin' ? User::getId($user_key) : $user_key), Question::getId($question_key));
+        $evolutions = Survey::evolutionQuestion($blueprint_id, ($user_key != 'admin' ? User::getId($user_key) : $user_key), Question::getId($question_key) , $period);
 
         return response()->json(
             array(
