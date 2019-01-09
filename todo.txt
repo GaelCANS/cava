@@ -5,14 +5,12 @@ gérer les clés
 - blueprintcontroller
     > note_min en dur
     > note_max en dur
-    > user_id en dur
-    > begin & end autogéré par le biais des itérations
 - blueprintrequest
     > request pour checker les emails avec séparateur
 
 - surveycontroller
     > destroy : vérifier si possibilité de supprimer un survey (si réponses déjà existantes alors non)
 
--usercontroller
+- usercontroller
     > store : faire un validation rules qui check si l'email n'existe pas déjà pour le blueprint cible
     > destroy : vérifier si on peut delete l'utilisateur (déjà répondu ou pas)

@@ -46,14 +46,14 @@ class BlueprintController extends Controller
      */
     public function store(Requests\BlueprintRequest $request)
     {
-        $blueprint = Blueprint::create( array_merge($request->all() , array('note_min' => 0, 'note_max' => 5, 'user_id' => 1) ) );
+        $blueprint = Blueprint::create( array_merge($request->all() , array('note_min' => 0, 'note_max' => 5, 'user_id' => auth()->user()->id) ) );
         return redirect(action('BlueprintController@show' , $blueprint))->with('success' , "Le sondage a bien été crée.");
     }
     
     
     public function newBlueprint()
     {
-        $blueprint = Blueprint::create( array('note_min' => 0, 'note_max' => 5, 'user_id' => 1) );
+        $blueprint = Blueprint::create( array('note_min' => 0, 'note_max' => 5, 'user_id' => auth()->user()->id) );
         return redirect(action('BlueprintController@show' , $blueprint))->with('success' , "Le sondage a bien été crée.");
     }
 

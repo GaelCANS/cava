@@ -44,7 +44,7 @@ Route::get('/admin/send/{survey_key}','SurveyAdminController@send')->name('email
 Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributors')->name('contributors');
 
 
-//Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'admin'], function() {
 
@@ -87,4 +87,10 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
 
     });
 
-//});
+});
+
+
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
