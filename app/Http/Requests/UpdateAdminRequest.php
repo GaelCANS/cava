@@ -26,7 +26,8 @@ class UpdateAdminRequest extends Request
         return array(
             'email' => "required|email",
             'firstname' => "required|alpha",
-            'lastname' => "required|alpha"
+            'lastname' => "required|alpha",
+            'password_confirmation' => 'required_with:password|same:password'
         );
     }
 }

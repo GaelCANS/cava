@@ -49,7 +49,7 @@
 
     </div>
 
-    @if (false)
+    @if ($user != null && auth()->user()->id == $user->id)
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">

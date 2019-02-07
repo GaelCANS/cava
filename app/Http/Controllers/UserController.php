@@ -87,10 +87,16 @@ class UserController extends Controller
     }
 
 
-    public function update_admin(Request $request, $id)
+    public function update_admin(Requests\UpdateAdminRequest $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->update($request->except('password' , 'password_confirmation'));
+        if ($id != auth()->user()->id) {
+            $user->update($request->all());
+        }
+        else {
+            $data = array_merge($request->except('password_confirmation') , array('password' => Hash::make($request->get('password')) ));
+            $user->update($data);
+        }
         return redirect()->back()->with('success', "Mise à jour effectuée.");
     }
 
