@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -25,14 +26,23 @@ class UserController extends Controller
         return view('blueprints.show' , compact( 'blueprint' , 'users' , 'tab'));
     }
 
+
+    public function admin_index()
+    {
+        $users = User::whereAdmin('1')->get();
+        return view('users.index' , compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function store_admin(Requests\CreateAdminRequest $request)
     {
-        //
+        $data = array_merge($request->all() , array('password' => Hash::make('chouette') , 'admin' => '1'));
+        $user = User::create($data);
+        return redirect()->action('UserController@admin_index')->with('success', "Ajout de l'utilisateur effectué");
     }
 
     /**
@@ -61,7 +71,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = (int)$id > 0 ? User::findOrFail($id) : null;
+        return view('users.show' , compact('user'));
     }
 
     /**
@@ -73,6 +84,14 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+    }
+
+
+    public function update_admin(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->except('password' , 'password_confirmation'));
+        return redirect()->back()->with('success', "Mise à jour effectuée.");
     }
 
     /**
@@ -89,6 +108,13 @@ class UserController extends Controller
         $datas[$request->get('name')] = $request->get('value');
 
         $user->update($datas);
+    }
+
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->update( array('admin' => 0) );
+        return redirect()->back()->with('success', "L'utilisateur vient d'être supprimé");
     }
 
     /**

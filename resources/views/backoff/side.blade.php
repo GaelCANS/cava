@@ -16,13 +16,18 @@
         <li class="nav-item active">
             <a class="nav-link" href="{{route('blueprint-index')}}">
                 <i class="fas fa-list-alt"></i><br>Enquêtes
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="{{route('new-blueprint')}}">
-                <i class="fas fa-plus-circle"></i><br>Créer
-            </a>
-        </li>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{route('new-blueprint')}}">
+                    <i class="fas fa-plus-circle"></i><br>Créer
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{route('list-admins')}}">
+                    <i class="fas fa-user"></i><br>Utilisateurs
+                </a>
+            </li>
         <!--<li class="nav-item ">
             <a class="nav-link" href="http://localhost:8888/camp/public/cmm">
                 <i class="fas fa-wrench"></i><br>Paramètres

@@ -82,6 +82,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('users/update','UserController@update')->name('update-user');
         Route::post('users/add','UserController@store')->name('add-user');
 
+        // Users - Admins
+        Route::get('admins','UserController@admin_index')->name('list-admins');
+        Route::get('admins/{id}','UserController@show')->name('show-admin');
+        Route::delete('admins/{id}','UserController@delete')->name('delete-admin');
+        Route::get('admins/create','UserController@create')->name('create-admin');
+        Route::put('admins/{id}','UserController@update_admin')->name('update-admin');
+        Route::post('admins/create','UserController@store_admin');
+
         // SPe : LN FEATURE
         Route::get('users/pilotage/{blueprint_id}','BlueprintController@pilotage')->name('pilotage');
 

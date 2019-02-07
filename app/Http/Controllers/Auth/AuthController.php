@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\Request;
+
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -49,6 +50,13 @@ class AuthController extends Controller
     public function logout() {
         Auth::logout();
         return redirect('/login');
+    }
+
+    protected function getCredentials(Request $request)
+    {
+        $credentials = $request->only($this->loginUsername(), 'password');
+        $credentials['admin'] = '1';
+        return $credentials;
     }
 
     /**

@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => "nepasrepondre@ca-normandie-seine.fr", 'name' => null],
 
     /*
     |--------------------------------------------------------------------------
