@@ -23,11 +23,13 @@
                     <i class="fas fa-plus-circle"></i><br>Créer
                 </a>
             </li>
+        @if (auth()->user()->superadmin)
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('list-admins')}}">
                     <i class="fas fa-user"></i><br>Utilisateurs
                 </a>
             </li>
+        @endif
         <!--<li class="nav-item ">
             <a class="nav-link" href="http://localhost:8888/camp/public/cmm">
                 <i class="fas fa-wrench"></i><br>Paramètres

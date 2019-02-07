@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -40,9 +41,16 @@ class UserController extends Controller
      */
     public function store_admin(Requests\CreateAdminRequest $request)
     {
-        $data = array_merge($request->all() , array('password' => Hash::make('chouette') , 'admin' => '1'));
+        $pass = substr(uniqid(),0,7);
+        $data = array_merge($request->all() , array('password' => Hash::make($pass) , 'admin' => '1'));
         $user = User::create($data);
-        return redirect()->action('UserController@admin_index')->with('success', "Ajout de l'utilisateur effectué");
+
+        Mail::send('mails.admin', compact('user', 'pass'), function ($m) use ($user) {
+            $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
+            $m->to($user->email)->subject("[Satisfaction collaborateur] création d'un profil administrateur.");
+        });
+
+        return redirect()->action('UserController@admin_index')->with('success', "Ajout de l'utilisateur effectué. Un email vient d'être envoyé.");
     }
 
     /**
