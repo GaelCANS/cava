@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 class PasswordController extends Controller
 {
@@ -44,10 +46,9 @@ class PasswordController extends Controller
         $this->validateSendResetLinkEmail($request);
 
         $broker = $this->getBroker();
-
         if ($this->isAdmin($request) == 1) {
             $response = Password::broker($broker)->sendResetLink(
-                $this->getSendResetLinkEmailCredentials($request),
+                array_merge($this->getSendResetLinkEmailCredentials($request), array('admin' => '1')),
                 $this->resetEmailBuilder()
             );
         }
@@ -62,6 +63,44 @@ class PasswordController extends Controller
             case Password::INVALID_USER:
             default:
                 return $this->getSendResetLinkEmailFailureResponse($response);
+        }
+    }
+
+    protected function resetPassword($user, $password)
+    {
+        $user->forceFill([
+            'password' => bcrypt($password),
+            'remember_token' => Str::random(60),
+        ])->save();
+
+        Auth::guard($this->getGuard())->login($user);
+    }
+
+    public function reset(Request $request)
+    {
+
+        $this->validate(
+            $request,
+            $this->getResetValidationRules(),
+            $this->getResetValidationMessages(),
+            $this->getResetValidationCustomAttributes()
+        );
+
+        //$credentials = $this->getResetCredentials($request);
+        $credentials = array_merge($this->getResetCredentials($request), array('admin' => '1'));
+
+
+        $broker = $this->getBroker();
+
+        $response = Password::broker($broker)->reset($credentials, function ($user, $password) {
+            $this->resetPassword($user, $password);
+        });
+
+        switch ($response) {
+            case Password::PASSWORD_RESET:
+                return $this->getResetSuccessResponse($response);
+            default:
+                return $this->getResetFailureResponse($request, $response);
         }
     }
 
