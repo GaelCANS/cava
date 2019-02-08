@@ -76,6 +76,11 @@ class PasswordController extends Controller
         Auth::guard($this->getGuard())->login($user);
     }
 
+    protected function getResetSuccessResponse($response)
+    {
+        return redirect()->route('blueprint-index')->with('status', trans($response));
+    }
+
     public function reset(Request $request)
     {
 
