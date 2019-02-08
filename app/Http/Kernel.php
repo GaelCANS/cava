@@ -56,5 +56,6 @@ class Kernel extends HttpKernel
         'SurveyIsAlreadyAnswered' => \App\Http\Middleware\SurveyIsAlreadyAnswered::class,
         'AllowUser' => \App\Http\Middleware\AllowUser::class,
         'AllowResultPage' => \App\Http\Middleware\AllowResultPage::class,
+        'SuperAdmin' => \App\Http\Middleware\SuperAdmin::class
     ];
 }

@@ -46,9 +46,9 @@ class User extends Authenticatable
         return Answer::whereUserId($this->id)->count();
     }
 
-    public function getSuperadminAttribute()
+    /*public function getSuperadminAttribute()
     {
-        return $this->id == 1 ? true : false;
-    }
+        return $this->superadmin == 1 ? true : false;
+    }*/
 
 }

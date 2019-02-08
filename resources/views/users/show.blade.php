@@ -9,7 +9,7 @@
     </h4>
 
 
-    @if ($user->superadmin)
+    @if ($user != null && $user->superadmin == 1)
         <div class="float-right">
             <a href="{{route('list-admins')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
         </div>

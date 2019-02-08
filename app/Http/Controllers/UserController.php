@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('SuperAdmin' , array('only' => array('admin_index' , 'store_admin', 'delete')) );
+    }
+
     /**
      * Display a listing of the resource.
      *
