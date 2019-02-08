@@ -320,7 +320,7 @@ class SurveyController extends Controller
     public function comments($survey_key)
     {
         $user_key = 'admin';
-        $type = 'show';
+        $type = 'edit';
         $survey = Survey::findOrFail( Survey::getId($survey_key) );
         $survey->load('Blueprint');
         $averages = Survey::results($survey);
