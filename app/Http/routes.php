@@ -98,6 +98,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+// Management
+Route::group(['prefix' => 'cron'], function() {
+    Route::get('management','SurveyController@emailManagement');
+});
+
 
 Route::auth();
 

@@ -88,6 +88,7 @@ class Survey extends Model
     /**
      * CUSTOM
      */
+    
 
     /**
      * Try to return an array with the uniqid for each one

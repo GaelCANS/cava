@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Question;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
@@ -50,6 +51,31 @@ class SurveyController extends Controller
     public function create()
     {
         //
+    }
+
+    public function emailManagement()
+    {
+        $yesterday = Carbon::yesterday()->format('Y-m-d');
+        $surveys = Survey::whereEnd($yesterday)->get();
+
+        if (count($surveys) > 0) {
+            foreach ($surveys as $survey) {
+
+                $blueprint = Blueprint::findOrFail($survey->blueprint_id);
+                if (trim($blueprint->emails) != "") {
+                    $blueprint->load('User');
+                    $link = route('comments',array('survey_key'=>$survey->key));
+                    Mail::send('mails.management', compact('survey', 'blueprint', 'link'), function ($m) use ($blueprint) {
+                        $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
+                        $m->to($blueprint->User->email)
+                            ->cc(explode(';',$blueprint->emails))
+                            ->subject("[Satisfaction collaborateur] " . utf8_decode($blueprint->name) . "");
+                    });
+                    Log::info('Email gestionaire - itération '.$survey->key);
+                }
+            }
+        }
+
     }
 
     /**
