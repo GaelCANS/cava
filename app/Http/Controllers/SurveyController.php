@@ -323,6 +323,7 @@ class SurveyController extends Controller
         $type = 'edit';
         $survey = Survey::findOrFail( Survey::getId($survey_key) );
         $survey->load('Blueprint');
+        
         $averages = Survey::results($survey);
         $blueprint_id = $survey->blueprint_id;
 
