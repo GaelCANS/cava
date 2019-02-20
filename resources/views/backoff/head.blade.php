@@ -18,19 +18,25 @@
         <link href="{{ secure_asset( '/public/css/datepicker.css' , Request::secure()) }}" rel="stylesheet">
         <link href="{{ secure_asset( '/public/css/backoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
         <link href="{{ secure_asset('/public/css/jquery.ui.min.css' , Request::secure()) }}" rel="stylesheet">
+        <link href="{{ secure_asset('/public/theme_modules/mdi/css/materialdesignicons.min.css' , Request::secure()) }}" rel="stylesheet">
+        <link href="{{ secure_asset('/public/theme_modules/simple-line-icons/css/simple-line-icons.css' , Request::secure()) }}" rel="stylesheet">
+        <link href="{{ secure_asset('/public/theme_modules/flag-icon-css/css/flag-icon.min.css' , Request::secure()) }}" rel="stylesheet">
+        <link href="{{ secure_asset('/public/theme_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css' , Request::secure()) }}" rel="stylesheet">
     @else
         <link href="{{ asset( 'css/datepicker.css' , Request::secure()) }}" rel="stylesheet">
         <link href="{{ asset( 'css/backoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet"><!-- Sortable -->
         <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
+
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="{{ asset('/theme_modules/mdi/css/materialdesignicons.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/theme_modules/simple-line-icons/css/simple-line-icons.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/theme_modules/flag-icon-css/css/flag-icon.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/theme_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css') }}" />
     @endif
 
     <link href="https://fonts.googleapis.com/css?family=Dosis:500,700,800" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('/theme_modules/mdi/css/materialdesignicons.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/theme_modules/simple-line-icons/css/simple-line-icons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/theme_modules/flag-icon-css/css/flag-icon.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/theme_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css') }}" />
+
     <!-- endinject -->
 
     <!-- Calendar -->

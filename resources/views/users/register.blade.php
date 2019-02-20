@@ -15,11 +15,17 @@
         )
     ) !!}
 
-    {!! Form::email('email', null , array( 'class' => 'form-control', 'placeholder' => 'Votre email', 'id' => 'SPE-email')  ) !!}
+    <div class="input-group mb-3">
+        {!! Form::text('email', null , array( 'class' => 'form-control', 'placeholder' => 'Votre email', 'id' => 'SPE-email')  ) !!}
+        <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">@ca-normandie-seine.fr</span>
+        </div>
+    </div>
+
     {!! Form::hidden('firstname', null , array( 'id' => 'SPE-firstname')  ) !!}
     {!! Form::hidden('lastname', null , array( 'id' => 'SPE-lastname')  ) !!}
 
-    <button type="submit" class="active">Valider</button>
+    <button type="submit" class="active" style="margin-top: 20px">Valider</button>
 
     {!! Form::close() !!}
 

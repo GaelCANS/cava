@@ -1,6 +1,6 @@
 
 <div class="emote d-none" data-smile="-1">
-    <img src="{{ asset('/img/smiley/null.png') }}"/>
+    <img src="{{ asset('/public/img/smiley/null.png') }}"/>
 </div>
 
 

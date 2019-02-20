@@ -4,18 +4,30 @@ $(function() {
 
     // SPE LN
     $('#SPE-user-form').on('submit',function () {
-        if (validateEmail($('#SPE-email').val())) {
-            var name = $('#SPE-email').val().split('@');
-            var splitName = name[0].split('.');
-            $('#SPE-firstname').val(splitName[0]);
-            $('#SPE-lastname').val(splitName[1]);
-            return true;
-        }
-        else{
-            alert('Vous devez saisir une adresse email valide');
-            return false;
-        }
+        var name = $('#SPE-email').val().split('@');
+        var splitName = name[0].split('.');
+        $('#SPE-firstname').val(splitName[0]);
+        $('#SPE-lastname').val(splitName[1]);
+        $('#SPE-email').val(name[0]+'@ca-normandie-seine.fr');
+        return true;
     });
+
+    // SPE LN
+    if ($('#SPE-email').length > 0) {
+        var time = new Date().getTime();
+        $(document.body).bind("mousemove keypress", function(e) {
+            time = new Date().getTime();
+        });
+
+        function refresh() {
+            if(new Date().getTime() - time >= 60000)
+                window.location.reload(true);
+            else
+                setTimeout(refresh, 10000);
+        }
+
+        setTimeout(refresh, 10000);
+    }
 
     // SPE LN
     $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){

@@ -13,8 +13,9 @@
 
 <!-- Chargement des JS -->
 @if (env('APP_ENV') == 'prod')
-    <script src="{{ secure_asset('/public/js/datepicker.js' ) }}"></script>
+    <script src="{{ secure_asset('/public/js/bootstrap-datepicker.js' ) }}"></script>
     <script src="{{ secure_asset('/public/js/jquery.ui.min.js' ) }}"></script>
+    <script src="{{ secure_asset('/public/js/laravel.js?v=1') }}"></script>
     <script src="{{ secure_asset('/public/js/backoff-app.js?v='.time() ) }}"></script>
     <script src="{{ secure_asset('/public/js/pilotage.js?v='.time() ) }}"></script>
 @else

@@ -46,6 +46,12 @@ class Blueprint extends Model
         return Question::whereBlueprintId($this->id)->count();
     }
 
+    public function getLastSurveyAttribute()
+    {
+        $survey = Survey::whereBlueprintId($this->id)->orderBy('end' , 'DESC')->first();
+        return $survey ? $survey->key : null;
+    }
+
 
     /**
      * RELATIONSHIPS
@@ -70,6 +76,7 @@ class Blueprint extends Model
 
     public function getPeriodAttribute()
     {
+        if ($this->begin == '0000-00-00' || $this->end == '0000-00-00') return '';
         $begin  = Carbon::createFromFormat('Y-m-d', $this->begin)->format('d/m/Y');
         $end    = Carbon::createFromFormat('Y-m-d', $this->end)->format('d/m/Y');
         return $begin.' - '.$end;

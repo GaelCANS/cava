@@ -45,8 +45,13 @@
                                                 @if (!$blueprint->SpeLN &&  $blueprint->user_id == auth()->user()->id)
                                                     <a href="{{action("BlueprintController@destroy" , $blueprint)}}"  title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
                                                 @else
-                                                    <button type="button" class="btn btn-outline-secondary icon-btn disabled" style="cursor: not-allowed"><i class="mdi mdi-delete"></i></button>
+                                                    @if ($blueprint->SpeLN)
+                                                        <a href="{{route('SPE-LN-register' , array($blueprint->lastSurvey))}}" target="_blank" class="" title="Ouvrir l'enquête"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-open-in-new"></i></button></a>
+                                                    @else
+                                                        <button type="button" class="btn btn-outline-secondary icon-btn disabled" style="cursor: not-allowed"><i class="mdi mdi-delete"></i></button>
+                                                    @endif
                                                 @endif
+
                                             </th>
                                         </tr>
                                     @empty
