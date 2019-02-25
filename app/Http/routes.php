@@ -11,9 +11,11 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 
 // Survey
@@ -47,6 +49,8 @@ Route::get('/admin/contributors/{survey_key}','SurveyAdminController@contributor
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', 'BlueprintController@index');
 
     Route::group(['prefix' => 'admin'], function() {
 
@@ -94,6 +98,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         // SPe : LN FEATURE
         Route::get('users/pilotage/{blueprint_id}/{room?}','BlueprintController@pilotage')->name('pilotage');
+
+
 
     });
 
