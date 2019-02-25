@@ -8,8 +8,12 @@
     <td>
         {!! Form::text( 'email['.$user->id.']' , $user->email , array( 'class' => 'form-control ajax-user' , 'data-id' => $user->id , 'data-name' => 'email') ) !!}
     </td>
+    @if ($blueprint->SpeLN)
+        <td>
+            {{$user->room}}
+        </td>
+    @endif
     <td>
-
         {{$user->created}}
     </td>
     <td>

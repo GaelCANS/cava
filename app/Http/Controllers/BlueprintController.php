@@ -6,6 +6,7 @@ use App\Answer;
 use App\Blueprint;
 use App\Libraries\Quarter;
 use App\Survey;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -112,22 +113,23 @@ class BlueprintController extends Controller
     }
 
 
-    public function pilotage($id)
+    public function pilotage($id,$room="")
     {
         $blueprint =  Blueprint::findOrFail($id)->load('Surveys')->load('Questions');
         $survey = $blueprint->Surveys->first();
         $tab = "pilotage";
+        $all_rooms = User::select('room')->distinct()->orderBy('room')->pluck('room' , 'room')->toArray();
 
         // Current month
         $now = Carbon::now();
         $period1 = array('begin' => $now->startOfMonth()->format('Y-m-d 00:00:01') , 'end' => $now->lastOfMonth()->format('Y-m-d 23:59:59'));
-        $month1 = Answer::participants($survey->id,$period1);
+        $month1 = Answer::participants($survey->id,$period1,$room);
 
         // Previous month
         $start = new Carbon('first day of last month');
         $end = new Carbon('last day of last month');
         $period2 = array('begin' => $start->format('Y-m-d 00:00:01') , 'end' => $end->lastOfMonth()->format('Y-m-d 23:59:59'));
-        $month2 = Answer::participants($survey->id,$period2);
+        $month2 = Answer::participants($survey->id,$period2,$room);
 
         // Quarters
         $quarters = array();
@@ -137,27 +139,32 @@ class BlueprintController extends Controller
             $quarters[$i] = Answer::participants($survey->id,$period);
         }
 
+        // Rooms
+        $rooms = User::statsPerRooms();
+
         // Evolution stats
         $day_sub_30 = Carbon::now()->subDays(30)->format('Y-m-d 00:00:01');
         $day_sub_60 = Carbon::now()->subDays(60)->format('Y-m-d 00:00:01');
         $evolutions = array();
         $wordings = array();
+        $evolution1year = array();
         foreach ($blueprint->Questions as $question) {
             if ($question->type == 'open') continue;
             // Stats since begin
-            $evolutions['all'][$question->id] = Survey::evolutionQuestion($blueprint->id,'admin',$question->id );
+            $evolutions['all'][$question->id] = Survey::evolutionQuestion($blueprint->id,'admin',$question->id , array() , $room );
             // Stats between -30 days and now
-            $evolutions['m1'][$question->id] = Survey::evolutionQuestion($blueprint->id,'admin',$question->id, array('begin' => $day_sub_30 , 'end' => Carbon::now()->format('Y-m-d 23:59:59')));
+            $evolutions['m1'][$question->id] = Survey::evolutionQuestion($blueprint->id,'admin',$question->id, array('begin' => $day_sub_30 , 'end' => Carbon::now()->format('Y-m-d 23:59:59')) , $room);
             // Stats between -60 days and -30 days
-            $evolutions['m2'][$question->id] = Survey::evolutionQuestion($blueprint->id,'admin',$question->id, array('begin' => $day_sub_60 , 'end' => $day_sub_30));
+            $evolutions['m2'][$question->id] = Survey::evolutionQuestion($blueprint->id,'admin',$question->id, array('begin' => $day_sub_60 , 'end' => $day_sub_30) , $room);
 
             // Wording
             $wordings[] = $question->wording;
+
+            // 12 months question evolution
+            $evolution1year[$question->id] = Answer::SPELN_oneYearStat($question->id,$room);
         }
 
-
-
-        return view('blueprints.show' , compact('blueprint','tab' , 'month1' , 'month2' , 'quarters' , 'evolutions' , 'wordings'));
+        return view('blueprints.show' , compact('blueprint','tab' , 'month1' , 'month2' , 'quarters' , 'evolutions' , 'wordings', 'rooms', 'all_rooms' , 'room' , 'id' , 'evolution1year'));
     }
 
     

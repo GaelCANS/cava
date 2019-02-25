@@ -5,6 +5,7 @@ namespace App;
 use App\Libraries\Traits\Keyable;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -50,5 +51,10 @@ class User extends Authenticatable
     {
         return $this->superadmin == 1 ? true : false;
     }*/
+
+    public static function statsPerRooms()
+    {
+        return self::select(DB::raw('COUNT(*) AS combien'),'room')->where('room','!=','')->groupBy('room')->get();
+    }
 
 }

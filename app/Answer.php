@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -19,22 +20,23 @@ class Answer extends Model
     }
 
 
-    public static function participants($survey_id, $period = array())
+    public static function participants($survey_id, $period = array(), $room = "")
     {
-        if (count($period) == 0) {
-            $participants = DB::table('answers')
-                            ->select(DB::raw('COUNT(DISTINCT(user_id)) as user_count'))
-                            ->whereSurveyId($survey_id)
-                            ->first();
+        $query = DB::table('answers')->select(DB::raw('COUNT(DISTINCT(user_id)) as user_count'));
+
+        if ($room != "") {
+            $query->join('users' , 'users.id' , '=' , 'answers.user_id')->where('users.room' , '=' , $room);
         }
-        else {
-            $participants = DB::table('answers')
-                ->select(DB::raw('COUNT(DISTINCT(user_id)) as user_count'))
-                ->whereSurveyId($survey_id)
-                ->where('created_at', '>=' , $period['begin'])
-                ->where('created_at', '<=' , $period['end'])
-                ->first();
+
+        if (count($period) != 0) {
+            $where = array();
+            $where[] = array('answers.created_at', '>=' , $period['begin']);
+            $where[] = array('answers.created_at', '<=' , $period['end']);
+            $query->where($where);
         }
+
+        $participants = $query->whereSurveyId($survey_id)->first();
+
         return $participants->user_count;
     }
     
@@ -60,12 +62,38 @@ class Answer extends Model
      * @param $question_id
      * @return float
      */
-    public static function averageQuestionSurvey($survey_id, $question_id , $period = array())
+    public static function averageQuestionSurvey($survey_id, $question_id , $period = array(), $room = "")
     {
-        if (count($period) == 0)
-            return round(self::where('survey_id' , $survey_id)->where('question_id',$question_id)->positive()->avg('result'),1);
-        else
-            return round(self::where('survey_id' , $survey_id)->where('created_at', '>=', $period['begin'])->where('created_at', '<=', $period['end'])->where('question_id',$question_id)->positive()->avg('result'),1);
+
+        $where = array(
+            array('answers.survey_id' , $survey_id),
+            array('answers.question_id',$question_id)
+        );
+
+        if (count($period) > 0) {
+            $where[] = array('answers.created_at', '>=', $period['begin']);
+            $where[] = array('answers.created_at', '<=', $period['end']);
+        }
+
+        $query = self::where($where);
+
+        if ($room != "") {
+            $query->join('users' , 'users.id' , '=' , 'answers.user_id')->where('users.room' , '=' , $room);
+        }
+
+        return round(
+            $query  ->positive()
+                    ->avg('result')
+            ,1
+        );
+
+        return round(
+            self::where($where)
+                ->positive()
+                ->avg('result')
+            ,1
+        );
+
     }
 
 
@@ -87,6 +115,31 @@ class Answer extends Model
             $number_average = round($number_average/count($averages),1);
         }
         return $number_average;
+    }
+
+
+    public static function SPELN_oneYearStat($question_id, $room="")
+    {
+        $query = self::select(
+                        DB::raw("ROUND(AVG(answers.result),2) AS note") ,
+                        DB::raw("CONCAT(YEAR(answers.created_at),'-',LPAD(MONTH(answers.created_at),2,'0')) AS periode"));
+        
+        if ($room != "") {
+            $query->join('users' , 'users.id' , '=' , 'answers.user_id')->where('users.room' , '=' , $room);
+        }
+
+        return $query->where(
+            array(
+                array(
+                    "answers.question_id" , "=" , $question_id
+                ),
+                array(
+                    "answers.created_at" , ">" , Carbon::now()->subYear(1)->format('Y-m-d 00:00:01')
+                )
+            ))
+            ->positive()
+            ->groupBy(DB::raw("CONCAT(YEAR(answers.created_at),'-',MONTH(answers.created_at))"))
+            ->get();
     }
 
 

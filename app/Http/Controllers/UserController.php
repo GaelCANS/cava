@@ -174,6 +174,29 @@ class UserController extends Controller
         $user = User::create(array_merge($request->all() , array('blueprint_id' => $survey->blueprint_id, 'key' => uniqid())));
 
 
-        return redirect()->route('show-survey-front' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
+        return redirect()->route('SPE-LN-room' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
+        //return redirect()->route('show-survey-front' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
+    }
+
+
+    public function SPEroom($key)
+    {
+        // Explode keys to get survey's key - user's key - question's key
+        $keys = Survey::explodeKeys($key);
+
+        return view('users.meetingroom', compact('key'));
+
+    }
+
+
+    public function SPEstoreroom(Request $request, $key)
+    {
+        // Explode keys to get survey's key - user's key - question's key
+        $keys = Survey::explodeKeys($key);
+        $user = User::whereKey($keys['user'])->first();
+        $user->update($request->all());
+
+        return redirect()->route('show-survey-front' , $key);
+
     }
 }

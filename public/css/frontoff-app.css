@@ -548,3 +548,24 @@ datalist option {
     background-color: #00999e;
     border-color: #00999e;
 }
+
+/** SPE LN **/
+#meeting-room .room-1 {
+    background: url("../img/Espace-Showroom.jpg");
+}
+
+#meeting-room .room-2 {
+    background: url("../img/Espace-Co-Création.jpg");
+}
+
+#meeting-room .room-3 {
+    background: url("../img/Espace-Projets-Agiles.jpg");
+}
+
+#meeting-room .room {
+    background-size: cover;
+    /*min-height: 150px;*/
+    background-position: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+}

@@ -13,6 +13,18 @@ $(function() {
     });
 
     // SPE LN
+    if ($('#meeting-room').length > 0) {
+        meetingRooms();
+        window.onresize = meetingRooms;
+
+        $('#meeting-room .room').click(function () {
+            $('#SPE-room').val($(this).data('value'));
+            $('#SPE-room-form').submit();
+        });
+    }
+
+
+    // SPE LN
     if ($('#SPE-email').length > 0) {
         var time = new Date().getTime();
         $(document.body).bind("mousemove keypress", function(e) {
@@ -162,4 +174,10 @@ function init()
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+}
+
+// SPE LN
+function meetingRooms() {
+    var width = $('#meeting-room .room-3').css('width').replace('px','');
+    $('#meeting-room .room').css('height',width/2.05);
 }

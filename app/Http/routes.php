@@ -28,6 +28,8 @@ Route::post('/comments/{survey_key}','SurveyController@newComments')->name('add-
 Route::get('/test/{survey_key}','UserController@test')->name('test');
 Route::get('/register/{survey_key}','UserController@SPEregister')->name('SPE-LN-register');
 Route::post('/register/{survey_key}','UserController@SPEstore')->name('SPE-LN-store');
+Route::get('/meeting-room/{survey_key}','UserController@SPEroom')->name('SPE-LN-room');
+Route::post('/meeting-room/{survey_key}','UserController@SPEstoreroom')->name('SPE-LN-storeroom');
 
 
 // Page
@@ -91,7 +93,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('admins/create','UserController@store_admin');
 
         // SPe : LN FEATURE
-        Route::get('users/pilotage/{blueprint_id}','BlueprintController@pilotage')->name('pilotage');
+        Route::get('users/pilotage/{blueprint_id}/{room?}','BlueprintController@pilotage')->name('pilotage');
 
     });
 

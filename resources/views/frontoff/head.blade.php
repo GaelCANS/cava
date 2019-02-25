@@ -15,7 +15,7 @@
     @if (env('APP_ENV') == 'prod')
         <link href="{{ secure_asset( '/public/css/frontoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
         @else
-        <link href="{{ asset( '/css/frontoff-app.css' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
+        <link href="{{ asset( '/css/frontoff-app.css?v=3' , Request::secure()) }}?v={{ time() }}" rel="stylesheet">
     @endif
     <link href="https://fonts.googleapis.com/css?family=Dosis:500,700,800" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">

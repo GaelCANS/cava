@@ -150,13 +150,13 @@ class Survey extends Model
      * @param $question_id
      * @return array
      */
-    public static function evolutionQuestion($blueprint_id, $user_id, $question_id, $period = array())
+    public static function evolutionQuestion($blueprint_id, $user_id, $question_id, $period = array(), $room = "")
     {
         $surveyQuestions = array('average' => array() , 'user' => array());
         $surveys = Survey::where('blueprint_id' , $blueprint_id)->where('sended' , '1')->orderBy('begin','ASC')->get();
         if ($surveys) {
             foreach ($surveys as $survey) {
-                $surveyQuestions['average'][] = Answer::averageQuestionSurvey($survey->id,$question_id , $period);
+                $surveyQuestions['average'][] = Answer::averageQuestionSurvey($survey->id,$question_id , $period , $room);
                 if ($user_id != 'admin')
                     $surveyQuestions['user'][] = Answer::answerUser($survey->id , $user_id, $question_id);
             }

@@ -15,8 +15,13 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
+            @if ($blueprint->SpeLN)
+            <th>
+                Salle
+            </th>
+            @endif
             <th>Ajouté le</th>
-            <th>Actions</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
