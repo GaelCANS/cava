@@ -76,7 +76,7 @@ class Blueprint extends Model
 
     public function getPeriodAttribute()
     {
-        if ($this->begin == '0000-00-00' || $this->end == '0000-00-00') return '';
+        if ($this->begin == '0000-00-00' || $this->begin == '' || $this->end == '0000-00-00' || $this->end == '') return '';
         $begin  = Carbon::createFromFormat('Y-m-d', $this->begin)->format('d/m/Y');
         $end    = Carbon::createFromFormat('Y-m-d', $this->end)->format('d/m/Y');
         return $begin.' - '.$end;

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -112,5 +113,17 @@ class PasswordController extends Controller
     protected function isAdmin($request)
     {
         return User::whereEmail($request->get('email'))->whereAdmin('1')->count();
+    }
+
+    protected function getEmailSubject()
+    {
+        return property_exists($this, 'subject') ? $this->subject : '[Satisfaction Collaborateur] Réinitialisation de votre mot de passe';
+    }
+
+    protected function resetEmailBuilder()
+    {
+        return function (Message $message) {
+            $message->subject($this->getEmailSubject());
+        };
     }
 }

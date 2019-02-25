@@ -117,6 +117,7 @@ class BlueprintController extends Controller
     {
         $blueprint =  Blueprint::findOrFail($id)->load('Surveys')->load('Questions');
         $survey = $blueprint->Surveys->first();
+        if ($survey == null) return redirect(action("BlueprintController@show" , $id));
         $tab = "pilotage";
         $all_rooms = User::select('room')->distinct()->orderBy('room')->pluck('room' , 'room')->toArray();
 
