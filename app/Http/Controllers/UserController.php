@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Blueprint;
 use App\Question;
 use App\Survey;
@@ -9,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -147,6 +149,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if ($user->answers == 0) {
+            $user->delete();
+            return redirect()->back()->with('success', "L'utilisateur vient d'être supprimé");
+        }
+        elseif (Auth::user()->id == env('ID_MALOO')) {
+            Answer::whereUserId($id)->delete();
             $user->delete();
             return redirect()->back()->with('success', "L'utilisateur vient d'être supprimé");
         }
