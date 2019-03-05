@@ -368,7 +368,7 @@ class SurveyController extends Controller
             $result = route('results-survey-front' , array($survey->key, $user->key));
             Mail::send('mails.invitation', compact('survey', 'blueprint' , 'link' , 'user' , 'result'), function ($m) use ($survey, $blueprint, $user) {
                 $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
-                $m->to($user->email)->subject("[Satisfaction collaborateur] ". utf8_decode($user->lastname).", donnez-nous votre avis ;)");
+                $m->to($user->email)->subject("[Satisfaction collaborateur] ". ($user->lastname).", donnez-nous votre avis ;)");
             });
         }
 
