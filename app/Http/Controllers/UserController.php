@@ -70,7 +70,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = User::create(array_merge($request->all(), array('key'=>uniqid())));
-        $html = view('blueprints.guests-tr' , compact('user' ))->render();
+        $blueprint = Blueprint::findOrFail($request->input('blueprint_id'));
+        $html = view('blueprints.guests-tr' , compact('user' , 'blueprint' ))->render();
 
         return response()->json(
             array(
