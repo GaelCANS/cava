@@ -248,6 +248,9 @@ function addUser(link,id)
         }
     });
 
+    // Autocomplete fields
+    autocompleteAddUser()
+
     // Check on field on create user
     var next = true
     $('#add-user-modal .form-control').each(function () {
@@ -265,6 +268,18 @@ function addUser(link,id)
         $('#add-user-modal').modal('hide')
         $('#add-user-modal .form-control').val('')
     })
+}
+
+/**
+ * Users
+ */
+function autocompleteAddUser()
+{
+    var baseEmail = $('#input-email').val().split('@')
+    var splitName = baseEmail[0].split('.')
+    $('#input-lastname').val(splitName[1])
+    $('#input-firstname').val(splitName[0])
+    $('#input-email').val(baseEmail[0]+'@ca-normandie-seine.fr')
 }
 
 /**

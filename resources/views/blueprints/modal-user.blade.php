@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
 
-                <div class="row">
+                <div class="row d-none">
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::text( 'firstname' , null , array( 'class' => 'form-control' , 'id' => 'input-firstname' , 'placeholder' => 'Nom du participant') ) !!}
@@ -24,8 +24,11 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            {!! Form::email( 'email' , null , array( 'class' => 'form-control' , 'id' => 'input-email' , 'placeholder' => 'Email du participant' , 'data-name' => 'email') ) !!}
+                        <div class="input-group">
+                            {!! Form::text( 'email' , null , array( 'class' => 'form-control' , 'id' => 'input-email' , 'placeholder' => 'Email du participant' , 'data-name' => 'email') ) !!}
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">@ca-normandie-seine.fr</span>
+                            </div>
                         </div>
                     </div>
                 </div>
