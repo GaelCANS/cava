@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
             )
         );
         Route::get('blueprint/new-blueprint','BlueprintController@newBlueprint')->name('new-blueprint');
+        Route::get('blueprint/duplicate-blueprint/{blueprint_id}','BlueprintController@duplicate')->name('duplicate-blueprint');
 
         // Surveys
         Route::get('surveys/{blueprint_id}','SurveyController@index')->name('list-survey');

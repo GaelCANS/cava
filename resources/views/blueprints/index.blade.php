@@ -16,7 +16,7 @@
                                 <table class="table table-hover ajax-action" id="blueprints">
                                     <thead>
                                     <tr>
-                                        <th width="45%">Nom</th>
+                                        <th width="40%">Nom</th>
                                         <th>Questions</th>
                                         <th>Itérations</th>
                                         <th>Période</th>
@@ -42,6 +42,7 @@
                                             <th>{{$blueprint->user->fullname}}</th>
                                             <th>
                                                 <a href="{{action("BlueprintController@show" , $blueprint)}}" title="Modifier"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-border-color"></i></button></a>
+                                                <a href="{{route("duplicate-blueprint" , $blueprint)}}" onclick="return confirm('Voulez-vous dupliquer cette enquête ?');" title="Dupliquer cette enquête"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-content-duplicate"></i></button></a>
                                                 @if (!$blueprint->SpeLN &&  $blueprint->user_id == auth()->user()->id)
                                                     <a href="{{action("BlueprintController@destroy" , $blueprint)}}"  title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
                                                 @else

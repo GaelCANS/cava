@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BlueprintController extends Controller
@@ -109,7 +110,36 @@ class BlueprintController extends Controller
         $blueprint = Blueprint::findOrFail($id);
         $blueprint->deleted = true;
         $blueprint->save();
-        return redirect(action('BlueprintController@index'))->with('success' , "Le questionnaure a bien été supprimé.");
+        return redirect(action('BlueprintController@index'))->with('success' , "L'enquête a bien été supprimée.");
+    }
+
+
+    public function duplicate($id)
+    {
+        // Duplicate blueprint
+        $blueprint                  = Blueprint::findOrFail($id);
+        $clonedBlueprint            = $blueprint->replicate();
+        $clonedBlueprint->name      = "[Copie] ".$clonedBlueprint->name;
+        $clonedBlueprint->user_id   = Auth::user()->id;
+        $clonedBlueprint->push();
+
+        // Duplicate questions
+        foreach ($blueprint->questions as $question) {
+            $clonedQuestion                 = $question->replicate();
+            $clonedQuestion->key            = uniqid();
+            $clonedQuestion->blueprint_id   = $clonedBlueprint->id;
+            $clonedQuestion->push();
+        }
+
+        // Duplicate surveys
+        foreach ($blueprint->surveys as $survey) {
+            $clonedSurvey                   = $survey->replicate();
+            $clonedSurvey->key            = uniqid();
+            $clonedSurvey->blueprint_id   = $clonedBlueprint->id;
+            $clonedSurvey->push();
+        }
+
+        return redirect(action('BlueprintController@index'))->with('success' , "L'enquête a bien été dupliquée.");
     }
 
 
