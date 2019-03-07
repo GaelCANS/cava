@@ -142,9 +142,10 @@ $(function() {
 
     $('.table').on('click','.del-btn',function () {
         event.preventDefault()
-        if(confirm($(this).data('confirm'))) {
+        /*if(confirm($(this).data('confirm'))) {
             window.location.href = $(this).attr('href')
-        }
+        }*/
+        window.location.href = $(this).attr('href')
     })
 
 })
