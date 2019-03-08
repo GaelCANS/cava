@@ -29,6 +29,35 @@ class User extends Authenticatable
     ];
 
 
+    public static function convertCsvToArray($file)
+    {
+        $csv = $file['file']->getRealPath();
+        $users = array();
+
+        if (($handle = fopen($csv, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                if (trim($data[0]) != '' && filter_var($data[0], FILTER_VALIDATE_EMAIL)) {
+                    $users[] = $data[0];
+                }
+            }
+            fclose($handle);
+        }
+
+        return $users;
+    }
+
+    public static function parseEmail($email)
+    {
+        $parsed = explode('@',$email);
+        $fullname = explode('.',$parsed[0]);
+        return array(
+            'firstname' => $fullname[0],
+            'lastname'  => isset($fullname[1]) ? $fullname[1] : "",
+            'email'     => $email
+        );
+    }
+
+
     public function getFullnameAttribute()
     {
         return $this->lastname.' '.$this->firstname;

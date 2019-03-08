@@ -96,6 +96,13 @@ $(function() {
     })
 
     /**
+     * User
+     */
+    $('.import-usrs').on('click',function () {
+        $('#import-modal').modal('show')
+    })
+    
+    /**
      * Question
      */
     $(".sortable").sortable({

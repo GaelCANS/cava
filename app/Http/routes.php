@@ -88,6 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('users/destroy/{user_id}','UserController@destroy')->name('destroy-user');
         Route::post('users/update','UserController@update')->name('update-user');
         Route::post('users/add','UserController@store')->name('add-user');
+        Route::post('users/import','UserController@import')->name('import-user');
 
         // Users - Admins
         Route::get('admins','UserController@admin_index')->name('list-admins');

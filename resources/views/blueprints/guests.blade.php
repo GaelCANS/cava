@@ -36,6 +36,9 @@
                 <button type="button" class="btn btn-primary add-btn" data-type="user-modal">
                     <i class="fa fa-fw fa-plus"></i>Ajouter un utilisateur
                 </button>
+                <button type="button" class="btn btn-primary import-usrs" data-type="import-modal">
+                    <i class="fa fa-fw fa-upload"></i>Importer des utilisateurs
+                </button>
             </td>
         </tr>
         </tfoot>
@@ -45,3 +48,5 @@
 @include('blueprints.modal-user')
 
 {!! Form::close() !!}
+
+@include('blueprints.modal-import')

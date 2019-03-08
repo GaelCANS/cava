@@ -133,6 +133,25 @@ class UserController extends Controller
         $user->update($datas);
     }
 
+
+    public function import(Requests\ImportRequest $request)
+    {
+
+        $csv = $request->only('file');
+        $emails = User::convertCsvToArray($csv);
+        $i = 0;
+        
+        foreach ($emails as $email) {
+
+            if (User::whereEmail($email)->whereBlueprintId($request->get('blueprint'))->count() > 0 ) continue;
+            $info = array_merge(User::parseEmail($email), array('key' => uniqid() , 'blueprint_id' => $request->get('blueprint')));
+            $user = User::create($info);
+            $i++;
+        }
+
+        return redirect()->back()->with('success', "$i utilisateurs viennent d'être ajoutés");
+    }
+
     public function delete($id)
     {
         $user = User::findOrFail($id);
