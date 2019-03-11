@@ -33,6 +33,12 @@
                 <span class="btn btn-success cartouche" data-name="duree">
                     Durée de l'enquête
                 </span>
+                <span class="btn btn-success cartouche" data-name="begin">
+                    Date de début
+                </span>
+                <span class="btn btn-success cartouche" data-name="end">
+                    Date de fin
+                </span>
             </div>
         </div>
     </div>

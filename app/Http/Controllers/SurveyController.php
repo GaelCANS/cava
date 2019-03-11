@@ -358,6 +358,7 @@ class SurveyController extends Controller
     public function send($id)
     {
         $survey = Survey::findOrFail($id);
+        
         $blueprint = Blueprint::findOrFail($survey->blueprint_id);
         $blueprint->load('Users');
         $question = Question::where('blueprint_id' , $survey->blueprint_id)->orderBy('order','ASC')->first();

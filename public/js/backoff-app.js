@@ -561,6 +561,9 @@ function addField(value) {
         case 'duree':
             var html = '%%--days--%%'
             break
+        default:
+            var html = '%%--'+value+'--%%'
+            break
     }
 
     insertAtCaret('intro',html)
