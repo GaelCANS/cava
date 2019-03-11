@@ -36,6 +36,9 @@
                 <button type="button" class="btn btn-primary add-btn" data-type="user-modal">
                     <i class="fa fa-fw fa-plus"></i>Ajouter un utilisateur
                 </button>
+                <button type="button" class="btn btn-primary diffusion-usrs" data-type="diffusion-modal">
+                    <i class="fa fa-fw fa-users"></i>Ajouter depuis une liste
+                </button>
                 <button type="button" class="btn btn-primary import-usrs" data-type="import-modal">
                     <i class="fa fa-fw fa-upload"></i>Importer des utilisateurs
                 </button>
@@ -50,3 +53,4 @@
 {!! Form::close() !!}
 
 @include('blueprints.modal-import')
+@include('blueprints.modal-diffusion')

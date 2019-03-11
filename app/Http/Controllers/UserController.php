@@ -156,6 +156,27 @@ class UserController extends Controller
         return redirect()->back()->with('success', "$i utilisateurs viennent d'être ajoutés");
     }
 
+
+    public function liste(Requests\ListeRequest $request)
+    {
+        preg_match_all('/\<(.*?)\>/', $request->get('listes'), $emails, PREG_PATTERN_ORDER);
+        $i = 0;
+        $emails = $emails[1];
+        if (count($emails) == 0) {
+            return redirect()->back()->with('error', "Aucun email détecté");
+        }
+
+        foreach ($emails as $email) {
+
+            if (User::whereEmail($email)->whereBlueprintId($request->get('blueprint'))->count() > 0 ) continue;
+            $info = array_merge(User::parseEmail($email), array('key' => uniqid() , 'blueprint_id' => $request->get('blueprint')));
+            $user = User::create($info);
+            $i++;
+        }
+
+        return redirect()->back()->with('success', "$i utilisateurs viennent d'être ajoutés");
+    }
+
     public function delete($id)
     {
         $user = User::findOrFail($id);

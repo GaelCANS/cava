@@ -101,6 +101,13 @@ $(function() {
     $('.import-usrs').on('click',function () {
         $('#import-modal').modal('show')
     })
+
+    /**
+     * User
+     */
+    $('.diffusion-usrs').on('click',function () {
+        $('#diffusion-modal').modal('show')
+    })
     
     /**
      * Question
