@@ -66,7 +66,7 @@ class SurveyController extends Controller
                     $blueprint->load('User');
                     $link = route('comments',array('survey_key'=>$survey->key));
                     Mail::send('mails.management', compact('survey', 'blueprint', 'link'), function ($m) use ($blueprint) {
-                        $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
+                        $m->from(env('EMAIL_CR'), env('NAME_CR'));
                         $m->to($blueprint->User->email)
                             ->cc(explode(';',$blueprint->emails))
                             ->subject("[Satisfaction collaborateur] " . utf8_decode($blueprint->name) . "");
@@ -98,7 +98,7 @@ class SurveyController extends Controller
                             $link = route('show-survey-front', array(Survey::createKey(array($survey->key, $user->key, $question->key))));
                             $result = route('results-survey-front', array($survey->key, $user->key));
                             Mail::send('mails.invitation', compact('survey', 'blueprint', 'link', 'user', 'result'), function ($m) use ($survey, $blueprint, $user) {
-                                $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
+                                $m->from(env('EMAIL_CR'), env('NAME_CR'));
                                 $m->to($user->email)->subject("[Satisfaction collaborateur Relance] " . ($user->lastname) . ", donnez-nous votre avis ;)");
                             });
                             Log::info('Email relance - itération ' . $survey->key . ' - user ' . $user->email);
@@ -399,7 +399,7 @@ class SurveyController extends Controller
             $link = route('show-survey-front' , array( Survey::createKey( array($survey->key, $user->key , $question->key) ) ));
             $result = route('results-survey-front' , array($survey->key, $user->key));
             Mail::send('mails.invitation', compact('survey', 'blueprint' , 'link' , 'user' , 'result'), function ($m) use ($survey, $blueprint, $user) {
-                $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
+                $m->from(env('EMAIL_CR'), env('NAME_CR'));
                 $m->to($user->email)->subject("[Satisfaction collaborateur] ". ($user->lastname).", donnez-nous votre avis ;)");
             });
         }
