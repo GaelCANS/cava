@@ -202,7 +202,7 @@ class UserController extends Controller
             $user->delete();
             return redirect()->back()->with('success', "L'utilisateur vient d'être supprimé");
         }
-        return redirect()->back()->with('error', "Impossible de supprimer cet utilisateur.");
+        return redirect()->back()->with('error', "Impossible de supprimer cet utilisateur, car il a déjà répondu.");
     }
 
     public function test($survey_key)

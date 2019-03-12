@@ -86,6 +86,12 @@ class Question extends Model
         return self::where('blueprint_id' , $blueprint_id)->orderBy('order' , 'asc')->get();
     }
 
+
+    public function hasAnswer()
+    {
+        return Answer::whereQuestionId($this->id)->count();
+    }
+
     
     public static function reOrder($blueprint_id)
     {

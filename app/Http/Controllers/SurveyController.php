@@ -149,7 +149,7 @@ class SurveyController extends Controller
             $survey->delete();
             return redirect()->back()->with('success', "L'itération vient d'être supprimée");
         }
-        return redirect()->back()->with('error', "Impossible de supprimer cette itération.");
+        return redirect()->back()->with('error', "Impossible de supprimer cette itération, car elle comporte déjà des réponses.");
     }
 
 
@@ -358,7 +358,7 @@ class SurveyController extends Controller
     public function send($id)
     {
         $survey = Survey::findOrFail($id);
-        
+
         $blueprint = Blueprint::findOrFail($survey->blueprint_id);
         $blueprint->load('Users');
         $question = Question::where('blueprint_id' , $survey->blueprint_id)->orderBy('order','ASC')->first();

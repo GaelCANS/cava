@@ -99,6 +99,9 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         $question = Question::findOrFail($id);
+        if ($question->hasAnswer() > 0) {
+            return redirect()->back()->with('error' , "Impossible de supprimer cette question car elle comporte des réponses.");
+        }
         $blueprint_id = $question->blueprint_id;
         $question->delete();
         Question::reOrder($blueprint_id);
