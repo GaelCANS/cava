@@ -78,6 +78,37 @@ class SurveyController extends Controller
 
     }
 
+    public function emailRevival()
+    {
+        $tomorrow = Carbon::tomorrow()->format('Y-m-d');
+        $surveys = Survey::whereEnd($tomorrow)->get();
+
+        if (count($surveys) > 0) {
+            foreach ($surveys as $survey) {
+
+                $blueprint = Blueprint::findOrFail($survey->blueprint_id);
+                if ( $survey->guests < $blueprint->guests ) {
+
+                    $nonParticipants = Answer::nonParticipants($survey);
+                    if ($nonParticipants->count() > 0) {
+
+                        $question = Question::where('blueprint_id', $survey->blueprint_id)->orderBy('order', 'ASC')->first();
+                        foreach ($nonParticipants as $user) {
+
+                            $link = route('show-survey-front', array(Survey::createKey(array($survey->key, $user->key, $question->key))));
+                            $result = route('results-survey-front', array($survey->key, $user->key));
+                            Mail::send('mails.invitation', compact('survey', 'blueprint', 'link', 'user', 'result'), function ($m) use ($survey, $blueprint, $user) {
+                                $m->from('nepasrepondre@ca-normandie-seine.fr', 'Crédit Agricole Normandie-Seine');
+                                $m->to($user->email)->subject("[Satisfaction collaborateur Relance] " . ($user->lastname) . ", donnez-nous votre avis ;)");
+                            });
+                            Log::info('Email relance - itération ' . $survey->key . ' - user ' . $user->email);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

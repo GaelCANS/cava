@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\DB;
 
 class Answer extends Model
@@ -38,6 +39,11 @@ class Answer extends Model
         $participants = $query->whereSurveyId($survey_id)->first();
 
         return $participants->user_count;
+    }
+
+    public static function nonParticipants($survey)
+    {
+        return User::whereBlueprintId($survey->blueprint_id)->whereNotIn('id', Answer::select('user_id')->whereSurveyId($survey->id)->get())->get();
     }
     
 

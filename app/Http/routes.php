@@ -109,9 +109,10 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-// Management
+// Management && revival
 Route::group(['prefix' => 'cron'], function() {
     Route::get('management','SurveyController@emailManagement');
+    Route::get('revival','SurveyController@emailRevival');
 });
 
 
