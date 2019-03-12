@@ -9,7 +9,8 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <a href="{{action("QuestionController@destroy" , $question)}}" class="del-btn" title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
+
+                <a href="{{action("QuestionController@destroy" , $question)}}" class="del-btn " title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-danger icon-btn"><i class="mdi mdi-delete"></i></button></a>
             </div>
         </div>
     </div>

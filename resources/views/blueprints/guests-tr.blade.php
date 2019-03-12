@@ -17,6 +17,6 @@
         {{$user->created}}
     </td>
     <td>
-        <a href="{{action("UserController@destroy" , $user)}}" class="del-btn" title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
+        <a href="{{action("UserController@destroy" , $user)}}" class="del-btn" title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-danger icon-btn"><i class="mdi mdi-delete"></i></button></a>
     </td>
 </tr>

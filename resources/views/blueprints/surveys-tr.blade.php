@@ -25,7 +25,7 @@
         <a href="{{route('comments' , array($survey->key))}}" class="" target="_blank" title="Voir les résultats l'itération"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-chart-bar"></i></button></a>
         @if (!$blueprint->SpeLN)
         <a href="{{route("send-survey" , $survey)}}" class="send-btn confirm" title="Envoyer l'itération" data-confirm="Voulez-vous vraiment envoyer cette itération ?"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-send"></i></button></a>
-        <a href="{{action("SurveyController@destroy" , $survey)}}" class="del-btn" title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
+        <a href="{{action("SurveyController@destroy" , $survey)}}" class="del-btn" title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-danger icon-btn"><i class="mdi mdi-delete"></i></button></a>
             @else
             <a href="{{route('SPE-LN-register' , array($survey->key))}}" target="_blank" class="" title="Ouvrir l'enquête"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-open-in-new"></i></button></a>
         @endif
