@@ -299,7 +299,7 @@
 .success .icheckbox_line-blue.checked, .success .icheckbox_line-blue.hover,
 .success  .icheckbox_line-blue.checked.hover
 {
-    background: #01a3a6!important;
+    background: #556180!important;
 }
 
 .warning .icheckbox_line-blue.checked, .warning .icheckbox_line-blue.hover,
@@ -357,9 +357,9 @@
 
 
 #channels .icheckbox_line-blue.checked, .iradio_line-blue.checked {
-    background: #01a3a6;
+    background: #556180;
     color:white;
-    border: 1px solid #01a3a6;
+    border: 1px solid #556180;
 }
 
         .icheckbox_line-blue.checked .icheck_line-icon,

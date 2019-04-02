@@ -3,16 +3,19 @@
 @section('content')
 
     <h4 class="page-title d-none">Questionnaires</h4>
-    <a href="{{route('new-blueprint')}}"><button type="button" class="btn btn-secondary btn-xs mb-2" title="Ajouter">+ Ajouter un questionnaire</button></a>
 
     <div class="row">
+        <div class="px-2 pull-right w-100">
+            <input class="form-control" id="myInput" type="text" placeholder="Rechercher une enquête...">
+        </div>
         <div class="col-12 grid-margin">
             <div class="card">
                 <div class="card-body">
+
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
-                                <input class="form-control" id="myInput" type="text" placeholder="Filtre de recherche..">
+
                                 <table class="table table-hover ajax-action" id="blueprints">
                                     <thead>
                                     <tr>
@@ -65,7 +68,10 @@
                 </div>
             </div>
         </div>
+        <a href="{{route('new-blueprint')}}" class="mx-auto w-100 text-center"><button type="button" class="btn btn-primary mb-2" title="Ajouter"><i class="fas fa-plus-circle"></i>Créer une enquête</button></a>
+
     </div>
+
 
 
 @endsection
