@@ -4,8 +4,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Commentaires de l'itération <span class="data-survey"></span></h4>
+                <h4 class="modal-title font-weight-bold">Commentaires de l'itération <span class="data-survey"></span></h4>
+                <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div style="overflow: scroll; height: 300px;" class="comments-content">

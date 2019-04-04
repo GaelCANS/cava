@@ -1,6 +1,6 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="text-center navbar-brand-wrapper">
-    <a class="navbar-brand brand-logo mx-auto py-3" href="">
+    <a class="navbar-brand brand-logo mx-auto py-3" href="{{route('blueprint-index')}}">
             @if (env('APP_ENV') == 'prod')
                 <img src="{{ secure_asset('/public/img/logo-cava.png') }}"/>
             @else
@@ -30,7 +30,6 @@
         <li class="nav-item nav-profile">
             <div class="nav-link text-center small-text text-white">
 
-
                     <a href="{{route('show-admin' , array('id' => auth()->user()->id))}}">
                         <i class="fas fa-user-cog"></i>@if (auth()->user()){{ auth()->user()->fullname }}@endif
 
@@ -41,6 +40,8 @@
                         <i class="fa fa-sign-out"></i>Se déconnecter
                     </a>
             </div>
+            <img src="{{ asset('img/cans-logo-grey.png') }}" width="100%" class="px-4"/>
+
         </li>
 
     </ul>
