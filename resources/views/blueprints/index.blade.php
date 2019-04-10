@@ -2,11 +2,17 @@
 
 @section('content')
 
-    <h4 class="page-title d-none">Questionnaires</h4>
+    <h4 class="page-title d-inline-block  mb-3 text-uppercase">
+       SATISFACTION COLLABORATEUR - Outil d'enquête interne
+
+    </h4>
+
+    <div class="float-right ">
+        <input class="form-control" id="myInput" type="text" placeholder="Rechercher une enquête...">
+    </div>
 
     <div class="row">
         <div class="px-2 pull-right w-100">
-            <input class="form-control" id="myInput" type="text" placeholder="Rechercher une enquête...">
         </div>
         <div class="col-12 grid-margin">
             <div class="card">
@@ -16,7 +22,7 @@
                         <div class="col-12">
                             <div class="table-responsive">
 
-                                <table class="table table-hover ajax-action" id="blueprints">
+                                <table class="table table-hover  ajax-action" id="blueprints">
                                     <thead>
                                     <tr>
                                         <th width="40%">Nom</th>
@@ -30,7 +36,7 @@
                                     <tbody>
                                     @forelse($blueprints as $blueprint)
                                         <tr>
-                                            <th class="text-left">{{$blueprint->name}}</th>
+                                            <th >{{$blueprint->name}}</th>
                                             <th>
                                                 <a href="{{route('list-question' , $blueprint)}}">
                                                     {{$blueprint->countQuestion}}
@@ -44,8 +50,8 @@
                                             <th>{{$blueprint->period}}</th>
                                             <th>{{$blueprint->user->fullname}}</th>
                                             <th>
-                                                <a href="{{action("BlueprintController@show" , $blueprint)}}" title="Modifier"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-border-color"></i></button></a>
-                                                <a href="{{route("duplicate-blueprint" , $blueprint)}}" onclick="return confirm('Voulez-vous dupliquer cette enquête ?');" title="Dupliquer cette enquête"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-content-duplicate"></i></button></a>
+                                                <a href="{{action("BlueprintController@show" , $blueprint)}}" title="Modifier"><button type="button" class="btn btn-outline-primary icon-btn"><i class="mdi mdi-border-color"></i></button></a>
+                                                <a href="{{route("duplicate-blueprint" , $blueprint)}}" onclick="return confirm('Voulez-vous dupliquer cette enquête ?');" title="Dupliquer cette enquête"><button type="button" class="btn btn-outline-primary icon-btn"><i class="mdi mdi-content-duplicate"></i></button></a>
                                                 @if (!$blueprint->SpeLN &&  $blueprint->user_id == auth()->user()->id)
                                                     <a href="{{action("BlueprintController@destroy" , $blueprint)}}"  title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-danger icon-btn"><i class="mdi mdi-delete"></i></button></a>
                                                 @else

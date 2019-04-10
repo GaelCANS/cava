@@ -32,7 +32,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <button type="button" class="btn btn-primary add-btn" data-type="user-modal">
                     <i class="fa fa-fw fa-plus"></i>Ajouter un utilisateur
                 </button>

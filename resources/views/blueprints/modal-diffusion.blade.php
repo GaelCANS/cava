@@ -14,8 +14,9 @@
                 <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Import d'utilisateurs depuis Outlook <span class="data-survey"></span></h4>
+                <h4 class="modal-title font-weight-bold">Import d'utilisateurs depuis Outlook <span class="data-survey"></span></h4>
+
+                <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
 
@@ -26,7 +27,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-success" >Importer</button>
+                <button type="submit" class="btn btn-primary" >Importer</button>
             </div>
         </div>
 

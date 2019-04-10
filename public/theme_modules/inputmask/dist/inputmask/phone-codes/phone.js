@@ -1282,7 +1282,7 @@
             }, {
                 mask: "+1(664)###-####",
                 cc: "MS",
-                cd: "Montserrat",
+                cd: "Dosis",
                 desc_en: "",
                 name_ru: "\u041c\u043e\u043d\u0442\u0441\u0435\u0440\u0440\u0430\u0442",
                 desc_ru: ""
