@@ -56,14 +56,14 @@ class PasswordController extends Controller
         else {
             $response = Password::INVALID_USER;
         }
-        
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
                 return $this->getSendResetLinkEmailSuccessResponse($response);
             case Password::INVALID_USER:
             default:
-                return $this->getSendResetLinkEmailFailureResponse($response);
+                //return $this->getSendResetLinkEmailFailureResponse($response);
+            return $this->getSendResetLinkEmailSuccessResponse($response);
         }
     }
 
