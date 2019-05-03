@@ -31,7 +31,7 @@
 
                     <div class="collapse" id="comments-{{$average['order']}}">
                         <div class="card card-body">
-                            {!! utf8_decode($average['comment']) !!}
+                            {!! ($average['comment']) !!}
                         </div>
                     </div>
                 @endif
